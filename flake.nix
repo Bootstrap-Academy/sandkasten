@@ -16,9 +16,7 @@
   } @ inputs: let
     defaultSystems = [
       "x86_64-linux"
-      "x86_64-darwin"
-      "aarch64-linux"
-      "aarch64-darwin"
+      "aarch64-linux" # untested
     ];
     eachDefaultSystem = f:
       builtins.listToAttrs (map (system: {
@@ -42,5 +40,11 @@
     };
     devShells = eachDefaultSystem (pkgs: import ./nix/dev/shell.nix {inherit self pkgs lib;});
     templates.vm.path = ./nix/nixos/vm;
+
+    checks = let
+      checks = builtins.mapAttrs (_: packages: packages // {packages = packages.packages.all;}) self.packages;
+    in {
+      inherit (checks) x86_64-linux;
+    };
   };
 }
