@@ -4,14 +4,12 @@
     nixpkgs-old.url = "github:NixOS/nixpkgs/release-22.11";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     fenix.url = "github:nix-community/fenix";
-    crate2nix.url = "github:nix-community/crate2nix";
   };
 
   outputs = {
     self,
     nixpkgs,
     fenix,
-    crate2nix,
     ...
   } @ inputs: let
     defaultSystems = [
@@ -28,12 +26,16 @@
   in {
     packages = eachDefaultSystem (pkgs: {
       default = self.packages.${pkgs.system}.sandkasten;
-      sandkasten = pkgs.callPackage ./nix/sandkasten.nix {inherit fenix crate2nix;};
+      sandkasten = pkgs.callPackage ./nix/sandkasten.nix {inherit fenix;};
       packages = import ./nix/packages {
         inherit inputs lib;
         inherit (pkgs) system;
       };
       time = pkgs.callPackage ./nix/time {};
+
+      generate = pkgs.writeShellScriptBin "generate" ''
+        ${nixpkgs.lib.getExe pkgs.crate2nix} generate
+      '';
     });
     nixosModules.sandkasten = import ./nix/nixos/module.nix {
       inherit self lib;

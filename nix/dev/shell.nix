@@ -111,7 +111,7 @@
   };
 in {
   default = pkgs.mkShell ({
-      packages = [pkgs.cargo-llvm-cov pkgs.lcov self.packages.${pkgs.system}.time scripts];
+      packages = [pkgs.cargo-llvm-cov pkgs.lcov self.packages.${pkgs.system}.time self.packages.${pkgs.system}.generate pkgs.crate2nix scripts];
       RUST_LOG = "info,sandkasten=trace,difft=off";
     }
     // test-env);
