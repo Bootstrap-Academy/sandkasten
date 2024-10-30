@@ -2192,9 +2192,9 @@ rec {
       };
       "hyper-util" = rec {
         crateName = "hyper-util";
-        version = "0.1.9";
+        version = "0.1.10";
         edition = "2021";
-        sha256 = "12yhradh0bpwa9jjyyq6shrrcx9fxbdkrq06xj7ccfhqkyq6waa1";
+        sha256 = "1d1iwrkysjhq63pg54zk3vfby1j7zmxzm9zzyfr4lwvp0szcybfz";
         libName = "hyper_util";
         authors = [
           "Sean McArthur <sean@seanmonstar.com>"
@@ -2567,9 +2567,9 @@ rec {
       };
       "libm" = rec {
         crateName = "libm";
-        version = "0.2.10";
+        version = "0.2.11";
         edition = "2021";
-        sha256 = "0iw0h9yrzj7b4w7k0wglghkjfdmx0cncxr8d7gaj3b2sfgg1j150";
+        sha256 = "1yjgk18rk71rjbqcw9l1zaqna89p9s603k7n327nqs8dn88vwmc3";
         authors = [
           "Jorge Aparicio <jorge@japaric.io>"
         ];
@@ -4167,9 +4167,9 @@ rec {
       };
       "quinn-udp" = rec {
         crateName = "quinn-udp";
-        version = "0.5.5";
+        version = "0.5.6";
         edition = "2021";
-        sha256 = "02qlqjsbmfgwin9jpb652d0hkjyzz7wvsgb833i384hskqp8rrjg";
+        sha256 = "100pqx0rnscnm1l45s71hj618bx1ghcihdr47hii5zygx8bf0ip3";
         libName = "quinn_udp";
         dependencies = [
           {
@@ -4197,6 +4197,12 @@ rec {
             packageId = "windows-sys 0.59.0";
             target = { target, features }: (target."windows" or false);
             features = [ "Win32_Foundation" "Win32_System_IO" "Win32_Networking_WinSock" ];
+          }
+        ];
+        buildDependencies = [
+          {
+            name = "cfg_aliases";
+            packageId = "cfg_aliases";
           }
         ];
         features = {
@@ -5017,9 +5023,9 @@ rec {
       };
       "rustls" = rec {
         crateName = "rustls";
-        version = "0.23.15";
+        version = "0.23.16";
         edition = "2021";
-        sha256 = "14vr5pfdvzfcqrmjzh1834a1nyi3kzv7j8s22gb77s64mkbl9fsz";
+        sha256 = "0plj2xb4cjmj4b9iii8abdd923x81sgjxqblhnji4rxkv7spzs7f";
         dependencies = [
           {
             name = "once_cell";
