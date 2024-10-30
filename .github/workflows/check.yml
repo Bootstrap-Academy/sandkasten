@@ -101,3 +101,12 @@ jobs:
         uses: Swatinem/rust-cache@v2
       - name: cargo +${{ matrix.msrv }} check
         run: cargo check -p sandkasten-client
+
+  cargo-nix:
+    name: cargo-nix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - run: nix run .#generate
+      - run: git diff --exit-code
