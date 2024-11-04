@@ -546,9 +546,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.1.31";
+        version = "1.1.34";
         edition = "2018";
-        sha256 = "0vscf59yxf665s4fv9yn3l39gfw99mgp6wnbc76cyv80ahmrdry2";
+        sha256 = "1j9dh96lpkksmfvjfiqa5nrlswm5l6lj54m5jf7i0iik8l6lgfb7";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
