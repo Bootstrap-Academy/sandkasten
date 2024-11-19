@@ -73,7 +73,7 @@ jobs:
           nix develop .#test --command bash -c "setup-nsjail && for i in {1..5}; do integration-tests $proptests && break; done"
       - name: Upload to codecov.io
         if: ${{ github.event_name != 'schedule' && github.event_name != 'workflow_dispatch' }}
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
