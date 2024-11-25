@@ -5023,9 +5023,9 @@ rec {
       };
       "rustls" = rec {
         crateName = "rustls";
-        version = "0.23.16";
+        version = "0.23.18";
         edition = "2021";
-        sha256 = "0plj2xb4cjmj4b9iii8abdd923x81sgjxqblhnji4rxkv7spzs7f";
+        sha256 = "0zxbcq0qy3kmp0m42mmf930h5bhr3hh3ivamrrd6ag94gvac374w";
         dependencies = [
           {
             name = "once_cell";
