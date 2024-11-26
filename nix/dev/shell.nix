@@ -116,5 +116,5 @@ in {
       RUST_LOG = "info,sandkasten=trace,difft=off";
     }
     // test-env);
-  test = pkgs.mkShell ({packages = [pkgs.cargo-llvm-cov scripts];} // test-env);
+  test = pkgs.mkShellNoCC ({packages = [pkgs.cargo-llvm-cov scripts];} // test-env);
 }
