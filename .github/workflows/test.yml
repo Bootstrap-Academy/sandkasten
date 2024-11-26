@@ -2,7 +2,7 @@ name: test
 
 on:
   push:
-    branches: [develop]
+    branches: [develop, staging, trying]
   pull_request:
   schedule:
     - cron: "0 4 * * *"
