@@ -308,9 +308,9 @@ rec {
       };
       "anyhow" = rec {
         crateName = "anyhow";
-        version = "1.0.92";
+        version = "1.0.93";
         edition = "2018";
-        sha256 = "04xgvbdlgcfd80ahvgsk1dq9q4969ilj9n4xp62052nlsxk73wvl";
+        sha256 = "0xapv1bck3pvwqk06xn4b8nk5c88cja19f1qc9ih42mhl05w35ac";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
@@ -1168,6 +1168,33 @@ rec {
           "subtle" = [ "dep:subtle" ];
         };
         resolvedDefaultFeatures = [ "alloc" "block-buffer" "core-api" "default" "mac" "std" "subtle" ];
+      };
+      "displaydoc" = rec {
+        crateName = "displaydoc";
+        version = "0.2.5";
+        edition = "2021";
+        sha256 = "1q0alair462j21iiqwrr21iabkfnb13d6x5w95lkdg21q2xrqdlp";
+        procMacro = true;
+        authors = [
+          "Jane Lusby <jlusby@yaah.dev>"
+        ];
+        dependencies = [
+          {
+            name = "proc-macro2";
+            packageId = "proc-macro2";
+          }
+          {
+            name = "quote";
+            packageId = "quote";
+          }
+          {
+            name = "syn";
+            packageId = "syn";
+          }
+        ];
+        features = {
+          "default" = [ "std" ];
+        };
       };
       "either" = rec {
         crateName = "either";
@@ -2349,6 +2376,412 @@ rec {
         ];
 
       };
+      "icu_collections" = rec {
+        crateName = "icu_collections";
+        version = "1.5.0";
+        edition = "2021";
+        sha256 = "09j5kskirl59mvqc8kabhy7005yyy7dp88jw9f6f3gkf419a8byv";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        dependencies = [
+          {
+            name = "displaydoc";
+            packageId = "displaydoc";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "yoke";
+            packageId = "yoke";
+            usesDefaultFeatures = false;
+            features = [ "derive" ];
+          }
+          {
+            name = "zerofrom";
+            packageId = "zerofrom";
+            usesDefaultFeatures = false;
+            features = [ "derive" ];
+          }
+          {
+            name = "zerovec";
+            packageId = "zerovec";
+            usesDefaultFeatures = false;
+            features = [ "derive" "yoke" ];
+          }
+        ];
+        features = {
+          "databake" = [ "dep:databake" "zerovec/databake" ];
+          "serde" = [ "dep:serde" "zerovec/serde" ];
+        };
+      };
+      "icu_locid" = rec {
+        crateName = "icu_locid";
+        version = "1.5.0";
+        edition = "2021";
+        sha256 = "0dznvd1c5b02iilqm044q4hvar0sqibq1z46prqwjzwif61vpb0k";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        dependencies = [
+          {
+            name = "displaydoc";
+            packageId = "displaydoc";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "litemap";
+            packageId = "litemap";
+            usesDefaultFeatures = false;
+            features = [ "alloc" ];
+          }
+          {
+            name = "tinystr";
+            packageId = "tinystr";
+            usesDefaultFeatures = false;
+            features = [ "alloc" ];
+          }
+          {
+            name = "writeable";
+            packageId = "writeable";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "zerovec";
+            packageId = "zerovec";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+        ];
+        features = {
+          "bench" = [ "serde" ];
+          "databake" = [ "dep:databake" ];
+          "serde" = [ "dep:serde" "tinystr/serde" ];
+          "zerovec" = [ "dep:zerovec" ];
+        };
+        resolvedDefaultFeatures = [ "zerovec" ];
+      };
+      "icu_locid_transform" = rec {
+        crateName = "icu_locid_transform";
+        version = "1.5.0";
+        edition = "2021";
+        sha256 = "0kmmi1kmj9yph6mdgkc7v3wz6995v7ly3n80vbg0zr78bp1iml81";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        dependencies = [
+          {
+            name = "displaydoc";
+            packageId = "displaydoc";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_locid";
+            packageId = "icu_locid";
+            usesDefaultFeatures = false;
+            features = [ "zerovec" ];
+          }
+          {
+            name = "icu_locid_transform_data";
+            packageId = "icu_locid_transform_data";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_provider";
+            packageId = "icu_provider";
+            usesDefaultFeatures = false;
+            features = [ "macros" ];
+          }
+          {
+            name = "tinystr";
+            packageId = "tinystr";
+            usesDefaultFeatures = false;
+            features = [ "alloc" "zerovec" ];
+          }
+          {
+            name = "zerovec";
+            packageId = "zerovec";
+            usesDefaultFeatures = false;
+            features = [ "yoke" ];
+          }
+        ];
+        features = {
+          "bench" = [ "serde" ];
+          "compiled_data" = [ "dep:icu_locid_transform_data" ];
+          "datagen" = [ "serde" "dep:databake" "zerovec/databake" "icu_locid/databake" "tinystr/databake" ];
+          "default" = [ "compiled_data" ];
+          "serde" = [ "dep:serde" "icu_locid/serde" "tinystr/serde" "zerovec/serde" "icu_provider/serde" ];
+        };
+        resolvedDefaultFeatures = [ "compiled_data" ];
+      };
+      "icu_locid_transform_data" = rec {
+        crateName = "icu_locid_transform_data";
+        version = "1.5.0";
+        edition = "2021";
+        sha256 = "0vkgjixm0wzp2n3v5mw4j89ly05bg3lx96jpdggbwlpqi0rzzj7x";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+
+      };
+      "icu_normalizer" = rec {
+        crateName = "icu_normalizer";
+        version = "1.5.0";
+        edition = "2021";
+        sha256 = "0kx8qryp8ma8fw1vijbgbnf7zz9f2j4d14rw36fmjs7cl86kxkhr";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        dependencies = [
+          {
+            name = "displaydoc";
+            packageId = "displaydoc";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_collections";
+            packageId = "icu_collections";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_normalizer_data";
+            packageId = "icu_normalizer_data";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_properties";
+            packageId = "icu_properties";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_provider";
+            packageId = "icu_provider";
+            usesDefaultFeatures = false;
+            features = [ "macros" ];
+          }
+          {
+            name = "smallvec";
+            packageId = "smallvec";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "utf16_iter";
+            packageId = "utf16_iter";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "utf8_iter";
+            packageId = "utf8_iter";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "write16";
+            packageId = "write16";
+            usesDefaultFeatures = false;
+            features = [ "alloc" ];
+          }
+          {
+            name = "zerovec";
+            packageId = "zerovec";
+            usesDefaultFeatures = false;
+          }
+        ];
+        devDependencies = [
+          {
+            name = "write16";
+            packageId = "write16";
+            usesDefaultFeatures = false;
+            features = [ "arrayvec" ];
+          }
+        ];
+        features = {
+          "compiled_data" = [ "dep:icu_normalizer_data" "icu_properties/compiled_data" ];
+          "datagen" = [ "serde" "dep:databake" "icu_collections/databake" "zerovec/databake" "icu_properties/datagen" ];
+          "default" = [ "compiled_data" ];
+          "serde" = [ "dep:serde" "icu_collections/serde" "zerovec/serde" "icu_properties/serde" ];
+          "std" = [ "icu_collections/std" "icu_properties/std" "icu_provider/std" ];
+        };
+        resolvedDefaultFeatures = [ "compiled_data" "default" ];
+      };
+      "icu_normalizer_data" = rec {
+        crateName = "icu_normalizer_data";
+        version = "1.5.0";
+        edition = "2021";
+        sha256 = "05lmk0zf0q7nzjnj5kbmsigj3qgr0rwicnn5pqi9n7krmbvzpjpq";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+
+      };
+      "icu_properties" = rec {
+        crateName = "icu_properties";
+        version = "1.5.1";
+        edition = "2021";
+        sha256 = "1xgf584rx10xc1p7zjr78k0n4zn3g23rrg6v2ln31ingcq3h5mlk";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        dependencies = [
+          {
+            name = "displaydoc";
+            packageId = "displaydoc";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_collections";
+            packageId = "icu_collections";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_locid_transform";
+            packageId = "icu_locid_transform";
+            optional = true;
+            usesDefaultFeatures = false;
+            features = [ "compiled_data" ];
+          }
+          {
+            name = "icu_properties_data";
+            packageId = "icu_properties_data";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_provider";
+            packageId = "icu_provider";
+            usesDefaultFeatures = false;
+            features = [ "macros" ];
+          }
+          {
+            name = "tinystr";
+            packageId = "tinystr";
+            usesDefaultFeatures = false;
+            features = [ "alloc" "zerovec" ];
+          }
+          {
+            name = "zerovec";
+            packageId = "zerovec";
+            usesDefaultFeatures = false;
+            features = [ "derive" ];
+          }
+        ];
+        features = {
+          "bidi" = [ "dep:unicode-bidi" ];
+          "compiled_data" = [ "dep:icu_properties_data" "dep:icu_locid_transform" ];
+          "datagen" = [ "serde" "dep:databake" "zerovec/databake" "icu_collections/databake" "tinystr/databake" ];
+          "default" = [ "compiled_data" ];
+          "serde" = [ "dep:serde" "tinystr/serde" "zerovec/serde" "icu_collections/serde" "icu_provider/serde" ];
+          "std" = [ "icu_collections/std" "icu_provider/std" ];
+        };
+        resolvedDefaultFeatures = [ "compiled_data" "default" ];
+      };
+      "icu_properties_data" = rec {
+        crateName = "icu_properties_data";
+        version = "1.5.0";
+        edition = "2021";
+        sha256 = "0scms7pd5a7yxx9hfl167f5qdf44as6r3bd8myhlngnxqgxyza37";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+
+      };
+      "icu_provider" = rec {
+        crateName = "icu_provider";
+        version = "1.5.0";
+        edition = "2021";
+        sha256 = "1nb8vvgw8dv2inqklvk05fs0qxzkw8xrg2n9vgid6y7gm3423m3f";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        dependencies = [
+          {
+            name = "displaydoc";
+            packageId = "displaydoc";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_locid";
+            packageId = "icu_locid";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "icu_provider_macros";
+            packageId = "icu_provider_macros";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "stable_deref_trait";
+            packageId = "stable_deref_trait";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "tinystr";
+            packageId = "tinystr";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "writeable";
+            packageId = "writeable";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "yoke";
+            packageId = "yoke";
+            usesDefaultFeatures = false;
+            features = [ "alloc" "derive" ];
+          }
+          {
+            name = "zerofrom";
+            packageId = "zerofrom";
+            usesDefaultFeatures = false;
+            features = [ "alloc" "derive" ];
+          }
+          {
+            name = "zerovec";
+            packageId = "zerovec";
+            usesDefaultFeatures = false;
+            features = [ "derive" ];
+          }
+        ];
+        features = {
+          "datagen" = [ "serde" "dep:erased-serde" "dep:databake" "std" "sync" ];
+          "deserialize_bincode_1" = [ "serde" "dep:bincode" "std" ];
+          "deserialize_json" = [ "serde" "dep:serde_json" ];
+          "deserialize_postcard_1" = [ "serde" "dep:postcard" ];
+          "log_error_context" = [ "logging" ];
+          "logging" = [ "dep:log" ];
+          "macros" = [ "dep:icu_provider_macros" ];
+          "serde" = [ "dep:serde" "yoke/serde" ];
+          "std" = [ "icu_locid/std" ];
+        };
+        resolvedDefaultFeatures = [ "macros" ];
+      };
+      "icu_provider_macros" = rec {
+        crateName = "icu_provider_macros";
+        version = "1.5.0";
+        edition = "2021";
+        sha256 = "1mjs0w7fcm2lcqmbakhninzrjwqs485lkps4hz0cv3k36y9rxj0y";
+        procMacro = true;
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        dependencies = [
+          {
+            name = "proc-macro2";
+            packageId = "proc-macro2";
+          }
+          {
+            name = "quote";
+            packageId = "quote";
+          }
+          {
+            name = "syn";
+            packageId = "syn";
+          }
+        ];
+
+      };
       "ident_case" = rec {
         crateName = "ident_case";
         version = "1.0.1";
@@ -2361,30 +2794,56 @@ rec {
       };
       "idna" = rec {
         crateName = "idna";
-        version = "0.5.0";
+        version = "1.0.3";
         edition = "2018";
-        sha256 = "1xhjrcjqq0l5bpzvdgylvpkgk94panxgsirzhjnnqfdgc4a9nkb3";
+        sha256 = "0zlajvm2k3wy0ay8plr07w22hxkkmrxkffa6ah57ac6nci984vv8";
         authors = [
           "The rust-url developers"
         ];
         dependencies = [
           {
-            name = "unicode-bidi";
-            packageId = "unicode-bidi";
-            usesDefaultFeatures = false;
-            features = [ "hardcoded-data" ];
+            name = "idna_adapter";
+            packageId = "idna_adapter";
           }
           {
-            name = "unicode-normalization";
-            packageId = "unicode-normalization";
-            usesDefaultFeatures = false;
+            name = "smallvec";
+            packageId = "smallvec";
+            features = [ "const_generics" ];
+          }
+          {
+            name = "utf8_iter";
+            packageId = "utf8_iter";
           }
         ];
         features = {
-          "default" = [ "std" ];
-          "std" = [ "alloc" "unicode-bidi/std" "unicode-normalization/std" ];
+          "compiled_data" = [ "idna_adapter/compiled_data" ];
+          "default" = [ "std" "compiled_data" ];
+          "std" = [ "alloc" ];
         };
-        resolvedDefaultFeatures = [ "alloc" "default" "std" ];
+        resolvedDefaultFeatures = [ "alloc" "compiled_data" "std" ];
+      };
+      "idna_adapter" = rec {
+        crateName = "idna_adapter";
+        version = "1.2.0";
+        edition = "2021";
+        sha256 = "0wggnkiivaj5lw0g0384ql2d7zk4ppkn3b1ry4n0ncjpr7qivjns";
+        authors = [
+          "The rust-url developers"
+        ];
+        dependencies = [
+          {
+            name = "icu_normalizer";
+            packageId = "icu_normalizer";
+          }
+          {
+            name = "icu_properties";
+            packageId = "icu_properties";
+          }
+        ];
+        features = {
+          "compiled_data" = [ "icu_normalizer/compiled_data" "icu_properties/compiled_data" ];
+        };
+        resolvedDefaultFeatures = [ "compiled_data" ];
       };
       "indexmap" = rec {
         crateName = "indexmap";
@@ -2593,6 +3052,24 @@ rec {
           "rustc-dep-of-std" = [ "core" "compiler_builtins" "no_std" ];
         };
         resolvedDefaultFeatures = [ "elf" "errno" "general" "ioctl" "no_std" ];
+      };
+      "litemap" = rec {
+        crateName = "litemap";
+        version = "0.7.4";
+        edition = "2021";
+        sha256 = "012ili3vppd4952sh6y3qwcd0jkd0bq2qpr9h7cppc8sj11k7saf";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        features = {
+          "bench" = [ "serde" ];
+          "databake" = [ "dep:databake" ];
+          "default" = [ "alloc" ];
+          "serde" = [ "dep:serde" ];
+          "testing" = [ "alloc" ];
+          "yoke" = [ "dep:yoke" ];
+        };
+        resolvedDefaultFeatures = [ "alloc" ];
       };
       "lock_api" = rec {
         crateName = "lock_api";
@@ -3176,9 +3653,9 @@ rec {
       };
       "poem" = rec {
         crateName = "poem";
-        version = "3.1.3";
+        version = "3.1.5";
         edition = "2021";
-        sha256 = "0k9ibpr5bnwkkarxmhkxycbkkxiz5f3x9vi837hf04dqqq1f3w7y";
+        sha256 = "1vshxx7qvas74zn9ljcrsx0nbha4k272x5241qhsjknw8an9a5v7";
         authors = [
           "sunli <scott_s829@163.com>"
         ];
@@ -3509,9 +3986,9 @@ rec {
       };
       "poem-openapi" = rec {
         crateName = "poem-openapi";
-        version = "5.1.2";
+        version = "5.1.4";
         edition = "2021";
-        sha256 = "1dgplqwb0pq3sqcmjw3jbvpqdm73djf8chc4v9bpd8c1d9q4ldaw";
+        sha256 = "1mqqxc07pwxv6yrpv8wgrhg2aql2gxnzslwvzj5my90n5ckc5lxh";
         libName = "poem_openapi";
         authors = [
           "sunli <scott_s829@163.com>"
@@ -5279,7 +5756,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.0";
+            packageId = "thiserror 2.0.3";
             usesDefaultFeatures = false;
           }
           {
@@ -5376,7 +5853,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.0";
+            packageId = "thiserror 2.0.3";
             usesDefaultFeatures = false;
           }
           {
@@ -5422,9 +5899,9 @@ rec {
       };
       "serde" = rec {
         crateName = "serde";
-        version = "1.0.214";
+        version = "1.0.215";
         edition = "2018";
-        sha256 = "1danzh1zw9pg10y3bg0b7bvbkqbk5dfpiwchg2ni4757mj9k2p7m";
+        sha256 = "13xqkw93cw9rnbkm0zy1apnilzq7l2xf1qw8m1nkga8i1fnw24v5";
         authors = [
           "Erick Tryzelaar <erick.tryzelaar@gmail.com>"
           "David Tolnay <dtolnay@gmail.com>"
@@ -5456,9 +5933,9 @@ rec {
       };
       "serde_derive" = rec {
         crateName = "serde_derive";
-        version = "1.0.214";
+        version = "1.0.215";
         edition = "2015";
-        sha256 = "0rkp2idkb2p9s96fpqhlzp01qiby63wf1p2wc3x2hph93xw3ylny";
+        sha256 = "1h2nswy0rmzblil38h12wxsgni1ik63rk22wy19g48v9hrpqc7md";
         procMacro = true;
         authors = [
           "Erick Tryzelaar <erick.tryzelaar@gmail.com>"
@@ -5490,9 +5967,9 @@ rec {
       };
       "serde_json" = rec {
         crateName = "serde_json";
-        version = "1.0.132";
+        version = "1.0.133";
         edition = "2021";
-        sha256 = "00yv8vyn1qiplziswm1vwam4a0xs1rfr162q75njc85kyjpvy9np";
+        sha256 = "0xz3bswa527wln3fy0qb7y081nx3cp5yy1ggjhi6n5mrfcjfpz67";
         authors = [
           "Erick Tryzelaar <erick.tryzelaar@gmail.com>"
           "David Tolnay <dtolnay@gmail.com>"
@@ -5837,6 +6314,20 @@ rec {
         };
         resolvedDefaultFeatures = [ "mutex" "once" "spin_mutex" ];
       };
+      "stable_deref_trait" = rec {
+        crateName = "stable_deref_trait";
+        version = "1.2.0";
+        edition = "2015";
+        sha256 = "1lxjr8q2n534b2lhkxd6l6wcddzjvnksi58zv11f9y0jjmr15wd8";
+        authors = [
+          "Robert Grosse <n210241048576@gmail.com>"
+        ];
+        features = {
+          "default" = [ "std" ];
+          "std" = [ "alloc" ];
+        };
+        resolvedDefaultFeatures = [ "alloc" ];
+      };
       "strsim" = rec {
         crateName = "strsim";
         version = "0.11.1";
@@ -5893,7 +6384,7 @@ rec {
           "proc-macro" = [ "proc-macro2/proc-macro" "quote?/proc-macro" ];
           "test" = [ "syn-test-suite/all-features" ];
         };
-        resolvedDefaultFeatures = [ "clone-impls" "default" "derive" "extra-traits" "full" "parsing" "printing" "proc-macro" "visit" "visit-mut" ];
+        resolvedDefaultFeatures = [ "clone-impls" "default" "derive" "extra-traits" "fold" "full" "parsing" "printing" "proc-macro" "visit" "visit-mut" ];
       };
       "sync_wrapper" = rec {
         crateName = "sync_wrapper";
@@ -5916,6 +6407,38 @@ rec {
           "futures-core" = [ "dep:futures-core" ];
         };
         resolvedDefaultFeatures = [ "futures" "futures-core" ];
+      };
+      "synstructure" = rec {
+        crateName = "synstructure";
+        version = "0.13.1";
+        edition = "2018";
+        sha256 = "0wc9f002ia2zqcbj0q2id5x6n7g1zjqba7qkg2mr0qvvmdk7dby8";
+        authors = [
+          "Nika Layzell <nika@thelayzells.com>"
+        ];
+        dependencies = [
+          {
+            name = "proc-macro2";
+            packageId = "proc-macro2";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "quote";
+            packageId = "quote";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "syn";
+            packageId = "syn";
+            usesDefaultFeatures = false;
+            features = [ "derive" "parsing" "printing" "clone-impls" "visit" "extra-traits" ];
+          }
+        ];
+        features = {
+          "default" = [ "proc-macro" ];
+          "proc-macro" = [ "proc-macro2/proc-macro" "syn/proc-macro" "quote/proc-macro" ];
+        };
+        resolvedDefaultFeatures = [ "default" "proc-macro" ];
       };
       "tempfile" = rec {
         crateName = "tempfile";
@@ -5975,18 +6498,18 @@ rec {
         ];
 
       };
-      "thiserror 2.0.0" = rec {
+      "thiserror 2.0.3" = rec {
         crateName = "thiserror";
-        version = "2.0.0";
+        version = "2.0.3";
         edition = "2021";
-        sha256 = "0s161v57pq3bm6g0gb68bxxfqnv6mzcrwh7kkxpvrwdzx63i4a8m";
+        sha256 = "1ak7wvbkc6s37jgv7ksaqax0ggbkcyizm125v8mczcsifrfch1n0";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
         dependencies = [
           {
             name = "thiserror-impl";
-            packageId = "thiserror-impl 2.0.0";
+            packageId = "thiserror-impl 2.0.3";
           }
         ];
         features = {
@@ -6019,11 +6542,11 @@ rec {
         ];
 
       };
-      "thiserror-impl 2.0.0" = rec {
+      "thiserror-impl 2.0.3" = rec {
         crateName = "thiserror-impl";
-        version = "2.0.0";
+        version = "2.0.3";
         edition = "2021";
-        sha256 = "0wl91gfabcy2rzga3zay151qv36kqdbbkjm790lacgzr6c7x1vr2";
+        sha256 = "0s1m4jyjpvsqpdpbci1rswgafmy7fsjjh1a3cnpirp3sc0ymaxzh";
         procMacro = true;
         libName = "thiserror_impl";
         authors = [
@@ -6183,6 +6706,35 @@ rec {
         };
         resolvedDefaultFeatures = [ "formatting" "parsing" ];
       };
+      "tinystr" = rec {
+        crateName = "tinystr";
+        version = "0.7.6";
+        edition = "2021";
+        sha256 = "0bxqaw7z8r2kzngxlzlgvld1r6jbnwyylyvyjbv1q71rvgaga5wi";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        dependencies = [
+          {
+            name = "displaydoc";
+            packageId = "displaydoc";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "zerovec";
+            packageId = "zerovec";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+        ];
+        features = {
+          "databake" = [ "dep:databake" ];
+          "default" = [ "alloc" ];
+          "serde" = [ "dep:serde" ];
+          "zerovec" = [ "dep:zerovec" ];
+        };
+        resolvedDefaultFeatures = [ "alloc" "zerovec" ];
+      };
       "tinyvec" = rec {
         crateName = "tinyvec";
         version = "1.8.0";
@@ -6221,9 +6773,9 @@ rec {
       };
       "tokio" = rec {
         crateName = "tokio";
-        version = "1.41.0";
+        version = "1.41.1";
         edition = "2021";
-        sha256 = "1fwb4nm630hmy9cyl2ar6wxqckgvsakwhg1rhjza4is3a09k8pql";
+        sha256 = "0csdvrlpz2b0amrsinkq809nkdkvi6ndc94jr8wjk9d6wyzbbkr2";
         authors = [
           "Tokio Contributors <team@tokio.rs>"
         ];
@@ -6845,26 +7397,6 @@ rec {
         };
         resolvedDefaultFeatures = [ "alloc" "default" ];
       };
-      "unicode-bidi" = rec {
-        crateName = "unicode-bidi";
-        version = "0.3.17";
-        edition = "2018";
-        sha256 = "14vqdsnrm3y5anj6h5zz5s32w88crraycblb88d9k23k9ns7vcas";
-        libName = "unicode_bidi";
-        authors = [
-          "The Servo Project Developers"
-        ];
-        features = {
-          "default" = [ "std" "hardcoded-data" ];
-          "flame" = [ "dep:flame" ];
-          "flame_it" = [ "flame" "flamer" ];
-          "flamer" = [ "dep:flamer" ];
-          "serde" = [ "dep:serde" ];
-          "smallvec" = [ "dep:smallvec" ];
-          "with_serde" = [ "serde" ];
-        };
-        resolvedDefaultFeatures = [ "hardcoded-data" "std" ];
-      };
       "unicode-ident" = rec {
         crateName = "unicode-ident";
         version = "1.0.13";
@@ -6875,28 +7407,6 @@ rec {
           "David Tolnay <dtolnay@gmail.com>"
         ];
 
-      };
-      "unicode-normalization" = rec {
-        crateName = "unicode-normalization";
-        version = "0.1.24";
-        edition = "2018";
-        sha256 = "0mnrk809z3ix1wspcqy97ld5wxdb31f3xz6nsvg5qcv289ycjcsh";
-        libName = "unicode_normalization";
-        authors = [
-          "kwantam <kwantam@gmail.com>"
-          "Manish Goregaokar <manishsmail@gmail.com>"
-        ];
-        dependencies = [
-          {
-            name = "tinyvec";
-            packageId = "tinyvec";
-            features = [ "alloc" ];
-          }
-        ];
-        features = {
-          "default" = [ "std" ];
-        };
-        resolvedDefaultFeatures = [ "std" ];
       };
       "unicode-xid" = rec {
         crateName = "unicode-xid";
@@ -6961,9 +7471,9 @@ rec {
       };
       "url" = rec {
         crateName = "url";
-        version = "2.5.2";
+        version = "2.5.4";
         edition = "2018";
-        sha256 = "0v2dx50mx7xzl9454cl5qmpjnhkbahmn59gd3apyipbgyyylsy12";
+        sha256 = "0q6sgznyy2n4l5lm16zahkisvc9nip9aa5q1pps7656xra3bdy1j";
         authors = [
           "The rust-url developers"
         ];
@@ -6971,14 +7481,20 @@ rec {
           {
             name = "form_urlencoded";
             packageId = "form_urlencoded";
+            usesDefaultFeatures = false;
+            features = [ "alloc" ];
           }
           {
             name = "idna";
             packageId = "idna";
+            usesDefaultFeatures = false;
+            features = [ "alloc" "compiled_data" ];
           }
           {
             name = "percent-encoding";
             packageId = "percent-encoding";
+            usesDefaultFeatures = false;
+            features = [ "alloc" ];
           }
           {
             name = "serde";
@@ -6995,9 +7511,31 @@ rec {
           }
         ];
         features = {
+          "default" = [ "std" ];
           "serde" = [ "dep:serde" ];
+          "std" = [ "idna/std" "percent-encoding/std" "form_urlencoded/std" ];
         };
-        resolvedDefaultFeatures = [ "default" "serde" ];
+        resolvedDefaultFeatures = [ "default" "serde" "std" ];
+      };
+      "utf16_iter" = rec {
+        crateName = "utf16_iter";
+        version = "1.0.5";
+        edition = "2021";
+        sha256 = "0ik2krdr73hfgsdzw0218fn35fa09dg2hvbi1xp3bmdfrp9js8y8";
+        authors = [
+          "Henri Sivonen <hsivonen@hsivonen.fi>"
+        ];
+
+      };
+      "utf8_iter" = rec {
+        crateName = "utf8_iter";
+        version = "1.0.4";
+        edition = "2021";
+        sha256 = "1gmna9flnj8dbyd8ba17zigrp9c4c3zclngf5lnb5yvz1ri41hdn";
+        authors = [
+          "Henri Sivonen <hsivonen@hsivonen.fi>"
+        ];
+
       };
       "uuid" = rec {
         crateName = "uuid";
@@ -8606,6 +9144,109 @@ rec {
         };
         resolvedDefaultFeatures = [ "alloc" "default" "std" ];
       };
+      "write16" = rec {
+        crateName = "write16";
+        version = "1.0.0";
+        edition = "2021";
+        sha256 = "0dnryvrrbrnl7vvf5vb1zkmwldhjkf2n5znliviam7bm4900z2fi";
+        features = {
+          "arrayvec" = [ "dep:arrayvec" ];
+          "smallvec" = [ "dep:smallvec" ];
+        };
+        resolvedDefaultFeatures = [ "alloc" ];
+      };
+      "writeable" = rec {
+        crateName = "writeable";
+        version = "0.5.5";
+        edition = "2021";
+        sha256 = "0lawr6y0bwqfyayf3z8zmqlhpnzhdx0ahs54isacbhyjwa7g778y";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        features = {
+          "either" = [ "dep:either" ];
+        };
+      };
+      "yoke" = rec {
+        crateName = "yoke";
+        version = "0.7.5";
+        edition = "2021";
+        sha256 = "0h3znzrdmll0a7sglzf9ji0p5iqml11wrj1dypaf6ad6kbpnl3hj";
+        authors = [
+          "Manish Goregaokar <manishsmail@gmail.com>"
+        ];
+        dependencies = [
+          {
+            name = "serde";
+            packageId = "serde";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "stable_deref_trait";
+            packageId = "stable_deref_trait";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "yoke-derive";
+            packageId = "yoke-derive";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "zerofrom";
+            packageId = "zerofrom";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+        ];
+        devDependencies = [
+          {
+            name = "serde";
+            packageId = "serde";
+            usesDefaultFeatures = false;
+          }
+        ];
+        features = {
+          "alloc" = [ "stable_deref_trait/alloc" "serde?/alloc" "zerofrom/alloc" ];
+          "default" = [ "alloc" "zerofrom" ];
+          "derive" = [ "dep:yoke-derive" "zerofrom/derive" ];
+          "serde" = [ "dep:serde" ];
+          "zerofrom" = [ "dep:zerofrom" ];
+        };
+        resolvedDefaultFeatures = [ "alloc" "default" "derive" "zerofrom" ];
+      };
+      "yoke-derive" = rec {
+        crateName = "yoke-derive";
+        version = "0.7.5";
+        edition = "2021";
+        sha256 = "0m4i4a7gy826bfvnqa9wy6sp90qf0as3wps3wb0smjaamn68g013";
+        procMacro = true;
+        libName = "yoke_derive";
+        authors = [
+          "Manish Goregaokar <manishsmail@gmail.com>"
+        ];
+        dependencies = [
+          {
+            name = "proc-macro2";
+            packageId = "proc-macro2";
+          }
+          {
+            name = "quote";
+            packageId = "quote";
+          }
+          {
+            name = "syn";
+            packageId = "syn";
+            features = [ "fold" ];
+          }
+          {
+            name = "synstructure";
+            packageId = "synstructure";
+          }
+        ];
+
+      };
       "zerocopy" = rec {
         crateName = "zerocopy";
         version = "0.7.35";
@@ -8674,6 +9315,59 @@ rec {
         ];
 
       };
+      "zerofrom" = rec {
+        crateName = "zerofrom";
+        version = "0.1.5";
+        edition = "2021";
+        sha256 = "0bnd8vjcllzrvr3wvn8x14k2hkrpyy1fm3crkn2y3plmr44fxwyg";
+        authors = [
+          "Manish Goregaokar <manishsmail@gmail.com>"
+        ];
+        dependencies = [
+          {
+            name = "zerofrom-derive";
+            packageId = "zerofrom-derive";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+        ];
+        features = {
+          "default" = [ "alloc" ];
+          "derive" = [ "dep:zerofrom-derive" ];
+        };
+        resolvedDefaultFeatures = [ "alloc" "derive" ];
+      };
+      "zerofrom-derive" = rec {
+        crateName = "zerofrom-derive";
+        version = "0.1.5";
+        edition = "2021";
+        sha256 = "022q55phhb44qbrcfbc48k0b741fl8gnazw3hpmmndbx5ycfspjr";
+        procMacro = true;
+        libName = "zerofrom_derive";
+        authors = [
+          "Manish Goregaokar <manishsmail@gmail.com>"
+        ];
+        dependencies = [
+          {
+            name = "proc-macro2";
+            packageId = "proc-macro2";
+          }
+          {
+            name = "quote";
+            packageId = "quote";
+          }
+          {
+            name = "syn";
+            packageId = "syn";
+            features = [ "fold" ];
+          }
+          {
+            name = "synstructure";
+            packageId = "synstructure";
+          }
+        ];
+
+      };
       "zeroize" = rec {
         crateName = "zeroize";
         version = "1.8.1";
@@ -8690,6 +9384,69 @@ rec {
           "zeroize_derive" = [ "dep:zeroize_derive" ];
         };
         resolvedDefaultFeatures = [ "alloc" "default" ];
+      };
+      "zerovec" = rec {
+        crateName = "zerovec";
+        version = "0.10.4";
+        edition = "2021";
+        sha256 = "0yghix7n3fjfdppwghknzvx9v8cf826h2qal5nqvy8yzg4yqjaxa";
+        authors = [
+          "The ICU4X Project Developers"
+        ];
+        dependencies = [
+          {
+            name = "yoke";
+            packageId = "yoke";
+            optional = true;
+          }
+          {
+            name = "zerofrom";
+            packageId = "zerofrom";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "zerovec-derive";
+            packageId = "zerovec-derive";
+            optional = true;
+            usesDefaultFeatures = false;
+          }
+        ];
+        features = {
+          "bench" = [ "serde" "databake" ];
+          "databake" = [ "dep:databake" ];
+          "derive" = [ "dep:zerovec-derive" ];
+          "hashmap" = [ "dep:twox-hash" ];
+          "serde" = [ "dep:serde" ];
+          "yoke" = [ "dep:yoke" ];
+        };
+        resolvedDefaultFeatures = [ "derive" "yoke" ];
+      };
+      "zerovec-derive" = rec {
+        crateName = "zerovec-derive";
+        version = "0.10.3";
+        edition = "2021";
+        sha256 = "1ik322dys6wnap5d3gcsn09azmssq466xryn5czfm13mn7gsdbvf";
+        procMacro = true;
+        libName = "zerovec_derive";
+        authors = [
+          "Manish Goregaokar <manishsmail@gmail.com>"
+        ];
+        dependencies = [
+          {
+            name = "proc-macro2";
+            packageId = "proc-macro2";
+          }
+          {
+            name = "quote";
+            packageId = "quote";
+          }
+          {
+            name = "syn";
+            packageId = "syn";
+            features = [ "extra-traits" ];
+          }
+        ];
+
       };
     };
 
