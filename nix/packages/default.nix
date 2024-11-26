@@ -4,7 +4,6 @@
   lib,
 }: let
   pkgs = import inputs.nixpkgs {inherit system;};
-  pkgs-old = import inputs.nixpkgs-old {inherit system;};
   pkgs-master = import inputs.nixpkgs-master {inherit system;};
 
   removeSuffix = pkgs.lib.removeSuffix ".nix";
@@ -12,7 +11,7 @@
   packageNames = builtins.filter isPackage (builtins.attrNames (builtins.readDir ./.));
   packages = builtins.listToAttrs (map (name: {
       name = removeSuffix name;
-      value = import (./. + "/${name}") {inherit pkgs pkgs-old pkgs-master;};
+      value = import (./. + "/${name}") {inherit pkgs pkgs-master;};
     })
     packageNames);
   derivations = builtins.mapAttrs (id: {
