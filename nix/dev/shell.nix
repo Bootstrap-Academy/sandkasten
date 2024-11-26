@@ -77,6 +77,7 @@
     RUST_LOG=info,poem::middleware::tracing_mw=off RUN_LIMITS__TIME=20 cargo llvm-cov run --lcov --output-path lcov-server.info --release --locked -F test_api &
     pid=$!
     while ! ${pkgs.curl}/bin/curl -so/dev/null localhost:8000; do
+      ps -p $pid >/dev/null || exit 1
       sleep 1
     done
     cargo llvm-cov test --lcov --output-path lcov-tests.info --locked --all-features --all-targets -- --include-ignored
