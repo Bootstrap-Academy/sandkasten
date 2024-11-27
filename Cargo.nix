@@ -4212,9 +4212,9 @@ rec {
       };
       "postcard" = rec {
         crateName = "postcard";
-        version = "1.0.10";
+        version = "1.1.0";
         edition = "2018";
-        sha256 = "0bkkxrg523x1m8klbbsnv9w075hqpdvdyiqxvmbw8w8dca6hlzsz";
+        sha256 = "1v5kx657fxq4zainkmfxny0vqaix12js9rw31a81bj4zykg02ggn";
         authors = [
           "James Munns <james@onevariable.com>"
         ];
