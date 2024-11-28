@@ -3024,19 +3024,19 @@ rec {
       };
       "libc" = rec {
         crateName = "libc";
-        version = "0.2.165";
+        version = "0.2.166";
         edition = "2015";
-        sha256 = "0gjkycz5cbclcgq7jw3f1acayfy092p8pyk2lcwm4v5biv9x7d7w";
+        sha256 = "0dnyxi6n3h72cq79grmvc2vcmh13v1y4x1k1s0dk7cf0pc4c3k62";
         authors = [
           "The Rust Project Developers"
         ];
         features = {
-          "default" = [ "const-extern-fn" "std" ];
+          "default" = [ "std" ];
           "rustc-dep-of-std" = [ "align" "rustc-std-workspace-core" ];
           "rustc-std-workspace-core" = [ "dep:rustc-std-workspace-core" ];
           "use_std" = [ "std" ];
         };
-        resolvedDefaultFeatures = [ "const-extern-fn" "default" "extra_traits" "std" ];
+        resolvedDefaultFeatures = [ "default" "extra_traits" "std" ];
       };
       "libm" = rec {
         crateName = "libm";
@@ -5550,9 +5550,9 @@ rec {
       };
       "rustls" = rec {
         crateName = "rustls";
-        version = "0.23.18";
+        version = "0.23.19";
         edition = "2021";
-        sha256 = "0zxbcq0qy3kmp0m42mmf930h5bhr3hh3ivamrrd6ag94gvac374w";
+        sha256 = "1lgqjf1vh09kghyj34a4svn1max18pmhka6bwbxb61mv61240jwk";
         dependencies = [
           {
             name = "once_cell";
