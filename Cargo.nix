@@ -4212,9 +4212,9 @@ rec {
       };
       "postcard" = rec {
         crateName = "postcard";
-        version = "1.1.0";
-        edition = "2018";
-        sha256 = "1v5kx657fxq4zainkmfxny0vqaix12js9rw31a81bj4zykg02ggn";
+        version = "1.1.1";
+        edition = "2021";
+        sha256 = "1a18yvgmjazphf6frnlnq4nnl6pp2l5qgi6qxnldpjbwyq0jc2hp";
         authors = [
           "James Munns <james@onevariable.com>"
         ];
@@ -4253,7 +4253,7 @@ rec {
           "embedded-io-06" = [ "dep:embedded-io-06" ];
           "experimental-derive" = [ "postcard-derive" ];
           "heapless" = [ "dep:heapless" ];
-          "heapless-cas" = [ "heapless" "heapless/cas" ];
+          "heapless-cas" = [ "heapless" "dep:heapless" "heapless/cas" ];
           "paste" = [ "dep:paste" ];
           "postcard-derive" = [ "dep:postcard-derive" ];
           "use-crc" = [ "crc" "paste" ];
