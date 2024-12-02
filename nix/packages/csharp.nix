@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs-csharp, ...}: let
+  pkgs = pkgs-csharp;
+in {
   name = "C#";
   version = pkgs.dotnet-sdk.version;
   meta = {

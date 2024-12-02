@@ -5,13 +5,14 @@
 }: let
   pkgs = import inputs.nixpkgs {inherit system;};
   pkgs-master = import inputs.nixpkgs-master {inherit system;};
+  pkgs-csharp = import inputs.nixpkgs-csharp {inherit system;};
 
   removeSuffix = pkgs.lib.removeSuffix ".nix";
   isPackage = name: name != "default.nix";
   packageNames = builtins.filter isPackage (builtins.attrNames (builtins.readDir ./.));
   packages = builtins.listToAttrs (map (name: {
       name = removeSuffix name;
-      value = import (./. + "/${name}") {inherit pkgs pkgs-master;};
+      value = import (./. + "/${name}") {inherit pkgs pkgs-master pkgs-csharp;};
     })
     packageNames);
   derivations = builtins.mapAttrs (id: {
