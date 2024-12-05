@@ -1909,9 +1909,9 @@ rec {
       };
       "http" = rec {
         crateName = "http";
-        version = "1.1.0";
+        version = "1.2.0";
         edition = "2018";
-        sha256 = "0n426lmcxas6h75c2cp25m933pswlrfjz10v91vc62vib2sdvf91";
+        sha256 = "1skglzdf98j5nzxlii540n11is0w4l80mi5sm3xrj716asps4v7i";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
           "Carl Lerche <me@carllerche.com>"
@@ -6634,9 +6634,9 @@ rec {
       };
       "time" = rec {
         crateName = "time";
-        version = "0.3.36";
+        version = "0.3.37";
         edition = "2021";
-        sha256 = "11g8hdpahgrf1wwl2rpsg5nxq3aj7ri6xr672v4qcij6cgjqizax";
+        sha256 = "08bvydyc14plkwhchzia5bcdbmm0mk5fzilsdpjx06w6hf48drrm";
         authors = [
           "Jacob Pratt <open-source@jhpratt.dev>"
           "Time contributors"
@@ -6726,9 +6726,9 @@ rec {
       };
       "time-macros" = rec {
         crateName = "time-macros";
-        version = "0.2.18";
+        version = "0.2.19";
         edition = "2021";
-        sha256 = "1kqwxvfh2jkpg38fy673d6danh1bhcmmbsmffww3mphgail2l99z";
+        sha256 = "1pl558z26pp342l5y91n6dxb60xwhar975wk6jc4npiygq0ycd18";
         procMacro = true;
         libName = "time_macros";
         authors = [
@@ -7056,9 +7056,9 @@ rec {
       };
       "tokio-util" = rec {
         crateName = "tokio-util";
-        version = "0.7.12";
+        version = "0.7.13";
         edition = "2021";
-        sha256 = "0spc0g4irbnf2flgag22gfii87avqzibwfm0si0d1g0k9ijw7rv1";
+        sha256 = "0y0h10a52c7hrldmr3410bp7j3fadq0jn9nf7awddgd2an6smz6p";
         libName = "tokio_util";
         authors = [
           "Tokio Contributors <team@tokio.rs>"
