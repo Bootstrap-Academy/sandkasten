@@ -4550,7 +4550,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.5";
+            packageId = "thiserror 2.0.6";
           }
           {
             name = "tokio";
@@ -4649,7 +4649,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.5";
+            packageId = "thiserror 2.0.6";
           }
           {
             name = "tinyvec";
@@ -5802,7 +5802,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.5";
+            packageId = "thiserror 2.0.6";
             usesDefaultFeatures = false;
           }
           {
@@ -5895,7 +5895,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.5";
+            packageId = "thiserror 2.0.6";
             usesDefaultFeatures = false;
           }
           {
@@ -6540,18 +6540,18 @@ rec {
         ];
 
       };
-      "thiserror 2.0.5" = rec {
+      "thiserror 2.0.6" = rec {
         crateName = "thiserror";
-        version = "2.0.5";
+        version = "2.0.6";
         edition = "2021";
-        sha256 = "0lz0ffdg2xhxzsxnf38ynwdzi2njy8z951adyj7naa1igvqswg34";
+        sha256 = "0izahgy0lzcmcg2i72h9jk9lqd5zpq3z0k8cp7i7gl7b40c2mv4g";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
         dependencies = [
           {
             name = "thiserror-impl";
-            packageId = "thiserror-impl 2.0.5";
+            packageId = "thiserror-impl 2.0.6";
           }
         ];
         features = {
@@ -6585,11 +6585,11 @@ rec {
         ];
 
       };
-      "thiserror-impl 2.0.5" = rec {
+      "thiserror-impl 2.0.6" = rec {
         crateName = "thiserror-impl";
-        version = "2.0.5";
+        version = "2.0.6";
         edition = "2021";
-        sha256 = "1pndvgg5qj6wrb19bv6jlb9krz5haa9ml8dp52fz3lcmk6y0npcr";
+        sha256 = "04k3dz901mymm06j3x6f65hpbsqlk6g51fmiky9g2kqgnk550myn";
         procMacro = true;
         libName = "thiserror_impl";
         authors = [
