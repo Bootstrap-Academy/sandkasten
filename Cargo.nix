@@ -548,9 +548,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.3";
+        version = "1.2.4";
         edition = "2018";
-        sha256 = "0bcga5xf5fgvddfamsjhg89hlydzbdk1fwvcym5kkxfggdj5gxi7";
+        sha256 = "1bqw7559dq0by6dq5k38rijz5p0wr5sa94s2gb180n0ndfmbnmwi";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -5320,9 +5320,9 @@ rec {
       };
       "rfc7239" = rec {
         crateName = "rfc7239";
-        version = "0.1.2";
+        version = "0.1.3";
         edition = "2018";
-        sha256 = "0yc7fbygp4q49026bscj04ijysxkrds71mdvsb8sliyyl68i6s0c";
+        sha256 = "03rmb1l2l2pqn311wn6qii7ckwnn5vravkzzb2xqb6lfwg8z30ja";
         authors = [
           "Robin Appelman <robin@icewind.nl>"
         ];
@@ -5332,7 +5332,10 @@ rec {
             packageId = "uncased";
           }
         ];
-
+        features = {
+          "default" = [ "std" ];
+        };
+        resolvedDefaultFeatures = [ "default" "std" ];
       };
       "ring" = rec {
         crateName = "ring";
@@ -5618,9 +5621,9 @@ rec {
       };
       "rustls-pki-types" = rec {
         crateName = "rustls-pki-types";
-        version = "1.10.0";
+        version = "1.10.1";
         edition = "2021";
-        sha256 = "0jv78c32pgf1i0bn7rzf4xdr9qh5wsvigp6akc1yhzls7hdj1w8n";
+        sha256 = "0dqb3d0cbld1yrp084wyzgw6yk3qzzic8l5pbs1b6bcjzzk4ggyj";
         libName = "rustls_pki_types";
         dependencies = [
           {
