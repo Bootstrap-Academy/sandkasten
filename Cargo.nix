@@ -433,9 +433,9 @@ rec {
       };
       "bit-set" = rec {
         crateName = "bit-set";
-        version = "0.5.3";
+        version = "0.8.0";
         edition = "2015";
-        sha256 = "1wcm9vxi00ma4rcxkl3pzzjli6ihrpn9cfdi0c5b4cvga2mxs007";
+        sha256 = "18riaa10s6n59n39vix0cr7l2dgwdhcpbcm97x1xbyfp1q47x008";
         libName = "bit_set";
         authors = [
           "Alexis Beingessner <a.beingessner@gmail.com>"
@@ -449,21 +449,26 @@ rec {
         ];
         features = {
           "default" = [ "std" ];
+          "serde" = [ "dep:serde" "bit-vec/serde" ];
           "std" = [ "bit-vec/std" ];
         };
         resolvedDefaultFeatures = [ "default" "std" ];
       };
       "bit-vec" = rec {
         crateName = "bit-vec";
-        version = "0.6.3";
+        version = "0.8.0";
         edition = "2015";
-        sha256 = "1ywqjnv60cdh1slhz67psnp422md6jdliji6alq0gmly2xm9p7rl";
+        sha256 = "1xxa1s2cj291r7k1whbxq840jxvmdsq9xgh7bvrxl46m80fllxjy";
         libName = "bit_vec";
         authors = [
           "Alexis Beingessner <a.beingessner@gmail.com>"
         ];
         features = {
+          "borsh" = [ "dep:borsh" ];
+          "borsh_std" = [ "borsh/std" ];
           "default" = [ "std" ];
+          "miniserde" = [ "dep:miniserde" ];
+          "nanoserde" = [ "dep:nanoserde" ];
           "serde" = [ "dep:serde" ];
           "serde_no_std" = [ "serde/alloc" ];
           "serde_std" = [ "std" "serde/std" ];
@@ -3031,18 +3036,6 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" "extra_traits" "std" ];
       };
-      "libm" = rec {
-        crateName = "libm";
-        version = "0.2.11";
-        edition = "2021";
-        sha256 = "1yjgk18rk71rjbqcw9l1zaqna89p9s603k7n327nqs8dn88vwmc3";
-        authors = [
-          "Jorge Aparicio <jorge@japaric.io>"
-        ];
-        features = {
-        };
-        resolvedDefaultFeatures = [ "default" ];
-      };
       "linux-raw-sys" = rec {
         crateName = "linux-raw-sys";
         version = "0.4.14";
@@ -3440,13 +3433,6 @@ rec {
         authors = [
           "The Rust Project Developers"
         ];
-        dependencies = [
-          {
-            name = "libm";
-            packageId = "libm";
-            optional = true;
-          }
-        ];
         buildDependencies = [
           {
             name = "autocfg";
@@ -3457,7 +3443,7 @@ rec {
           "default" = [ "std" ];
           "libm" = [ "dep:libm" ];
         };
-        resolvedDefaultFeatures = [ "default" "libm" "std" ];
+        resolvedDefaultFeatures = [ "default" "std" ];
       };
       "object" = rec {
         crateName = "object";
@@ -4378,9 +4364,9 @@ rec {
       };
       "proptest" = rec {
         crateName = "proptest";
-        version = "1.5.0";
+        version = "1.6.0";
         edition = "2018";
-        sha256 = "13gm7mphs95cw4gbgk5qiczkmr68dvcwhp58gmiz33dq2ccm3hml";
+        sha256 = "0l4y4bb8hffv7cys7d59qwqdmvmqjfzz0x9vblc08209clqfkjhl";
         authors = [
           "Jason Lingle"
         ];
@@ -4408,7 +4394,6 @@ rec {
             name = "num-traits";
             packageId = "num-traits";
             usesDefaultFeatures = false;
-            features = [ "libm" ];
           }
           {
             name = "rand";
@@ -4452,8 +4437,10 @@ rec {
           "default" = [ "std" "fork" "timeout" "bit-set" ];
           "default-code-coverage" = [ "std" "fork" "timeout" "bit-set" ];
           "fork" = [ "std" "rusty-fork" "tempfile" ];
+          "handle-panics" = [ "std" ];
           "hardware-rng" = [ "x86" ];
           "lazy_static" = [ "dep:lazy_static" ];
+          "no_std" = [ "num-traits/libm" ];
           "proptest-macro" = [ "dep:proptest-macro" ];
           "regex-syntax" = [ "dep:regex-syntax" ];
           "rusty-fork" = [ "dep:rusty-fork" ];
