@@ -691,14 +691,10 @@ rec {
       };
       "config" = rec {
         crateName = "config";
-        version = "0.14.1";
+        version = "0.15.0";
         edition = "2018";
-        sha256 = "1pyzr665pq6xcq3f6j1670v5xxk465n2bbkzn9hzycradlcqymv8";
+        sha256 = "0fyhni02wjbxw2w312yjb0bcdbx4vp2hs7psssxipgzr6d95fd57";
         dependencies = [
-          {
-            name = "nom";
-            packageId = "nom";
-          }
           {
             name = "pathdiff";
             packageId = "pathdiff";
@@ -716,6 +712,10 @@ rec {
             name = "toml";
             packageId = "toml";
             optional = true;
+          }
+          {
+            name = "winnow";
+            packageId = "winnow";
           }
         ];
         features = {
@@ -3151,20 +3151,6 @@ rec {
         ];
 
       };
-      "minimal-lexical" = rec {
-        crateName = "minimal-lexical";
-        version = "0.2.1";
-        edition = "2018";
-        sha256 = "16ppc5g84aijpri4jzv14rvcnslvlpphbszc7zzp6vfkddf4qdb8";
-        libName = "minimal_lexical";
-        authors = [
-          "Alex Huszagh <ahuszagh@gmail.com>"
-        ];
-        features = {
-          "default" = [ "std" ];
-        };
-        resolvedDefaultFeatures = [ "std" ];
-      };
       "miniz_oxide" = rec {
         crateName = "miniz_oxide";
         version = "0.8.0";
@@ -3357,32 +3343,6 @@ rec {
           "zerocopy" = [ "fs" "uio" ];
         };
         resolvedDefaultFeatures = [ "default" "feature" "fs" "user" ];
-      };
-      "nom" = rec {
-        crateName = "nom";
-        version = "7.1.3";
-        edition = "2018";
-        sha256 = "0jha9901wxam390jcf5pfa0qqfrgh8li787jx2ip0yk5b8y9hwyj";
-        authors = [
-          "contact@geoffroycouprie.com"
-        ];
-        dependencies = [
-          {
-            name = "memchr";
-            packageId = "memchr";
-            usesDefaultFeatures = false;
-          }
-          {
-            name = "minimal-lexical";
-            packageId = "minimal-lexical";
-            usesDefaultFeatures = false;
-          }
-        ];
-        features = {
-          "default" = [ "std" ];
-          "std" = [ "alloc" "memchr/std" "minimal-lexical/std" ];
-        };
-        resolvedDefaultFeatures = [ "alloc" "default" "std" ];
       };
       "nu-ansi-term" = rec {
         crateName = "nu-ansi-term";
