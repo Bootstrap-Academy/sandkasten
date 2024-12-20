@@ -691,9 +691,9 @@ rec {
       };
       "config" = rec {
         crateName = "config";
-        version = "0.15.3";
+        version = "0.15.4";
         edition = "2018";
-        sha256 = "0llmlnh8x8v4ccfkg8rqq68ik1cxcwhgiv8xi0ksmf79y281lg6p";
+        sha256 = "1cwcm0ngsps86p5wklw5wb2cin4zsfd2pv6kadyi0n5c4k9gi11x";
         dependencies = [
           {
             name = "pathdiff";
@@ -712,6 +712,8 @@ rec {
             name = "toml";
             packageId = "toml";
             optional = true;
+            usesDefaultFeatures = false;
+            features = [ "parse" ];
           }
           {
             name = "winnow";
@@ -7103,7 +7105,7 @@ rec {
           "parse" = [ "dep:toml_edit" "toml_edit?/parse" ];
           "preserve_order" = [ "indexmap" ];
         };
-        resolvedDefaultFeatures = [ "default" "display" "parse" ];
+        resolvedDefaultFeatures = [ "parse" ];
       };
       "toml_datetime" = rec {
         crateName = "toml_datetime";
