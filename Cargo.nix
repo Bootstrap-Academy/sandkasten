@@ -553,9 +553,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.4";
+        version = "1.2.5";
         edition = "2018";
-        sha256 = "1bqw7559dq0by6dq5k38rijz5p0wr5sa94s2gb180n0ndfmbnmwi";
+        sha256 = "0vlmqm7h6jwi1ihn8yg6n3yy7dqfbkkjv1qkmmcg8r6wq6ch86n3";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -2134,9 +2134,9 @@ rec {
       };
       "hyper-rustls" = rec {
         crateName = "hyper-rustls";
-        version = "0.27.4";
+        version = "0.27.5";
         edition = "2021";
-        sha256 = "0ry73hvh1wdlghq5wywdl5arxgnfcfqmcx2ca97w8vl2qr44m27n";
+        sha256 = "1cjr3yf3x5mr3194llsfibacl6j7n2dknii2dwjha4ysyf1ia69d";
         libName = "hyper_rustls";
         dependencies = [
           {
@@ -3028,9 +3028,9 @@ rec {
       };
       "libc" = rec {
         crateName = "libc";
-        version = "0.2.168";
+        version = "0.2.169";
         edition = "2021";
-        sha256 = "0vab4inpw0dz78nii02hsxp1skqn06xzh64psw8wl1h63scb5bjs";
+        sha256 = "02m253hs8gw0m1n8iyrsc4n15yzbqwhddi7w1l0ds7i92kdsiaxm";
         authors = [
           "The Rust Project Developers"
         ];
@@ -3413,9 +3413,9 @@ rec {
       };
       "object" = rec {
         crateName = "object";
-        version = "0.36.5";
+        version = "0.36.7";
         edition = "2018";
-        sha256 = "0gk8lhbs229c68lapq6w6qmnm4jkj48hrcw5ilfyswy514nhmpxf";
+        sha256 = "11vv97djn9nc5n6w1gc6bd96d2qk2c8cg1kw5km9bsi3v4a8x532";
         dependencies = [
           {
             name = "memchr";
@@ -6353,9 +6353,9 @@ rec {
       };
       "syn" = rec {
         crateName = "syn";
-        version = "2.0.90";
+        version = "2.0.91";
         edition = "2021";
-        sha256 = "0cfg5dsr1x0hl6b9hz08jp1197mx0rq3xydqmqaws36xlms3p7ci";
+        sha256 = "0df08gvjksnnapcqcbc72l44jlr1r957y7cbhnvk7ga3lasvqg6m";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
@@ -6736,9 +6736,9 @@ rec {
       };
       "tinyvec" = rec {
         crateName = "tinyvec";
-        version = "1.8.0";
+        version = "1.8.1";
         edition = "2018";
-        sha256 = "0f5rf6a2wzyv6w4jmfga9iw7rp9fp5gf4d604xgjsf3d9wgqhpj4";
+        sha256 = "1s41rv7n39sjsxz3kd3d4adw45ndkxz1d18rfbz2wd7s9n8bhb82";
         authors = [
           "Lokathor <zefria@gmail.com>"
         ];
@@ -6753,7 +6753,9 @@ rec {
           "alloc" = [ "tinyvec_macros" ];
           "arbitrary" = [ "dep:arbitrary" ];
           "real_blackbox" = [ "criterion/real_blackbox" ];
+          "rustc_1_55" = [ "rustc_1_40" ];
           "rustc_1_57" = [ "rustc_1_55" ];
+          "rustc_1_61" = [ "rustc_1_57" ];
           "serde" = [ "dep:serde" ];
           "std" = [ "alloc" ];
           "tinyvec_macros" = [ "dep:tinyvec_macros" ];
