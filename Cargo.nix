@@ -553,9 +553,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.5";
+        version = "1.2.6";
         edition = "2018";
-        sha256 = "0vlmqm7h6jwi1ihn8yg6n3yy7dqfbkkjv1qkmmcg8r6wq6ch86n3";
+        sha256 = "0cx32v9pcslavf8y10sb3y883v7377mw48q3dpw5b1cgidibnvcd";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -4687,9 +4687,9 @@ rec {
       };
       "quote" = rec {
         crateName = "quote";
-        version = "1.0.37";
+        version = "1.0.38";
         edition = "2018";
-        sha256 = "1brklraw2g34bxy9y4q1nbrccn7bv36ylihv12c9vlcii55x7fdm";
+        sha256 = "1k0s75w61k6ch0rs263r4j69b7vj1wadqgb9dia4ylc9mymcqk8f";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
@@ -6365,9 +6365,9 @@ rec {
       };
       "syn" = rec {
         crateName = "syn";
-        version = "2.0.91";
+        version = "2.0.93";
         edition = "2021";
-        sha256 = "0df08gvjksnnapcqcbc72l44jlr1r957y7cbhnvk7ga3lasvqg6m";
+        sha256 = "0n6hk0yipq1q6cc8wb9jhw54l9vlvwiyc0182fqns3gfv9i60y4w";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
