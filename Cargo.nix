@@ -4984,9 +4984,9 @@ rec {
       };
       "reqwest" = rec {
         crateName = "reqwest";
-        version = "0.12.11";
+        version = "0.12.12";
         edition = "2021";
-        sha256 = "1csfxdldbqg9nlv5lg68x07gk68zqxcagaql094bw97ma3z61q3z";
+        sha256 = "1nnigi6jcrqdd5k5myc53qdkdnrx8zjgan029q1w5hspf5039rs3";
         authors = [
           "Sean McArthur <sean@seanmonstar.com>"
         ];
@@ -5155,6 +5155,7 @@ rec {
             name = "tower";
             packageId = "tower";
             usesDefaultFeatures = false;
+            target = { target, features }: (!("wasm32" == target."arch" or null));
             features = [ "timeout" "util" ];
           }
           {
