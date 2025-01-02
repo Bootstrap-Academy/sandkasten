@@ -6366,9 +6366,9 @@ rec {
       };
       "syn" = rec {
         crateName = "syn";
-        version = "2.0.93";
+        version = "2.0.94";
         edition = "2021";
-        sha256 = "0n6hk0yipq1q6cc8wb9jhw54l9vlvwiyc0182fqns3gfv9i60y4w";
+        sha256 = "1wvigzkkcbxhvwyzvyk86iabjh3x835f41mx2q1b3a6y3jzc0ywq";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
@@ -9279,9 +9279,9 @@ rec {
       };
       "winnow" = rec {
         crateName = "winnow";
-        version = "0.6.20";
+        version = "0.6.21";
         edition = "2021";
-        sha256 = "16y4i8z9vh8hazjxg5mvmq0c5i35wlk8rxi5gkq6cn5vlb0zxh9n";
+        sha256 = "0s3x124zh15c2q2hd9kh7skr48b9v6zlkry64ma7lh7jax9bpxg6";
         dependencies = [
           {
             name = "memchr";
