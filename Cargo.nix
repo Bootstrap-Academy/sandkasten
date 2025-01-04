@@ -3611,9 +3611,9 @@ rec {
       };
       "poem" = rec {
         crateName = "poem";
-        version = "3.1.5";
+        version = "3.1.6";
         edition = "2021";
-        sha256 = "1vshxx7qvas74zn9ljcrsx0nbha4k272x5241qhsjknw8an9a5v7";
+        sha256 = "0fkriymjyin0aviq0ijwmab0vzd3qmfvvcgjbhldw0fwh5kxybnk";
         authors = [
           "sunli <scott_s829@163.com>"
         ];
@@ -3749,7 +3749,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 1.0.69";
+            packageId = "thiserror 2.0.9";
           }
           {
             name = "time";
@@ -3944,9 +3944,9 @@ rec {
       };
       "poem-openapi" = rec {
         crateName = "poem-openapi";
-        version = "5.1.4";
+        version = "5.1.5";
         edition = "2021";
-        sha256 = "1mqqxc07pwxv6yrpv8wgrhg2aql2gxnzslwvzj5my90n5ckc5lxh";
+        sha256 = "0kd0m09wrnlva1s5xxav1sz1shmibslyljms61l4xmnm46iclazx";
         libName = "poem_openapi";
         authors = [
           "sunli <scott_s829@163.com>"
@@ -4018,7 +4018,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 1.0.69";
+            packageId = "thiserror 2.0.9";
           }
           {
             name = "tokio";
