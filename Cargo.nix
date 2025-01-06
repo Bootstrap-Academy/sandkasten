@@ -553,9 +553,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.6";
+        version = "1.2.7";
         edition = "2018";
-        sha256 = "0cx32v9pcslavf8y10sb3y883v7377mw48q3dpw5b1cgidibnvcd";
+        sha256 = "1mwkvh1hdq96vjpnc9gxpv37fp8s5m0dca8vkax0cvfxjvgs04m0";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -6366,9 +6366,9 @@ rec {
       };
       "syn" = rec {
         crateName = "syn";
-        version = "2.0.94";
+        version = "2.0.95";
         edition = "2021";
-        sha256 = "1wvigzkkcbxhvwyzvyk86iabjh3x835f41mx2q1b3a6y3jzc0ywq";
+        sha256 = "0jivfw4v017yqzgn5g0gh0aw7k3daznjsh73qcffzx5sfw1irxs6";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
@@ -6453,9 +6453,9 @@ rec {
       };
       "tempfile" = rec {
         crateName = "tempfile";
-        version = "3.14.0";
+        version = "3.15.0";
         edition = "2021";
-        sha256 = "037f9jm13bmfc6xq9w86dp0nylrddh6ynvl6db4gm1xwzi8y5k18";
+        sha256 = "016pmkbwn3shas44gcwq1kc9lajalb90qafhiip5fvv8h6f5b2ls";
         authors = [
           "Steven Allen <steven@stebalien.com>"
           "The Rust Project Developers"
@@ -6470,6 +6470,13 @@ rec {
           {
             name = "fastrand";
             packageId = "fastrand";
+          }
+          {
+            name = "getrandom";
+            packageId = "getrandom";
+            optional = true;
+            usesDefaultFeatures = false;
+            target = { target, features }: ((target."unix" or false) || (target."windows" or false) || ("wasi" == target."os" or null));
           }
           {
             name = "once_cell";
@@ -6491,7 +6498,10 @@ rec {
           }
         ];
         features = {
+          "default" = [ "getrandom" ];
+          "getrandom" = [ "dep:getrandom" ];
         };
+        resolvedDefaultFeatures = [ "default" "getrandom" ];
       };
       "thiserror 1.0.69" = rec {
         crateName = "thiserror";
@@ -9279,9 +9289,9 @@ rec {
       };
       "winnow" = rec {
         crateName = "winnow";
-        version = "0.6.21";
+        version = "0.6.22";
         edition = "2021";
-        sha256 = "0s3x124zh15c2q2hd9kh7skr48b9v6zlkry64ma7lh7jax9bpxg6";
+        sha256 = "10595yffwpz3a05q4v5zgjyzjyz6lc1b65mkkp07xh41my4i2a1r";
         dependencies = [
           {
             name = "memchr";
