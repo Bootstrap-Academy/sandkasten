@@ -3044,9 +3044,9 @@ rec {
       };
       "linux-raw-sys" = rec {
         crateName = "linux-raw-sys";
-        version = "0.4.14";
+        version = "0.4.15";
         edition = "2021";
-        sha256 = "12gsjgbhhjwywpqcrizv80vrp7p7grsz5laqq773i33wphjsxcvq";
+        sha256 = "1aq7r2g7786hyxhv40spzf2nhag5xbw2axxc1k8z5k1dsgdm4v6j";
         libName = "linux_raw_sys";
         authors = [
           "Dan Gohman <dev@sunfishcode.online>"
@@ -3592,9 +3592,9 @@ rec {
       };
       "pin-project-lite" = rec {
         crateName = "pin-project-lite";
-        version = "0.2.15";
+        version = "0.2.16";
         edition = "2018";
-        sha256 = "1zz4xif3iknfrpmvqmh0pcc9mx4cxm28jywqydir3pimcla1wnli";
+        sha256 = "16wzc7z7dfkf9bmjin22f5282783f6mdksnr0nv0j5ym5f9gyg1v";
         libName = "pin_project_lite";
 
       };
@@ -3749,7 +3749,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.9";
+            packageId = "thiserror 2.0.10";
           }
           {
             name = "time";
@@ -4018,7 +4018,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.9";
+            packageId = "thiserror 2.0.10";
           }
           {
             name = "tokio";
@@ -4503,7 +4503,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.9";
+            packageId = "thiserror 2.0.10";
           }
           {
             name = "tokio";
@@ -4602,7 +4602,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.9";
+            packageId = "thiserror 2.0.10";
           }
           {
             name = "tinyvec";
@@ -5400,9 +5400,9 @@ rec {
       };
       "rustix" = rec {
         crateName = "rustix";
-        version = "0.38.42";
+        version = "0.38.43";
         edition = "2021";
-        sha256 = "11fvprv3p450ggyqacp7sdpjbbsgm5zvfjwnzy8bfbmbrf7c6ggr";
+        sha256 = "1xjfhdnmqsbwnfmm77vyh7ldhqx0g9waqm4982404d7jdgp93257";
         authors = [
           "Dan Gohman <dev@sunfishcode.online>"
           "Jakub Konka <kubkon@jakubkonka.com>"
@@ -5771,7 +5771,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.9";
+            packageId = "thiserror 2.0.10";
             usesDefaultFeatures = false;
           }
           {
@@ -5864,7 +5864,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.9";
+            packageId = "thiserror 2.0.10";
             usesDefaultFeatures = false;
           }
           {
@@ -6519,18 +6519,18 @@ rec {
         ];
 
       };
-      "thiserror 2.0.9" = rec {
+      "thiserror 2.0.10" = rec {
         crateName = "thiserror";
-        version = "2.0.9";
+        version = "2.0.10";
         edition = "2021";
-        sha256 = "1k5j0ri0kjrnlblv5ikaglbkg1sxxwh0qrxbidxgc38rs0zn8wph";
+        sha256 = "1lr487947507gh4nkh1gim1fz8x8drziw77gh48bhkakr9a7zb53";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
         dependencies = [
           {
             name = "thiserror-impl";
-            packageId = "thiserror-impl 2.0.9";
+            packageId = "thiserror-impl 2.0.10";
           }
         ];
         features = {
@@ -6564,11 +6564,11 @@ rec {
         ];
 
       };
-      "thiserror-impl 2.0.9" = rec {
+      "thiserror-impl 2.0.10" = rec {
         crateName = "thiserror-impl";
-        version = "2.0.9";
+        version = "2.0.10";
         edition = "2021";
-        sha256 = "1m77z5vb4w7xn7y12zxnbwncva4bwbi45y45xvkf5aki20kzll3v";
+        sha256 = "1swb4jwimr24ijaqv9jz5yz92aj9qdimf677xlvnmd8k0z9nb54y";
         procMacro = true;
         libName = "thiserror_impl";
         authors = [
