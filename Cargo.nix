@@ -691,9 +691,9 @@ rec {
       };
       "config" = rec {
         crateName = "config";
-        version = "0.15.5";
+        version = "0.15.6";
         edition = "2018";
-        sha256 = "132x93kmicq60zn8yla8zfc23cgxbp2mqvdz2gkf0kzfr7hfzg9q";
+        sha256 = "1r1d4sr1ps2v2gpz81sf6ag3z626lwrz9hb9jqr256vfg552jag3";
         dependencies = [
           {
             name = "pathdiff";
