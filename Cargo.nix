@@ -553,9 +553,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.9";
+        version = "1.2.10";
         edition = "2018";
-        sha256 = "02rim94a0c7rdwyc5yz6wlzyd4cm22r4b6x3maylb4sx2rr3faf8";
+        sha256 = "0aaj2ivamhfzhgb9maasnfkh03s2mzhzpzwrkghgzbkfnv5qy80k";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -2913,9 +2913,9 @@ rec {
       };
       "ipnet" = rec {
         crateName = "ipnet";
-        version = "2.10.1";
+        version = "2.11.0";
         edition = "2018";
-        sha256 = "025p9wm94q1w2l13hbbr4cbmfygly3a2ag8g5s618l2jhq4l3hnx";
+        sha256 = "0c5i9sfi2asai28m8xp48k5gvwkqrg5ffpi767py6mzsrswv17s6";
         authors = [
           "Kris Price <kris@krisprice.nz>"
         ];
