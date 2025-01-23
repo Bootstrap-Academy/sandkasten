@@ -2855,9 +2855,9 @@ rec {
       };
       "indexmap" = rec {
         crateName = "indexmap";
-        version = "2.7.0";
+        version = "2.7.1";
         edition = "2021";
-        sha256 = "07s7jmdymvd0rm4yswp0j3napx57hkjm9gs9n55lvs2g78vj5y32";
+        sha256 = "0lmnm1zbr5gq3wic3d8a76gpvampridzwckfl97ckd5m08mrk74c";
         dependencies = [
           {
             name = "equivalent";
@@ -5401,9 +5401,9 @@ rec {
       };
       "rustix" = rec {
         crateName = "rustix";
-        version = "0.38.43";
+        version = "0.38.44";
         edition = "2021";
-        sha256 = "1xjfhdnmqsbwnfmm77vyh7ldhqx0g9waqm4982404d7jdgp93257";
+        sha256 = "0m61v0h15lf5rrnbjhcb9306bgqrhskrqv7i1n0939dsw8dbrdgx";
         authors = [
           "Dan Gohman <dev@sunfishcode.online>"
           "Jakub Konka <kubkon@jakubkonka.com>"
