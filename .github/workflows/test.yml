@@ -51,14 +51,9 @@ jobs:
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
       - name: Setup Nix
-        uses: cachix/install-nix-action@V27
+        uses: DeterminateSystems/nix-installer-action@v16
         with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup Cachix
-        uses: cachix/cachix-action@v15
-        with:
-          name: sandkasten
-          skipPush: true
+          extra-conf: accept-flake-config = true
       - name: install packages
         run: nix profile install --profile pkgs .#packages.all
       - name: integration tests

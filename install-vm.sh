@@ -9,8 +9,8 @@ ROOT=${2:-${DISK}1}
 mkdir -p ~/.config/nix
 cat << EOF > ~/.config/nix/nix.conf
 extra-experimental-features = nix-command flakes
-extra-substituters = https://sandkasten.cachix.org
-extra-trusted-public-keys = sandkasten.cachix.org-1:Pa7qfdlx7bZkko+ojaaEG9pyziZkaru9v4TfcioqNZw=
+extra-substituters = https://attic.defelo.de/sandkasten
+extra-trusted-public-keys = sandkasten:U7kShJt9A6tZr4pZRAXHmRlxC3nmOGvfviPqKL7hROE=
 EOF
 
 nix profile install nixpkgs#git

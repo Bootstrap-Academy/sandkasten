@@ -36,13 +36,25 @@
       generate = pkgs.writeShellScriptBin "generate" ''
         ${nixpkgs.lib.getExe pkgs.crate2nix} generate
       '';
+
+      checks = let
+        packages = pkgs.linkFarm "sandkasten-checks-packages" (builtins.removeAttrs self.packages.${pkgs.system} ["checks"]
+          // {
+            packages = self.packages.${pkgs.system}.packages.all;
+          });
+        devShells = pkgs.linkFarm "sandkasten-checks-devShells" (builtins.removeAttrs self.devShells.${pkgs.system} ["checks"]);
+      in
+        pkgs.linkFarmFromDrvs "sandkasten-checks" [packages devShells];
     });
     nixosModules.sandkasten = import ./nix/nixos/module.nix {
       inherit self lib;
     };
     devShells = eachDefaultSystem (pkgs: import ./nix/dev/shell.nix {inherit self pkgs lib;});
     templates.vm.path = ./nix/nixos/vm;
+  };
 
-    checks = builtins.mapAttrs (_: packages: packages // {packages = packages.packages.all;}) self.packages;
+  nixConfig = {
+    extra-substituters = "https://attic.defelo.de/sandkasten";
+    extra-trusted-public-keys = "sandkasten:U7kShJt9A6tZr4pZRAXHmRlxC3nmOGvfviPqKL7hROE=";
   };
 }

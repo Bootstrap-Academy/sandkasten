@@ -31,10 +31,10 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes" "repl-flake"];
       substituters = [
-        "https://sandkasten.cachix.org"
+        "https://attic.defelo.de/sandkasten"
       ];
       trusted-public-keys = [
-        "sandkasten.cachix.org-1:Pa7qfdlx7bZkko+ojaaEG9pyziZkaru9v4TfcioqNZw="
+        "sandkasten:U7kShJt9A6tZr4pZRAXHmRlxC3nmOGvfviPqKL7hROE="
       ];
     };
   };
