@@ -553,9 +553,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.10";
+        version = "1.2.11";
         edition = "2018";
-        sha256 = "0aaj2ivamhfzhgb9maasnfkh03s2mzhzpzwrkghgzbkfnv5qy80k";
+        sha256 = "1kxrxnpmfbg8r0yfsgwck68d9x63fhqw40nw14qhjn1x6f808wz4";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -717,7 +717,7 @@ rec {
           }
           {
             name = "winnow";
-            packageId = "winnow 0.7.0";
+            packageId = "winnow";
           }
         ];
         features = {
@@ -5594,9 +5594,9 @@ rec {
       };
       "rustls" = rec {
         crateName = "rustls";
-        version = "0.23.21";
+        version = "0.23.22";
         edition = "2021";
-        sha256 = "1f75gicypi40bdq20h1rglwaapr3ifnchgf697clkxibc0j7ja4g";
+        sha256 = "19qvd1digcidv245qk8mkfjibmzvp3irdc0x6915wsgbnhx2dfcz";
         dependencies = [
           {
             name = "once_cell";
@@ -5641,6 +5641,7 @@ rec {
           "hashbrown" = [ "dep:hashbrown" ];
           "log" = [ "dep:log" ];
           "logging" = [ "log" ];
+          "prefer-post-quantum" = [ "aws_lc_rs" ];
           "read_buf" = [ "rustversion" "std" ];
           "ring" = [ "dep:ring" "webpki/ring" ];
           "rustversion" = [ "dep:rustversion" ];
@@ -6461,9 +6462,9 @@ rec {
       };
       "syn" = rec {
         crateName = "syn";
-        version = "2.0.96";
+        version = "2.0.98";
         edition = "2021";
-        sha256 = "102wk3cgawimi3i0q3r3xw3i858zkyingg6y7gsxfy733amsvl6m";
+        sha256 = "1cfk0qqbl4fbr3dz61nw21d5amvl4rym6nxwnfsw43mf90d7y51n";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
@@ -7249,9 +7250,9 @@ rec {
       };
       "toml_edit" = rec {
         crateName = "toml_edit";
-        version = "0.22.22";
+        version = "0.22.23";
         edition = "2021";
-        sha256 = "1xf7sxfzmnc45f75x302qrn5aph52vc8w226v59yhrm211i8vr2a";
+        sha256 = "1vhvransgx1ksmdzbr1k3h1xjgs5wfp8k9315n7c3mx3s5rb9a02";
         authors = [
           "Andronik Ordian <write@reusable.software>"
           "Ed Page <eopage@gmail.com>"
@@ -7279,7 +7280,7 @@ rec {
           }
           {
             name = "winnow";
-            packageId = "winnow 0.6.25";
+            packageId = "winnow";
             optional = true;
           }
         ];
@@ -8607,9 +8608,9 @@ rec {
       };
       "webpki-roots" = rec {
         crateName = "webpki-roots";
-        version = "0.26.7";
+        version = "0.26.8";
         edition = "2018";
-        sha256 = "0zpykqqk4jnrx55jc8wcysnprhfdcwh35dsiwhm2fybydgqjyr2x";
+        sha256 = "1jf54brni9lk4ak5pkma2pn18hli22gr7i7wp9zn2lzayy8v4412";
         libName = "webpki_roots";
         dependencies = [
           {
@@ -9409,29 +9410,7 @@ rec {
         ];
 
       };
-      "winnow 0.6.25" = rec {
-        crateName = "winnow";
-        version = "0.6.25";
-        edition = "2021";
-        sha256 = "046k3772481hxa596krj2fckpzf61983aps3nipcrihjhbs9ssdd";
-        dependencies = [
-          {
-            name = "memchr";
-            packageId = "memchr";
-            optional = true;
-            usesDefaultFeatures = false;
-          }
-        ];
-        features = {
-          "debug" = [ "std" "dep:anstream" "dep:anstyle" "dep:is-terminal" "dep:terminal_size" ];
-          "default" = [ "std" ];
-          "simd" = [ "dep:memchr" ];
-          "std" = [ "alloc" "memchr?/std" ];
-          "unstable-doc" = [ "alloc" "std" "simd" "unstable-recover" ];
-        };
-        resolvedDefaultFeatures = [ "alloc" "default" "std" ];
-      };
-      "winnow 0.7.0" = rec {
+      "winnow" = rec {
         crateName = "winnow";
         version = "0.7.0";
         edition = "2021";
