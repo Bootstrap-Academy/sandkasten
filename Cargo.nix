@@ -538,24 +538,25 @@ rec {
       };
       "bytes" = rec {
         crateName = "bytes";
-        version = "1.9.0";
+        version = "1.10.0";
         edition = "2018";
-        sha256 = "16ykzx24v1x4f42v2lxyvlczqhdfji3v7r4ghwckpwijzvb1hn9j";
+        sha256 = "1ybcmdrlxrsrn7lnl0xrjg10j7zb4r01jjs5b2sqhrcwh62aq7gn";
         authors = [
           "Carl Lerche <me@carllerche.com>"
           "Sean McArthur <sean@seanmonstar.com>"
         ];
         features = {
           "default" = [ "std" ];
+          "extra-platforms" = [ "dep:extra-platforms" ];
           "serde" = [ "dep:serde" ];
         };
         resolvedDefaultFeatures = [ "default" "std" ];
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.11";
+        version = "1.2.12";
         edition = "2018";
-        sha256 = "1kxrxnpmfbg8r0yfsgwck68d9x63fhqw40nw14qhjn1x6f808wz4";
+        sha256 = "1lh3b4v7mk8yx7d63f3255zvvsjx12ck06izgyzm5i4yvskifmvm";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -5574,9 +5575,9 @@ rec {
       };
       "rustc-hash" = rec {
         crateName = "rustc-hash";
-        version = "2.1.0";
+        version = "2.1.1";
         edition = "2021";
-        sha256 = "15yln6fmqlbg0k35r748h8g9xsd637ri23xihq81jb03ncwq1yy7";
+        sha256 = "03gz5lvd9ghcwsal022cgkq67dmimcgdjghfb5yb5d352ga06xrm";
         libName = "rustc_hash";
         authors = [
           "The Rust Project Developers"
@@ -7289,9 +7290,9 @@ rec {
       };
       "toml" = rec {
         crateName = "toml";
-        version = "0.8.19";
+        version = "0.8.20";
         edition = "2021";
-        sha256 = "0knjd3mkxyb87qcs2dark3qkpadidap3frqfj5nqvhpxwfc1zvd1";
+        sha256 = "0j012b37iz1mihksr6a928s6dzszxvblzg3l5wxp7azzsv6sb1yd";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -7928,10 +7929,10 @@ rec {
       };
       "wait-timeout" = rec {
         crateName = "wait-timeout";
-        version = "0.2.0";
+        version = "0.2.1";
         edition = "2015";
         crateBin = [];
-        sha256 = "1xpkk0j5l9pfmjfh1pi0i89invlavfrd9av5xp0zhxgb29dhy84z";
+        sha256 = "04azqv9mnfxgvnc8j2wp362xraybakh2dy1nj22gj51rdl93pb09";
         libName = "wait_timeout";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
@@ -9523,9 +9524,9 @@ rec {
       };
       "winnow" = rec {
         crateName = "winnow";
-        version = "0.7.0";
+        version = "0.7.1";
         edition = "2021";
-        sha256 = "06948rqffp1iww8rr2wm12gkakzvxhvr04wlkfrnkb9zbp9x4jby";
+        sha256 = "0pslmfs69hp44qgca8iys5agkjrs1ng75kv3ni6z8hsgbz3pdqw6";
         dependencies = [
           {
             name = "memchr";
