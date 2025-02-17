@@ -554,9 +554,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.13";
+        version = "1.2.14";
         edition = "2018";
-        sha256 = "1nizaxd11q0a8n5fy0ajbbvcl36w42gs0d1r0cpc0634h50p6xy7";
+        sha256 = "1jg38k6a2hirhsfk8mdg3k8l3f8b9h7dn6hllq07nfjsj0p1ng8c";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -1276,9 +1276,9 @@ rec {
       };
       "equivalent" = rec {
         crateName = "equivalent";
-        version = "1.0.1";
+        version = "1.0.2";
         edition = "2015";
-        sha256 = "1malmx5f4lkfvqasz319lq6gb3ddg19yzf9s8cykfsgzdmyq0hsl";
+        sha256 = "03swzqznragy8n0x31lqc78g2af054jwivp7lkrbrc0khz74lyl7";
 
       };
       "errno" = rec {
@@ -4724,9 +4724,9 @@ rec {
       };
       "quinn-udp" = rec {
         crateName = "quinn-udp";
-        version = "0.5.9";
+        version = "0.5.10";
         edition = "2021";
-        sha256 = "016rir0w5q6brwd33id2nvqi67xpl3k55ms4srqkmfml2xi2hh0w";
+        sha256 = "0i2rkq8lrkr89csw00mhnhp8zjh2prv4n5n65fwzd1b7hrak0vz4";
         libName = "quinn_udp";
         dependencies = [
           {
@@ -4741,6 +4741,7 @@ rec {
           {
             name = "socket2";
             packageId = "socket2";
+            target = { target, features }: (!((builtins.elem "wasm" target."family") && ("unknown" == target."os" or null)));
           }
           {
             name = "tracing";
@@ -4853,12 +4854,12 @@ rec {
           }
           {
             name = "rand_core";
-            packageId = "rand_core 0.9.0";
+            packageId = "rand_core 0.9.1";
             usesDefaultFeatures = false;
           }
           {
             name = "zerocopy";
-            packageId = "zerocopy 0.8.17";
+            packageId = "zerocopy 0.8.18";
             usesDefaultFeatures = false;
             features = [ "simd" ];
           }
@@ -4924,13 +4925,13 @@ rec {
           }
           {
             name = "rand_core";
-            packageId = "rand_core 0.9.0";
+            packageId = "rand_core 0.9.1";
           }
         ];
         devDependencies = [
           {
             name = "rand_core";
-            packageId = "rand_core 0.9.0";
+            packageId = "rand_core 0.9.1";
             features = [ "os_rng" ];
           }
         ];
@@ -4966,11 +4967,11 @@ rec {
         };
         resolvedDefaultFeatures = [ "alloc" "getrandom" "std" ];
       };
-      "rand_core 0.9.0" = rec {
+      "rand_core 0.9.1" = rec {
         crateName = "rand_core";
-        version = "0.9.0";
+        version = "0.9.1";
         edition = "2021";
-        sha256 = "1zqmgsv276iy1jfxnndwpqjrgva39zck2f8i4ldpwbwn0ac3r3xh";
+        sha256 = "1ls7n96b69v70j0kvlb5qi584bhailapq4v544halyy9lakhv3m8";
         authors = [
           "The Rand Project Developers"
           "The Rust Project Developers"
@@ -4983,7 +4984,7 @@ rec {
           }
           {
             name = "zerocopy";
-            packageId = "zerocopy 0.8.17";
+            packageId = "zerocopy 0.8.18";
             usesDefaultFeatures = false;
           }
         ];
@@ -5495,10 +5496,10 @@ rec {
       };
       "ring" = rec {
         crateName = "ring";
-        version = "0.17.8";
+        version = "0.17.9";
         edition = "2021";
-        links = "ring_core_0_17_8";
-        sha256 = "03fwlb1ssrmfxdckvqv033pfmk01rhx9ynwi7r186dcfcp5s8zy1";
+        links = "ring_core_0_17_9_";
+        sha256 = "097dqw1s0dgdk6ah4xlyc90la8s6h0wdqshj8plfv2jd5klwapp7";
         authors = [
           "Brian Smith <brian@briansmith.org>"
         ];
@@ -5516,14 +5517,13 @@ rec {
             name = "libc";
             packageId = "libc";
             usesDefaultFeatures = false;
-            target = { target, features }: ((("android" == target."os" or null) || ("linux" == target."os" or null)) && (("aarch64" == target."arch" or null) || ("arm" == target."arch" or null)));
+            target = { target, features }: ((("aarch64" == target."arch" or null) && ("little" == target."endian" or null)) && ("apple" == target."vendor" or null) && (("ios" == target."os" or null) || ("macos" == target."os" or null) || ("tvos" == target."os" or null) || ("visionos" == target."os" or null) || ("watchos" == target."os" or null)));
           }
           {
-            name = "spin";
-            packageId = "spin";
+            name = "libc";
+            packageId = "libc";
             usesDefaultFeatures = false;
-            target = { target, features }: (("aarch64" == target."arch" or null) || ("arm" == target."arch" or null) || ("x86" == target."arch" or null) || ("x86_64" == target."arch" or null));
-            features = [ "once" ];
+            target = { target, features }: (((("aarch64" == target."arch" or null) && ("little" == target."endian" or null)) || (("arm" == target."arch" or null) && ("little" == target."endian" or null))) && (("android" == target."os" or null) || ("linux" == target."os" or null)));
           }
           {
             name = "untrusted";
@@ -5532,7 +5532,7 @@ rec {
           {
             name = "windows-sys";
             packageId = "windows-sys 0.52.0";
-            target = { target, features }: (("aarch64" == target."arch" or null) && ("windows" == target."os" or null));
+            target = { target, features }: ((("aarch64" == target."arch" or null) && ("little" == target."endian" or null)) && ("windows" == target."os" or null));
             features = [ "Win32_Foundation" "Win32_System_Threading" ];
           }
         ];
@@ -5541,6 +5541,12 @@ rec {
             name = "cc";
             packageId = "cc";
             usesDefaultFeatures = false;
+          }
+          {
+            name = "cc";
+            packageId = "cc";
+            usesDefaultFeatures = false;
+            target = {target, features}: (("apple" == target."vendor" or null) && ("visionos" == target."os" or null));
           }
         ];
         devDependencies = [
@@ -6463,9 +6469,9 @@ rec {
       };
       "smallvec" = rec {
         crateName = "smallvec";
-        version = "1.13.2";
+        version = "1.14.0";
         edition = "2018";
-        sha256 = "0rsw5samawl3wsw6glrsb127rx6sh89a8wyikicw6dkdcjd1lpiw";
+        sha256 = "1z8wpr53x6jisklqhkkvkgyi8s5cn69h2d2alhqfxahzxwiq7kvz";
         authors = [
           "The Servo Project Developers"
         ];
@@ -6473,6 +6479,7 @@ rec {
           "arbitrary" = [ "dep:arbitrary" ];
           "const_new" = [ "const_generics" ];
           "drain_keep_rest" = [ "drain_filter" ];
+          "malloc_size_of" = [ "dep:malloc_size_of" ];
           "serde" = [ "dep:serde" ];
         };
         resolvedDefaultFeatures = [ "const_generics" "const_new" ];
@@ -6526,7 +6533,7 @@ rec {
           "ticket_mutex" = [ "mutex" ];
           "use_ticket_mutex" = [ "mutex" "ticket_mutex" ];
         };
-        resolvedDefaultFeatures = [ "mutex" "once" "spin_mutex" ];
+        resolvedDefaultFeatures = [ "mutex" "spin_mutex" ];
       };
       "stable_deref_trait" = rec {
         crateName = "stable_deref_trait";
@@ -6656,9 +6663,9 @@ rec {
       };
       "tempfile" = rec {
         crateName = "tempfile";
-        version = "3.16.0";
+        version = "3.17.0";
         edition = "2021";
-        sha256 = "14dvm3lys05wxzb1ahxjg3chb3krk0ir18liw25g893xblhldhiq";
+        sha256 = "0cqd1zid8j3yz86fcs6m3qkdsax1j3iqk54i5n6aibyjfwm7c3x4";
         authors = [
           "Steven Allen <steven@stebalien.com>"
           "The Rust Project Developers"
@@ -9707,30 +9714,30 @@ rec {
         };
         resolvedDefaultFeatures = [ "byteorder" "default" "derive" "simd" "zerocopy-derive" ];
       };
-      "zerocopy 0.8.17" = rec {
+      "zerocopy 0.8.18" = rec {
         crateName = "zerocopy";
-        version = "0.8.17";
+        version = "0.8.18";
         edition = "2021";
-        sha256 = "04r7y63q0qanyk9ar9668sw8558mc0kvwfp0dp2nhfnfmiyl14da";
+        sha256 = "1hirp0iazxdmjpzhq9qnyhm1308gp7fij2bb6gircj9alhqnsf3r";
         authors = [
           "Joshua Liebow-Feeser <joshlf@google.com>"
         ];
         dependencies = [
           {
             name = "zerocopy-derive";
-            packageId = "zerocopy-derive 0.8.17";
+            packageId = "zerocopy-derive 0.8.18";
             optional = true;
           }
           {
             name = "zerocopy-derive";
-            packageId = "zerocopy-derive 0.8.17";
+            packageId = "zerocopy-derive 0.8.18";
             target = { target, features }: false;
           }
         ];
         devDependencies = [
           {
             name = "zerocopy-derive";
-            packageId = "zerocopy-derive 0.8.17";
+            packageId = "zerocopy-derive 0.8.18";
           }
         ];
         features = {
@@ -9768,11 +9775,11 @@ rec {
         ];
 
       };
-      "zerocopy-derive 0.8.17" = rec {
+      "zerocopy-derive 0.8.18" = rec {
         crateName = "zerocopy-derive";
-        version = "0.8.17";
+        version = "0.8.18";
         edition = "2021";
-        sha256 = "09l698q12ni5470qajmxfhh9m5a6sfm37c8bzzax7jk5hcb8lw86";
+        sha256 = "1drdraf9y1dv933hy7yhfc5j0fg6byysy4vys7w1pybjsdsiccvn";
         procMacro = true;
         libName = "zerocopy_derive";
         authors = [
