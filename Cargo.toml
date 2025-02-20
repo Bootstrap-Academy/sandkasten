@@ -3,7 +3,7 @@ members = [".", "client"]
 
 [workspace.dependencies]
 serde = { version = "1.0.217", default-features = false, features = ["std", "derive"] }
-serde_json = { version = "1.0.138", default-features = false, features = ["std"] }
+serde_json = { version = "1.0.139", default-features = false, features = ["std"] }
 thiserror = { version = "2.0.11", default-features = false }
 uuid = { version = "1.13.2", default-features = false, features = ["v4", "fast-rng", "serde"] }
 
@@ -14,7 +14,7 @@ edition = "2021"
 publish = false
 
 [dependencies]
-anyhow = { version = "1.0.95", default-features = false, features = ["std"] }
+anyhow = { version = "1.0.96", default-features = false, features = ["std"] }
 config = { version = "0.15.8", default-features = false, features = ["toml", "json"] }
 key-rwlock = { version = "0.1.2", default-features = false }
 poem = { version = "3.1.6", default-features = false, features = ["server", "anyhow"] }
