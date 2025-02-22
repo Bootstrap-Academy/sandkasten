@@ -3015,9 +3015,9 @@ rec {
       };
       "itertools" = rec {
         crateName = "itertools";
-        version = "0.12.1";
+        version = "0.13.0";
         edition = "2018";
-        sha256 = "0s95jbb3ndj1lvfxyq5wanc0fm0r6hg6q4ngb92qlfdxvci10ads";
+        sha256 = "11hiy3qzl643zcigknclh446qb9zlg4dpdzfkjaa9q9fqpgyfgj1";
         authors = [
           "bluss"
         ];
@@ -3696,9 +3696,9 @@ rec {
       };
       "poem" = rec {
         crateName = "poem";
-        version = "3.1.6";
+        version = "3.1.7";
         edition = "2021";
-        sha256 = "0fkriymjyin0aviq0ijwmab0vzd3qmfvvcgjbhldw0fwh5kxybnk";
+        sha256 = "0nrz6ngf2hvnr7y9jnxashdvs74v78r7g3vii034a93kqw4pfc0n";
         authors = [
           "sunli <scott_s829@163.com>"
         ];
@@ -3981,9 +3981,9 @@ rec {
       };
       "poem-ext" = rec {
         crateName = "poem-ext";
-        version = "0.12.0";
+        version = "0.12.1";
         edition = "2021";
-        sha256 = "0b2jj89mqqjmh0lffivl4d68qd5d4gvf2c911l8a134g3zhd5d63";
+        sha256 = "0gknq65wgplwdlrv1dwfprx1z6vvhy1nqsvqz8r9n2ff30hjr2y9";
         libName = "poem_ext";
         dependencies = [
           {
@@ -4029,9 +4029,9 @@ rec {
       };
       "poem-openapi" = rec {
         crateName = "poem-openapi";
-        version = "5.1.5";
+        version = "5.1.8";
         edition = "2021";
-        sha256 = "0kd0m09wrnlva1s5xxav1sz1shmibslyljms61l4xmnm46iclazx";
+        sha256 = "026ksqfsnrp8rymrlysci6604vgnn4d2cvrxzg1kjw5ynm4b6c7m";
         libName = "poem_openapi";
         authors = [
           "sunli <scott_s829@163.com>"
@@ -4153,9 +4153,9 @@ rec {
       };
       "poem-openapi-derive" = rec {
         crateName = "poem-openapi-derive";
-        version = "5.1.4";
+        version = "5.1.8";
         edition = "2021";
-        sha256 = "13jrh7j4f0jdbks14682qa5nnahf2xkd5a4jhdphrys2m26zc7n3";
+        sha256 = "0zcl3n7cgrcszs6483xn50zh3nf04pgb5l0dpnhj3p252kg22157";
         procMacro = true;
         libName = "poem_openapi_derive";
         authors = [
@@ -4201,7 +4201,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 1.0.69";
+            packageId = "thiserror 2.0.11";
           }
         ];
 

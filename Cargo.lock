@@ -934,9 +934,9 @@ checksum = "469fb0b9cefa57e3ef31275ee7cacb78f2fdca44e4765491884a2b119d4eb130"
 
 [[package]]
 name = "itertools"
-version = "0.12.1"
+version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ba291022dbbd398a455acf126c1e341954079855bc60dfdda641363bd6922569"
+checksum = "413ee7dfc52ee1a4949ceeb7dbc8a33f2d6c088194d9f922fb8318faf1f01186"
 dependencies = [
  "either",
 ]
@@ -1175,9 +1175,9 @@ checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
 
 [[package]]
 name = "poem"
-version = "3.1.6"
+version = "3.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d32edf6781dc01de285cf2b1bd5dc5a3fd0d96aa5c4680e356c0462fab8f793a"
+checksum = "16307709c77324450688718f77323a9b1cbd1bd4aa5b99fcc97643e19e353f5b"
 dependencies = [
  "anyhow",
  "bytes",
@@ -1229,9 +1229,9 @@ dependencies = [
 
 [[package]]
 name = "poem-ext"
-version = "0.12.0"
+version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c3b4d2e01f8f8ca0100d2131e1f623ad348c4c237447e7288055625c1392522c"
+checksum = "c98b2c2118ce099b32fa786b6c83877b9b1f7abe8eb7b0336d9cdec78bc1763e"
 dependencies = [
  "itertools",
  "paste",
@@ -1243,9 +1243,9 @@ dependencies = [
 
 [[package]]
 name = "poem-openapi"
-version = "5.1.5"
+version = "5.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fd2bcaa221d5d64e6830ba4aeaa95eb1421dbe0e5bf55e74509bdacc13a8a04d"
+checksum = "f530b348b5be7039c3fb3d6f261ab1f66d028c894c7b9aabcfe866ab1dd6d308"
 dependencies = [
  "base64 0.22.1",
  "bytes",
@@ -1269,9 +1269,9 @@ dependencies = [
 
 [[package]]
 name = "poem-openapi-derive"
-version = "5.1.4"
+version = "5.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c31ef68da842fb0c6f8392a8d266170e2a6b8bc2021912f45c4d0247e481598e"
+checksum = "a70421de1445dc21a1bd0dd0b2de25c0d9013f28b60f448cfe9ae5c78e1d947d"
 dependencies = [
  "darling",
  "http",
@@ -1282,7 +1282,7 @@ dependencies = [
  "quote",
  "regex",
  "syn",
- "thiserror 1.0.69",
+ "thiserror 2.0.11",
 ]
 
 [[package]]
