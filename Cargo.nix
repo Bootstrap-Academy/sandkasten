@@ -554,9 +554,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.14";
+        version = "1.2.15";
         edition = "2018";
-        sha256 = "1jg38k6a2hirhsfk8mdg3k8l3f8b9h7dn6hllq07nfjsj0p1ng8c";
+        sha256 = "1bq1c3qbarhx3z10bfpk8df2kq2akx7k0v68sm1z8xx5xrcy4dn7";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -1212,9 +1212,9 @@ rec {
       };
       "either" = rec {
         crateName = "either";
-        version = "1.13.0";
-        edition = "2018";
-        sha256 = "1w2c1mybrd7vljyxk77y9f4w9dyjrmp3yp82mk7bcm8848fazcb0";
+        version = "1.14.0";
+        edition = "2021";
+        sha256 = "17fs0r9mnj632k4ff8c6zyq80zqvqb0wa9cgsyd5iprd159l74dp";
         authors = [
           "bluss"
         ];
@@ -2978,9 +2978,9 @@ rec {
       };
       "inout" = rec {
         crateName = "inout";
-        version = "0.1.3";
+        version = "0.1.4";
         edition = "2021";
-        sha256 = "1xf9gf09nc7y1a261xlfqsf66yn6mb81ahlzzyyd1934sr9hbhd0";
+        sha256 = "008xfl1jn9rxsq19phnhbimccf4p64880jmnpg59wqi07kk117w7";
         authors = [
           "RustCrypto Developers"
         ];
@@ -3112,9 +3112,9 @@ rec {
       };
       "libc" = rec {
         crateName = "libc";
-        version = "0.2.169";
+        version = "0.2.170";
         edition = "2021";
-        sha256 = "02m253hs8gw0m1n8iyrsc4n15yzbqwhddi7w1l0ds7i92kdsiaxm";
+        sha256 = "0a38q3avb6r6azxb7yfbjly5sbr8926z6c4sryyp33rgrf03cnw7";
         authors = [
           "The Rust Project Developers"
         ];
@@ -3191,9 +3191,9 @@ rec {
       };
       "log" = rec {
         crateName = "log";
-        version = "0.4.25";
+        version = "0.4.26";
         edition = "2021";
-        sha256 = "17ydv5zhfv1zzygy458bmg3f3jx1vfziv9d74817w76yhfqgbjq4";
+        sha256 = "17mvchkvhnm2zxyfagh2g9p861f0qx2g1sg2v14sww9nvjry5g9h";
         authors = [
           "The Rust Project Developers"
         ];
@@ -3243,9 +3243,9 @@ rec {
       };
       "miniz_oxide" = rec {
         crateName = "miniz_oxide";
-        version = "0.8.4";
+        version = "0.8.5";
         edition = "2021";
-        sha256 = "06ydc8zp00832jwyyl2pbqc2dam1njrrxsznhyrziw719yywkcdk";
+        sha256 = "1r9whkc61xri7m1cn4rjrjlhr32ab29nvfxcbg0ri5mmpgg08glf";
         authors = [
           "Frommi <daniil.liferenko@gmail.com>"
           "oyvindln <oyvindln@users.noreply.github.com>"
@@ -4854,7 +4854,7 @@ rec {
           }
           {
             name = "rand_core";
-            packageId = "rand_core 0.9.1";
+            packageId = "rand_core 0.9.2";
             usesDefaultFeatures = false;
           }
           {
@@ -4925,13 +4925,13 @@ rec {
           }
           {
             name = "rand_core";
-            packageId = "rand_core 0.9.1";
+            packageId = "rand_core 0.9.2";
           }
         ];
         devDependencies = [
           {
             name = "rand_core";
-            packageId = "rand_core 0.9.1";
+            packageId = "rand_core 0.9.2";
             features = [ "os_rng" ];
           }
         ];
@@ -4967,11 +4967,11 @@ rec {
         };
         resolvedDefaultFeatures = [ "alloc" "getrandom" "std" ];
       };
-      "rand_core 0.9.1" = rec {
+      "rand_core 0.9.2" = rec {
         crateName = "rand_core";
-        version = "0.9.1";
+        version = "0.9.2";
         edition = "2021";
-        sha256 = "1ls7n96b69v70j0kvlb5qi584bhailapq4v544halyy9lakhv3m8";
+        sha256 = "0b5w3k20pcibd242vgbih472h77akpcqyp75n3x2msgv5wd9nl3s";
         authors = [
           "The Rand Project Developers"
           "The Rust Project Developers"
@@ -5017,9 +5017,9 @@ rec {
       };
       "redox_syscall" = rec {
         crateName = "redox_syscall";
-        version = "0.5.8";
+        version = "0.5.9";
         edition = "2021";
-        sha256 = "0d48ylyd6gsamynyp257p6n2zl4dw2fhnn5z9y3nhgpri6rn5a03";
+        sha256 = "0bvykdad226m3nqzkbb95piglyfn7m2yxp4r10m9xr4q7qr6idc2";
         libName = "syscall";
         authors = [
           "Jeremy Soller <jackpot51@gmail.com>"
@@ -5496,13 +5496,10 @@ rec {
       };
       "ring" = rec {
         crateName = "ring";
-        version = "0.17.9";
+        version = "0.17.11";
         edition = "2021";
-        links = "ring_core_0_17_9_";
-        sha256 = "097dqw1s0dgdk6ah4xlyc90la8s6h0wdqshj8plfv2jd5klwapp7";
-        authors = [
-          "Brian Smith <brian@briansmith.org>"
-        ];
+        links = "ring_core_0_17_11_";
+        sha256 = "0wzyhdbf71ndd14kkpyj2a6nvczvli2mndzv2al7r26k4yp4jlys";
         dependencies = [
           {
             name = "cfg-if";
@@ -5541,12 +5538,6 @@ rec {
             name = "cc";
             packageId = "cc";
             usesDefaultFeatures = false;
-          }
-          {
-            name = "cc";
-            packageId = "cc";
-            usesDefaultFeatures = false;
-            target = {target, features}: (("apple" == target."vendor" or null) && ("visionos" == target."os" or null));
           }
         ];
         devDependencies = [
