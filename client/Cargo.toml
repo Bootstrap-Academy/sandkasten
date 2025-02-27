@@ -6,7 +6,7 @@ license = "MIT"
 documentation = "https://docs.rs/sandkasten-client/"
 repository = "https://github.com/Defelo/sandkasten"
 edition = "2021"
-rust-version = "1.74.1"
+rust-version = "1.81.0"
 publish = true
 
 [features]

@@ -597,9 +597,9 @@ rec {
       };
       "chrono" = rec {
         crateName = "chrono";
-        version = "0.4.39";
+        version = "0.4.40";
         edition = "2021";
-        sha256 = "09g8nf409lb184kl9j4s85k0kn8wzgjkp5ls9zid50b886fwqdky";
+        sha256 = "0z334kqnvq5zx6xsq1k6zk8g9z14fgk2w3vkn4n13pvi3mhn8y8s";
         dependencies = [
           {
             name = "android-tzdata";
@@ -620,8 +620,8 @@ rec {
             usesDefaultFeatures = false;
           }
           {
-            name = "windows-targets";
-            packageId = "windows-targets";
+            name = "windows-link";
+            packageId = "windows-link";
             optional = true;
             target = { target, features }: (target."windows" or false);
           }
@@ -645,10 +645,10 @@ rec {
           "unstable-locales" = [ "pure-rust-locales" ];
           "wasm-bindgen" = [ "dep:wasm-bindgen" ];
           "wasmbind" = [ "wasm-bindgen" "js-sys" ];
-          "winapi" = [ "windows-targets" ];
-          "windows-targets" = [ "dep:windows-targets" ];
+          "winapi" = [ "windows-link" ];
+          "windows-link" = [ "dep:windows-link" ];
         };
-        resolvedDefaultFeatures = [ "alloc" "android-tzdata" "clock" "iana-time-zone" "now" "std" "winapi" "windows-targets" ];
+        resolvedDefaultFeatures = [ "alloc" "android-tzdata" "clock" "iana-time-zone" "now" "std" "winapi" "windows-link" ];
       };
       "cipher" = rec {
         crateName = "cipher";
@@ -3145,14 +3145,13 @@ rec {
       };
       "litemap" = rec {
         crateName = "litemap";
-        version = "0.7.4";
+        version = "0.7.5";
         edition = "2021";
-        sha256 = "012ili3vppd4952sh6y3qwcd0jkd0bq2qpr9h7cppc8sj11k7saf";
+        sha256 = "0mi8ykav0s974ps79p438x04snh0cdb7lc864b42jws5375i9yr3";
         authors = [
           "The ICU4X Project Developers"
         ];
         features = {
-          "bench" = [ "serde" ];
           "databake" = [ "dep:databake" ];
           "default" = [ "alloc" ];
           "serde" = [ "dep:serde" ];
@@ -8809,6 +8808,17 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" ];
       };
+      "windows-link" = rec {
+        crateName = "windows-link";
+        version = "0.1.0";
+        edition = "2021";
+        sha256 = "1qr0srnkw148wbrws3726pm640h2vxgcdlxn0cxpbcg27irzvk3d";
+        libName = "windows_link";
+        authors = [
+          "Microsoft"
+        ];
+
+      };
       "windows-registry" = rec {
         crateName = "windows-registry";
         version = "0.2.0";
@@ -9796,9 +9806,9 @@ rec {
       };
       "zerofrom" = rec {
         crateName = "zerofrom";
-        version = "0.1.5";
+        version = "0.1.6";
         edition = "2021";
-        sha256 = "0bnd8vjcllzrvr3wvn8x14k2hkrpyy1fm3crkn2y3plmr44fxwyg";
+        sha256 = "19dyky67zkjichsb7ykhv0aqws3q0jfvzww76l66c19y6gh45k2h";
         authors = [
           "Manish Goregaokar <manishsmail@gmail.com>"
         ];
@@ -9818,9 +9828,9 @@ rec {
       };
       "zerofrom-derive" = rec {
         crateName = "zerofrom-derive";
-        version = "0.1.5";
+        version = "0.1.6";
         edition = "2021";
-        sha256 = "022q55phhb44qbrcfbc48k0b741fl8gnazw3hpmmndbx5ycfspjr";
+        sha256 = "00l5niw7c1b0lf1vhvajpjmcnbdp2vn96jg4nmkhq2db0rp5s7np";
         procMacro = true;
         libName = "zerofrom_derive";
         authors = [
