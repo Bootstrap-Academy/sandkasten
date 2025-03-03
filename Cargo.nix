@@ -477,9 +477,9 @@ rec {
       };
       "bitflags" = rec {
         crateName = "bitflags";
-        version = "2.8.0";
+        version = "2.9.0";
         edition = "2021";
-        sha256 = "0dixc6168i98652jxf0z9nbyn0zcis3g6hi6qdr7z5dbhcygas4g";
+        sha256 = "1gb5w7pxnmx8l2bjz1i6rkbwbm2167k294rhy6cl1y3vbc8i90jw";
         authors = [
           "The Rust Project Developers"
         ];
@@ -554,9 +554,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.15";
+        version = "1.2.16";
         edition = "2018";
-        sha256 = "1bq1c3qbarhx3z10bfpk8df2kq2akx7k0v68sm1z8xx5xrcy4dn7";
+        sha256 = "131bhgafc1i86vvjipkj0kwzz0hlpwrkl8mdbmzyq2g69calqwdy";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -4853,12 +4853,12 @@ rec {
           }
           {
             name = "rand_core";
-            packageId = "rand_core 0.9.2";
+            packageId = "rand_core 0.9.3";
             usesDefaultFeatures = false;
           }
           {
             name = "zerocopy";
-            packageId = "zerocopy 0.8.20";
+            packageId = "zerocopy 0.8.21";
             usesDefaultFeatures = false;
             features = [ "simd" ];
           }
@@ -4924,13 +4924,13 @@ rec {
           }
           {
             name = "rand_core";
-            packageId = "rand_core 0.9.2";
+            packageId = "rand_core 0.9.3";
           }
         ];
         devDependencies = [
           {
             name = "rand_core";
-            packageId = "rand_core 0.9.2";
+            packageId = "rand_core 0.9.3";
             features = [ "os_rng" ];
           }
         ];
@@ -4966,11 +4966,11 @@ rec {
         };
         resolvedDefaultFeatures = [ "alloc" "getrandom" "std" ];
       };
-      "rand_core 0.9.2" = rec {
+      "rand_core 0.9.3" = rec {
         crateName = "rand_core";
-        version = "0.9.2";
+        version = "0.9.3";
         edition = "2021";
-        sha256 = "0b5w3k20pcibd242vgbih472h77akpcqyp75n3x2msgv5wd9nl3s";
+        sha256 = "0f3xhf16yks5ic6kmgxcpv1ngdhp48mmfy4ag82i1wnwh8ws3ncr";
         authors = [
           "The Rand Project Developers"
           "The Rust Project Developers"
@@ -4980,11 +4980,6 @@ rec {
             name = "getrandom";
             packageId = "getrandom 0.3.1";
             optional = true;
-          }
-          {
-            name = "zerocopy";
-            packageId = "zerocopy 0.8.20";
-            usesDefaultFeatures = false;
           }
         ];
         features = {
@@ -7123,9 +7118,9 @@ rec {
       };
       "tokio-rustls" = rec {
         crateName = "tokio-rustls";
-        version = "0.26.1";
+        version = "0.26.2";
         edition = "2021";
-        sha256 = "0dxz4bhkn4bwnvzjqvqlg70ba5fslnmf9r6yr87wzq5cx9shjvaz";
+        sha256 = "16wf007q3584j46wc4s0zc4szj6280g23hka6x6bgs50l4v7nwlf";
         libName = "tokio_rustls";
         dependencies = [
           {
@@ -9714,11 +9709,11 @@ rec {
         };
         resolvedDefaultFeatures = [ "byteorder" "default" "derive" "simd" "zerocopy-derive" ];
       };
-      "zerocopy 0.8.20" = rec {
+      "zerocopy 0.8.21" = rec {
         crateName = "zerocopy";
-        version = "0.8.20";
+        version = "0.8.21";
         edition = "2021";
-        sha256 = "0k08s03cipm2lrafmqm8c0zcxkhhdfnil8n99bnz3wx8d26bpqyx";
+        sha256 = "0y4lz5l7a7h5rsy37jwmjrs3pc9i2jgwyigm257i6pfxn91i3w6w";
         authors = [
           "Joshua Liebow-Feeser <joshlf@google.com>"
           "Jack Wrenn <jswrenn@amazon.com>"
@@ -9726,19 +9721,19 @@ rec {
         dependencies = [
           {
             name = "zerocopy-derive";
-            packageId = "zerocopy-derive 0.8.20";
+            packageId = "zerocopy-derive 0.8.21";
             optional = true;
           }
           {
             name = "zerocopy-derive";
-            packageId = "zerocopy-derive 0.8.20";
+            packageId = "zerocopy-derive 0.8.21";
             target = { target, features }: false;
           }
         ];
         devDependencies = [
           {
             name = "zerocopy-derive";
-            packageId = "zerocopy-derive 0.8.20";
+            packageId = "zerocopy-derive 0.8.21";
           }
         ];
         features = {
@@ -9776,11 +9771,11 @@ rec {
         ];
 
       };
-      "zerocopy-derive 0.8.20" = rec {
+      "zerocopy-derive 0.8.21" = rec {
         crateName = "zerocopy-derive";
-        version = "0.8.20";
+        version = "0.8.21";
         edition = "2021";
-        sha256 = "0077n9rd82fg0g3sdlpawg7fj9sgdxigsdfslsbbz60q0wvp19gf";
+        sha256 = "18kdbw6k5hgw81l8pn1rp67zg13hxsdj3vmbr6196aglyj386b3i";
         procMacro = true;
         libName = "zerocopy_derive";
         authors = [
