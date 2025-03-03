@@ -2967,9 +2967,9 @@ rec {
       };
       "indoc" = rec {
         crateName = "indoc";
-        version = "2.0.5";
+        version = "2.0.6";
         edition = "2021";
-        sha256 = "1dgjk49rkmx4kjy07k4b90qb5vl89smgb5rcw02n0q0x9ligaj5j";
+        sha256 = "1gbn2pkx5sgbd9lp05d2bkqpbfgazi0z3nvharh5ajah11d29izl";
         procMacro = true;
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
