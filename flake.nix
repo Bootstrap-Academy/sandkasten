@@ -3,12 +3,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-csharp.url = "github:NixOS/nixpkgs/0c582677378f2d9ffcb01490af2f2c678dcb29d3";
+    nixpkgs-crate-overrides.url = "github:NixOS/nixpkgs/pull/388844/merge";
     fenix.url = "github:nix-community/fenix";
   };
 
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-crate-overrides,
     fenix,
     ...
   } @ inputs: let
@@ -26,7 +28,7 @@
   in {
     packages = eachDefaultSystem (pkgs: {
       default = self.packages.${pkgs.system}.sandkasten;
-      sandkasten = pkgs.callPackage ./nix/sandkasten.nix {inherit fenix;};
+      sandkasten = pkgs.callPackage ./nix/sandkasten.nix {inherit fenix nixpkgs-crate-overrides;};
       packages = import ./nix/packages {
         inherit inputs lib;
         inherit (pkgs) system;
