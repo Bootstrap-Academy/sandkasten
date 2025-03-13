@@ -1989,9 +1989,9 @@ rec {
       };
       "http" = rec {
         crateName = "http";
-        version = "1.2.0";
+        version = "1.3.1";
         edition = "2018";
-        sha256 = "1skglzdf98j5nzxlii540n11is0w4l80mi5sm3xrj716asps4v7i";
+        sha256 = "0r95i5h7dr1xadp1ac9453w0s62s27hzkam356nyx2d9mqqmva7l";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
           "Carl Lerche <me@carllerche.com>"
@@ -2041,9 +2041,9 @@ rec {
       };
       "http-body-util" = rec {
         crateName = "http-body-util";
-        version = "0.1.2";
+        version = "0.1.3";
         edition = "2018";
-        sha256 = "0kslwazg4400qnc2azkrgqqci0fppv12waicnsy5d8hncvbjjd3r";
+        sha256 = "0jm6jv4gxsnlsi1kzdyffjrj8cfr3zninnxpw73mvkxy4qzdj8dh";
         libName = "http_body_util";
         authors = [
           "Carl Lerche <me@carllerche.com>"
@@ -2056,8 +2056,8 @@ rec {
             packageId = "bytes";
           }
           {
-            name = "futures-util";
-            packageId = "futures-util";
+            name = "futures-core";
+            packageId = "futures-core";
             usesDefaultFeatures = false;
           }
           {
@@ -2073,7 +2073,11 @@ rec {
             packageId = "pin-project-lite";
           }
         ];
-
+        features = {
+          "channel" = [ "dep:tokio" ];
+          "full" = [ "channel" ];
+        };
+        resolvedDefaultFeatures = [ "default" ];
       };
       "httparse" = rec {
         crateName = "httparse";
@@ -2928,9 +2932,9 @@ rec {
       };
       "indexmap" = rec {
         crateName = "indexmap";
-        version = "2.7.1";
+        version = "2.8.0";
         edition = "2021";
-        sha256 = "0lmnm1zbr5gq3wic3d8a76gpvampridzwckfl97ckd5m08mrk74c";
+        sha256 = "0n3hkpzch6q3wgzh8g8hiyac6kk3vgd8nfsxy8mi80jvw47xam1r";
         dependencies = [
           {
             name = "equivalent";
@@ -2949,7 +2953,6 @@ rec {
           "default" = [ "std" ];
           "quickcheck" = [ "dep:quickcheck" ];
           "rayon" = [ "dep:rayon" ];
-          "rustc-rayon" = [ "dep:rustc-rayon" ];
           "serde" = [ "dep:serde" ];
         };
         resolvedDefaultFeatures = [ "default" "std" ];
@@ -3101,9 +3104,9 @@ rec {
       };
       "libc" = rec {
         crateName = "libc";
-        version = "0.2.170";
+        version = "0.2.171";
         edition = "2021";
-        sha256 = "0a38q3avb6r6azxb7yfbjly5sbr8926z6c4sryyp33rgrf03cnw7";
+        sha256 = "1mipla3dy3l59pfa9xy4iw2vdgn8n30dzf4vdnasjflxdqhkg6f1";
         authors = [
           "The Rust Project Developers"
         ];
@@ -3520,9 +3523,9 @@ rec {
       };
       "once_cell" = rec {
         crateName = "once_cell";
-        version = "1.20.3";
+        version = "1.21.0";
         edition = "2021";
-        sha256 = "0bp6rgrsri1vfdcahsimk08zdiilv14ppgcnpbiw8hqyp2j64m4l";
+        sha256 = "1bdinwxdpy331mrbyyk97msxssmxl3vnhb3bd1phmcjnmf4ibrfd";
         authors = [
           "Aleksey Kladov <aleksey.kladov@gmail.com>"
         ];
@@ -4763,9 +4766,9 @@ rec {
       };
       "quote" = rec {
         crateName = "quote";
-        version = "1.0.39";
+        version = "1.0.40";
         edition = "2018";
-        sha256 = "00a8q2w3aacil4aqnndyv73k0x4lj55kp487k66nbq89x5693wf1";
+        sha256 = "1394cxjg6nwld82pzp2d4fp6pmaz32gai1zh9z5hvh0dawww118q";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
@@ -5481,10 +5484,10 @@ rec {
       };
       "ring" = rec {
         crateName = "ring";
-        version = "0.17.13";
+        version = "0.17.14";
         edition = "2021";
-        links = "ring_core_0_17_13_";
-        sha256 = "1vjhhlmpqqd9lc53ffjj1yk203188n2km27g3myvssm15a1mvb3h";
+        links = "ring_core_0_17_14_";
+        sha256 = "1dw32gv19ccq4hsx3ribhpdzri1vnrlcfqb2vj41xn4l49n9ws54";
         dependencies = [
           {
             name = "cfg-if";
@@ -5572,9 +5575,9 @@ rec {
       };
       "rustix" = rec {
         crateName = "rustix";
-        version = "1.0.1";
+        version = "1.0.2";
         edition = "2021";
-        sha256 = "0mznc6mzxgrm5b9aw0alji956mb2q7cgrrav8w8lff2wvw94ipns";
+        sha256 = "09dq96zhmrpljg1l833gszrqqx727hsirrkikhk0x8vm9fm8y5zp";
         authors = [
           "Dan Gohman <dev@sunfishcode.online>"
           "Jakub Konka <kubkon@jakubkonka.com>"
@@ -9651,9 +9654,9 @@ rec {
       };
       "winnow" = rec {
         crateName = "winnow";
-        version = "0.7.3";
+        version = "0.7.4";
         edition = "2021";
-        sha256 = "1c9bmhpdwbdmll6b4l6skabz0296dchnmnxw84hh2y3ggyllwzqf";
+        sha256 = "0dmbsz6zfddcgsqzzqxw1h8f7zy19x407g7zl3hyp6vf2m2bb5qf";
         dependencies = [
           {
             name = "memchr";
