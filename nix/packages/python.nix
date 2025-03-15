@@ -1,15 +1,16 @@
 {pkgs, ...}: let
+  python = pkgs.python313;
   py-pkgs = p: with p; [numpy];
 in {
   name = "Python";
-  version = pkgs.python311.version;
+  version = python.version;
   meta = {
-    inherit (pkgs.python311.meta) description longDescription homepage;
-    packages = map (p: p.pname) (py-pkgs pkgs.python311.pkgs);
+    inherit (python.meta) description longDescription homepage;
+    packages = map (p: p.pname) (py-pkgs python.pkgs);
   };
   default_main_file_name = "code.py";
   compile_script = null;
-  run_script = ''${pkgs.python311.withPackages py-pkgs}/bin/python /program/"$@"'';
+  run_script = ''${python.withPackages py-pkgs}/bin/python /program/"$@"'';
   example = ''
     name = input()
     print(f"Hello, {name}!")
