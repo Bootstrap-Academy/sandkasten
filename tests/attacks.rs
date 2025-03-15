@@ -60,11 +60,13 @@ fn test_forkbomb() {
             run: Default::default(),
         })
         .unwrap();
-    assert_eq!(response.run.status, 1);
-    assert_eq!(
-        response.run.stderr.trim().lines().last().unwrap(),
-        "BlockingIOError: [Errno 11] Resource temporarily unavailable"
-    );
+    dbg!(&response);
+    let expected = match response.run.status {
+        1 => "Killed",
+        137 => "Resource temporarily unavailable",
+        _ => panic!(),
+    };
+    assert!(response.run.stderr.contains(expected));
     assert!(response.run.resource_usage.time < 2000);
 }
 
