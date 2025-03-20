@@ -7,7 +7,7 @@ DISK=${1:-/dev/sda}
 ROOT=${2:-${DISK}1}
 
 mkdir -p ~/.config/nix
-cat << EOF > ~/.config/nix/nix.conf
+cat <<EOF >~/.config/nix/nix.conf
 extra-experimental-features = nix-command flakes
 extra-substituters = https://attic.defelo.de/sandkasten
 extra-trusted-public-keys = sandkasten:U7kShJt9A6tZr4pZRAXHmRlxC3nmOGvfviPqKL7hROE=
@@ -23,7 +23,7 @@ mkdir /mnt/root
 nix flake new --template "$FLAKE" /mnt/root/sandkasten
 sed -i -E "s|github:Defelo/sandkasten/latest|${FLAKE%#*}|" /mnt/root/sandkasten/flake.nix
 
-nixos-generate-config --root /mnt --show-hardware-config > /mnt/root/sandkasten/hardware-configuration.nix
+nixos-generate-config --root /mnt --show-hardware-config >/mnt/root/sandkasten/hardware-configuration.nix
 sed -i -E "s#boot.loader.grub.device = \"/dev/sda\";#boot.loader.grub.device = \"$DISK\";#" /mnt/root/sandkasten/configuration.nix
 
 nixos-install --flake /mnt/root/sandkasten#sandkasten --no-channel-copy --no-root-password

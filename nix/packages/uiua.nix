@@ -1,11 +1,11 @@
-{pkgs-master, ...}: let
+{ pkgs-master, ... }:
+let
   inherit (pkgs-master) uiua;
-in {
+in
+{
   name = "Uiua";
   version = uiua.version;
-  meta = {
-    inherit (uiua.meta) description longDescription homepage;
-  };
+  meta = { inherit (uiua.meta) description longDescription homepage; };
   default_main_file_name = "code.ua";
   compile_script = null;
   run_script = ''${uiua}/bin/uiua run --no-format /program/"$@"'';

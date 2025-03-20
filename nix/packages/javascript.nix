@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   name = "JavaScript";
   version = pkgs.nodejs.version;
   meta = {

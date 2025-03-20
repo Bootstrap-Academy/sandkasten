@@ -1,11 +1,11 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   ruby = pkgs.ruby_3_1;
-in {
+in
+{
   name = "Ruby";
   version = toString ruby.version;
-  meta = {
-    inherit (ruby.meta) description homepage;
-  };
+  meta = { inherit (ruby.meta) description homepage; };
   default_main_file_name = "code.rb";
   compile_script = null;
   run_script = ''${ruby}/bin/ruby -I/program /program/"$@"'';

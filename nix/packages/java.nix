@@ -1,9 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   name = "Java";
   version = pkgs.jdk.version;
-  meta = {
-    inherit (pkgs.jdk.meta) homepage;
-  };
+  meta = { inherit (pkgs.jdk.meta) homepage; };
   default_main_file_name = "code.java";
   compile_script = ''
     set -e

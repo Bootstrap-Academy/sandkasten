@@ -1,11 +1,11 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   lua = pkgs.lua5_4;
-in {
+in
+{
   name = "Lua";
   version = lua.version;
-  meta = {
-    inherit (lua.meta) description longDescription homepage;
-  };
+  meta = { inherit (lua.meta) description longDescription homepage; };
   default_main_file_name = "code.lua";
   compile_script = null;
   run_script = ''LUA_PATH=/program/?.lua ${lua}/bin/lua /program/"$@"'';

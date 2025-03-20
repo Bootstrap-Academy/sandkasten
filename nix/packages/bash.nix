@@ -1,23 +1,24 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   name = "Bash";
   version = pkgs.bash.version;
-  meta = {
-    inherit (pkgs.bash.meta) description longDescription homepage;
-  };
+  meta = { inherit (pkgs.bash.meta) description longDescription homepage; };
   default_main_file_name = "code.sh";
   compile_script = null;
-  run_script = let
-    path = with pkgs; [
-      bashInteractive
-      coreutils-full
-      moreutils
-      gawk
-      gnused
-      gnugrep
-      jq
-      yq
-    ];
-  in ''PATH='/program/:${pkgs.lib.makeBinPath path}' ${pkgs.bash}/bin/bash /program/"$@"'';
+  run_script =
+    let
+      path = with pkgs; [
+        bashInteractive
+        coreutils-full
+        moreutils
+        gawk
+        gnused
+        gnugrep
+        jq
+        yq
+      ];
+    in
+    ''PATH='/program/:${pkgs.lib.makeBinPath path}' ${pkgs.bash}/bin/bash /program/"$@"'';
   example = ''
     read name
     echo "Hello, ''${name}!"

@@ -1,7 +1,9 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   python = pkgs.python313;
-  py-pkgs = p: with p; [numpy];
-in {
+  py-pkgs = p: with p; [ numpy ];
+in
+{
   name = "Python";
   version = python.version;
   meta = {

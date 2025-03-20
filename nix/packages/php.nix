@@ -1,9 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   name = "PHP";
   version = pkgs.php.version;
-  meta = {
-    inherit (pkgs.php.meta) description homepage;
-  };
+  meta = { inherit (pkgs.php.meta) description homepage; };
   default_main_file_name = "code.php";
   compile_script = null;
   run_script = ''${pkgs.php}/bin/php /program/"$@"'';

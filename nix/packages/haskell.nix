@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   name = "Haskell";
   version = pkgs.ghc.version;
   meta = {

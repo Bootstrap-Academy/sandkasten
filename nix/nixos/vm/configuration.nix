@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.timeout = 2;
@@ -10,7 +11,7 @@
   time.timeZone = "UTC";
 
   networking.hostName = "sandkasten";
-  networking.firewall.allowedTCPPorts = [80];
+  networking.firewall.allowedTCPPorts = [ 80 ];
 
   users.users.root.initialPassword = "sandkasten";
 
@@ -29,13 +30,13 @@
     };
     settings = {
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes" "repl-flake"];
-      substituters = [
-        "https://attic.defelo.de/sandkasten"
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "repl-flake"
       ];
-      trusted-public-keys = [
-        "sandkasten:U7kShJt9A6tZr4pZRAXHmRlxC3nmOGvfviPqKL7hROE="
-      ];
+      substituters = [ "https://attic.defelo.de/sandkasten" ];
+      trusted-public-keys = [ "sandkasten:U7kShJt9A6tZr4pZRAXHmRlxC3nmOGvfviPqKL7hROE=" ];
     };
   };
 

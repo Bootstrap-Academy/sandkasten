@@ -1,23 +1,29 @@
-{pkgs, ...}: let
-  node_modules = let
-    nodePackage = name: src:
-      pkgs.stdenv.mkDerivation {
-        inherit name;
-        src = pkgs.fetchurl src;
-        installPhase = "cp -r . $out";
-      };
-  in
-    pkgs.linkFarm "node_modules" (builtins.mapAttrs nodePackage {
-      "@types/node" = {
-        url = "https://registry.npmjs.org/@types/node/-/node-20.10.0.tgz";
-        hash = "sha256-tvBAR7uPjL6OcZjNzC3Pl3atYCWcR8mpeKlx6BitPvI=";
-      };
-      "undici-types" = {
-        url = "https://registry.npmjs.org/undici-types/-/undici-types-6.20.0.tgz";
-        hash = "sha256-coyp/P9nY3Lk3NZIteJvu9sonsK89nXnYBzCE0pejW4=";
-      };
-    });
-in {
+{ pkgs, ... }:
+let
+  node_modules =
+    let
+      nodePackage =
+        name: src:
+        pkgs.stdenv.mkDerivation {
+          inherit name;
+          src = pkgs.fetchurl src;
+          installPhase = "cp -r . $out";
+        };
+    in
+    pkgs.linkFarm "node_modules" (
+      builtins.mapAttrs nodePackage {
+        "@types/node" = {
+          url = "https://registry.npmjs.org/@types/node/-/node-20.10.0.tgz";
+          hash = "sha256-tvBAR7uPjL6OcZjNzC3Pl3atYCWcR8mpeKlx6BitPvI=";
+        };
+        "undici-types" = {
+          url = "https://registry.npmjs.org/undici-types/-/undici-types-6.20.0.tgz";
+          hash = "sha256-coyp/P9nY3Lk3NZIteJvu9sonsK89nXnYBzCE0pejW4=";
+        };
+      }
+    );
+in
+{
   name = "TypeScript";
   version = pkgs.typescript.version;
   meta = {

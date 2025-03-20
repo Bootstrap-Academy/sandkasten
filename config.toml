@@ -14,7 +14,7 @@ max_concurrent_jobs = 16
 
 base_resource_usage_runs = 20
 base_resource_usage_permits = 16
-base_resource_usage_cache_ttl = 3600  # seconds
+base_resource_usage_cache_ttl = 3600 # seconds
 
 use_cgroup = true
 # nsjail_path = ...
@@ -24,10 +24,10 @@ environments_path = ["pkgs/share/sandkasten/packages"]
 
 [compile_limits]
 cpus = 1
-time = 30  # seconds
-memory = 1024  # mb
-tmpfs = 256  # mb
-filesize = 16  # mb
+time = 30 # seconds
+memory = 1024 # mb
+tmpfs = 256 # mb
+filesize = 16 # mb
 file_descriptors = 256
 processes = 256
 stdout_max_size = 65536
@@ -36,10 +36,10 @@ network = false
 
 [run_limits]
 cpus = 1
-time = 5  # seconds
-memory = 256  # mb
-tmpfs = 256  # mb
-filesize = 16  # mb
+time = 5 # seconds
+memory = 256 # mb
+tmpfs = 256 # mb
+filesize = 16 # mb
 file_descriptors = 256
 processes = 64
 stdout_max_size = 65536

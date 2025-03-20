@@ -4,54 +4,79 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-csharp.url = "github:NixOS/nixpkgs/0c582677378f2d9ffcb01490af2f2c678dcb29d3";
     fenix.url = "github:nix-community/fenix";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    fenix,
-    ...
-  } @ inputs: let
-    defaultSystems = [
-      "x86_64-linux"
-      "aarch64-linux" # untested
-    ];
-    eachDefaultSystem = f:
-      builtins.listToAttrs (map (system: {
-          name = system;
-          value = f (import nixpkgs {inherit system;});
-        })
-        defaultSystems);
-    lib = import ./nix/lib.nix;
-  in {
-    packages = eachDefaultSystem (pkgs: {
-      default = self.packages.${pkgs.system}.sandkasten;
-      sandkasten = pkgs.callPackage ./nix/sandkasten.nix {inherit fenix;};
-      packages = import ./nix/packages {
-        inherit inputs lib;
-        inherit (pkgs) system;
-      };
-      time = pkgs.callPackage ./nix/time {};
+  outputs =
+    {
+      self,
+      nixpkgs,
+      fenix,
+      treefmt-nix,
+      ...
+    }@inputs:
+    let
+      defaultSystems = [
+        "x86_64-linux"
+        "aarch64-linux" # untested
+      ];
+      eachDefaultSystem =
+        f:
+        builtins.listToAttrs (
+          map (system: {
+            name = system;
+            value = f (import nixpkgs { inherit system; });
+          }) defaultSystems
+        );
 
-      generate = pkgs.writeShellScriptBin "generate" ''
-        ${nixpkgs.lib.getExe pkgs.crate2nix} generate
-      '';
+      lib = import ./nix/lib.nix;
+    in
+    {
+      packages = eachDefaultSystem (pkgs: {
+        default = self.packages.${pkgs.system}.sandkasten;
+        sandkasten = pkgs.callPackage ./nix/sandkasten.nix { inherit fenix; };
+        packages = import ./nix/packages {
+          inherit inputs lib;
+          inherit (pkgs) system;
+        };
+        time = pkgs.callPackage ./nix/time { };
 
-      checks = let
-        packages = pkgs.linkFarm "sandkasten-checks-packages" (builtins.removeAttrs self.packages.${pkgs.system} ["checks"]
-          // {
-            packages = self.packages.${pkgs.system}.packages.all;
-          });
-        devShells = pkgs.linkFarm "sandkasten-checks-devShells" (builtins.removeAttrs self.devShells.${pkgs.system} ["checks"]);
-      in
-        pkgs.linkFarmFromDrvs "sandkasten-checks" [packages devShells];
-    });
-    nixosModules.sandkasten = import ./nix/nixos/module.nix {
-      inherit self lib;
+        generate = pkgs.writeShellScriptBin "generate" ''
+          ${nixpkgs.lib.getExe pkgs.crate2nix} generate
+        '';
+
+        checks =
+          let
+            packages = pkgs.linkFarm "sandkasten-checks-packages" (
+              builtins.removeAttrs self.packages.${pkgs.system} [ "checks" ]
+              // {
+                packages = self.packages.${pkgs.system}.packages.all;
+              }
+            );
+            devShells = pkgs.linkFarm "sandkasten-checks-devShells" (
+              builtins.removeAttrs self.devShells.${pkgs.system} [ "checks" ]
+            );
+          in
+          pkgs.linkFarmFromDrvs "sandkasten-checks" [
+            packages
+            devShells
+          ];
+      });
+
+      nixosModules.sandkasten = import ./nix/nixos/module.nix { inherit self lib; };
+
+      devShells = eachDefaultSystem (pkgs: import ./nix/dev/shell.nix { inherit self pkgs lib; });
+
+      templates.vm.path = ./nix/nixos/vm;
+
+      formatter = eachDefaultSystem (
+        pkgs:
+        let
+          treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+        in
+        treefmtEval.config.build.wrapper
+      );
     };
-    devShells = eachDefaultSystem (pkgs: import ./nix/dev/shell.nix {inherit self pkgs lib;});
-    templates.vm.path = ./nix/nixos/vm;
-  };
 
   nixConfig = {
     extra-substituters = "https://attic.defelo.de/sandkasten";

@@ -1,11 +1,11 @@
-{pkgs-csharp, ...}: let
+{ pkgs-csharp, ... }:
+let
   pkgs = pkgs-csharp;
-in {
+in
+{
   name = "C#";
   version = pkgs.dotnet-sdk.version;
-  meta = {
-    inherit (pkgs.dotnet-sdk.meta) homepage;
-  };
+  meta = { inherit (pkgs.dotnet-sdk.meta) homepage; };
   default_main_file_name = "code.cs";
   compile_script = ''
     ${pkgs.coreutils}/bin/cp $(${pkgs.coreutils}/bin/ls -A) /tmp

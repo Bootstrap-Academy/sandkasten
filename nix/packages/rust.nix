@@ -1,9 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   name = "Rust";
   version = pkgs.rustc.version;
-  meta = {
-    inherit (pkgs.rustc.meta) description homepage;
-  };
+  meta = { inherit (pkgs.rustc.meta) description homepage; };
   default_main_file_name = "code.rs";
   compile_script = ''PATH=${pkgs.gcc}/bin/ ${pkgs.rustc}/bin/rustc --edition=2021 -O -o /program/binary "$1"'';
   run_script = ''shift; /program/binary "$@"'';

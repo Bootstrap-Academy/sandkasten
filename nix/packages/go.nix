@@ -1,9 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   name = "Go";
   version = pkgs.go.version;
-  meta = {
-    inherit (pkgs.go.meta) description homepage;
-  };
+  meta = { inherit (pkgs.go.meta) description homepage; };
   default_main_file_name = "code.go";
   compile_script = ''HOME=/tmp ${pkgs.go}/bin/go build -o /program/binary "$1"'';
   run_script = ''shift; /program/binary "$@"'';
@@ -40,5 +39,5 @@
     }
   '';
   # TODO: test imports
-  test.files = [];
+  test.files = [ ];
 }

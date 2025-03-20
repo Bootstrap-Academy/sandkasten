@@ -10,18 +10,14 @@ permissions:
 
 jobs:
   fmt:
-    name: fmt (stable)
+    name: fmt
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
-      - name: Install stable
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          components: rustfmt
-      - name: cargo fmt --check
-        run: cargo fmt --check
+      - uses: DeterminateSystems/nix-installer-action@v16
+      - run: nix fmt -- --ci
 
   clippy:
     name: clippy (${{ matrix.toolchain }})

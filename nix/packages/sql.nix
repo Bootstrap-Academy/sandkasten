@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   name = "SQL";
   version = pkgs.sqlite.version;
   meta = {
@@ -13,6 +14,6 @@
     ${pkgs.sqlite}/bin/sqlite3 -json :memory: < $1
   '';
   test.main_file.content = "SELECT 'OK' as out;";
-  test.files = [];
-  test.expected = builtins.toJSON [{out = "OK";}];
+  test.files = [ ];
+  test.expected = builtins.toJSON [ { out = "OK"; } ];
 }
