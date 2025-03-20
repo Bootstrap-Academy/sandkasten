@@ -35,22 +35,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-crate-overrides": {
-      "locked": {
-        "lastModified": 1741824080,
-        "narHash": "sha256-J6SQSlfV+2sVR1raS+FRZi5aGo++99JZZPFlLhlgYPE=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "13b2176729c770f495b1709dad3c694c889ec0b7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "pull/388844/merge",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-csharp": {
       "locked": {
         "lastModified": 1732350895,
@@ -84,11 +68,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1741600792,
-        "narHash": "sha256-yfDy6chHcM7pXpMF4wycuuV+ILSTG486Z/vLx/Bdi6Y=",
+        "lastModified": 1742388435,
+        "narHash": "sha256-GheQGRNYAhHsvPxWVOhAmg9lZKkis22UPbEHlmZMthg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ebe2788eafd539477f83775ef93c3c7e244421d3",
+        "rev": "b75693fb46bfaf09e662d09ec076c5a162efa9f6",
         "type": "github"
       },
       "original": {
@@ -102,7 +86,6 @@
       "inputs": {
         "fenix": "fenix",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-crate-overrides": "nixpkgs-crate-overrides",
         "nixpkgs-csharp": "nixpkgs-csharp",
         "nixpkgs-master": "nixpkgs-master"
       }
