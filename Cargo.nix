@@ -3258,7 +3258,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.12";
+            packageId = "thiserror";
           }
           {
             name = "tokio";
@@ -3522,7 +3522,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.12";
+            packageId = "thiserror";
           }
           {
             name = "tokio";
@@ -3621,7 +3621,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.12";
+            packageId = "thiserror";
           }
         ];
 
@@ -3741,9 +3741,9 @@ rec {
       };
       "prometheus" = rec {
         crateName = "prometheus";
-        version = "0.13.4";
+        version = "0.14.0";
         edition = "2018";
-        sha256 = "1lbymqdsh9v4zk4fjdq2gq6lbxspp1w3z2b9vfb7y7vp625c4crx";
+        sha256 = "0fpl98whrg5j4bpb3qfswii4yfa58zws7rl7rnd0m58bimnk599w";
         authors = [
           "overvenus@gmail.com"
           "siddontang@gmail.com"
@@ -3772,18 +3772,18 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 1.0.69";
+            packageId = "thiserror";
           }
         ];
         features = {
           "default" = [ "protobuf" ];
-          "gen" = [ "protobuf-codegen-pure" ];
+          "gen" = [ "protobuf-codegen" ];
           "libc" = [ "dep:libc" ];
           "nightly" = [ "libc" ];
           "process" = [ "libc" "procfs" ];
           "procfs" = [ "dep:procfs" ];
           "protobuf" = [ "dep:protobuf" ];
-          "protobuf-codegen-pure" = [ "dep:protobuf-codegen-pure" ];
+          "protobuf-codegen" = [ "dep:protobuf-codegen" ];
           "push" = [ "reqwest" "libc" "protobuf" ];
           "reqwest" = [ "dep:reqwest" ];
         };
@@ -3964,7 +3964,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.12";
+            packageId = "thiserror";
           }
           {
             name = "tokio";
@@ -4074,7 +4074,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.12";
+            packageId = "thiserror";
           }
           {
             name = "tinyvec";
@@ -5364,7 +5364,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.12";
+            packageId = "thiserror";
             usesDefaultFeatures = false;
           }
           {
@@ -5457,7 +5457,7 @@ rec {
           }
           {
             name = "thiserror";
-            packageId = "thiserror 2.0.12";
+            packageId = "thiserror";
             usesDefaultFeatures = false;
           }
           {
@@ -6091,23 +6091,7 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" "getrandom" ];
       };
-      "thiserror 1.0.69" = rec {
-        crateName = "thiserror";
-        version = "1.0.69";
-        edition = "2021";
-        sha256 = "0lizjay08agcr5hs9yfzzj6axs53a2rgx070a1dsi3jpkcrzbamn";
-        authors = [
-          "David Tolnay <dtolnay@gmail.com>"
-        ];
-        dependencies = [
-          {
-            name = "thiserror-impl";
-            packageId = "thiserror-impl 1.0.69";
-          }
-        ];
-
-      };
-      "thiserror 2.0.12" = rec {
+      "thiserror" = rec {
         crateName = "thiserror";
         version = "2.0.12";
         edition = "2021";
@@ -6118,7 +6102,7 @@ rec {
         dependencies = [
           {
             name = "thiserror-impl";
-            packageId = "thiserror-impl 2.0.12";
+            packageId = "thiserror-impl";
           }
         ];
         features = {
@@ -6126,33 +6110,7 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" "std" ];
       };
-      "thiserror-impl 1.0.69" = rec {
-        crateName = "thiserror-impl";
-        version = "1.0.69";
-        edition = "2021";
-        sha256 = "1h84fmn2nai41cxbhk6pqf46bxqq1b344v8yz089w1chzi76rvjg";
-        procMacro = true;
-        libName = "thiserror_impl";
-        authors = [
-          "David Tolnay <dtolnay@gmail.com>"
-        ];
-        dependencies = [
-          {
-            name = "proc-macro2";
-            packageId = "proc-macro2";
-          }
-          {
-            name = "quote";
-            packageId = "quote";
-          }
-          {
-            name = "syn";
-            packageId = "syn";
-          }
-        ];
-
-      };
-      "thiserror-impl 2.0.12" = rec {
+      "thiserror-impl" = rec {
         crateName = "thiserror-impl";
         version = "2.0.12";
         edition = "2021";
