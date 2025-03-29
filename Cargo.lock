@@ -762,6 +762,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "itertools"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2b192c782037fadd9cfa75548310488aabdbf3d2da73885b31bd0abd03351285"
+dependencies = [
+ "either",
+]
+
+[[package]]
 name = "itoa"
 version = "1.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1038,7 +1047,7 @@ version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c98b2c2118ce099b32fa786b6c83877b9b1f7abe8eb7b0336d9cdec78bc1763e"
 dependencies = [
- "itertools",
+ "itertools 0.13.0",
  "paste",
  "poem",
  "poem-openapi",
@@ -1048,15 +1057,16 @@ dependencies = [
 
 [[package]]
 name = "poem-openapi"
-version = "5.1.9"
+version = "5.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca5278d3c4d0538c8484e929fa7e856de3ef9eb3521254d5d5e4592dcb11c134"
+checksum = "0534f704f6b1fde01d3ecb644cb5210ee2830d6808bfdc74a4265e3fd7d2ca20"
 dependencies = [
  "base64 0.22.1",
  "bytes",
  "derive_more",
  "futures-util",
  "indexmap",
+ "itertools 0.14.0",
  "mime",
  "num-traits",
  "poem",
@@ -1074,9 +1084,9 @@ dependencies = [
 
 [[package]]
 name = "poem-openapi-derive"
-version = "5.1.9"
+version = "5.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0550de92ed94e2aa5571a1295ff1101aca53b50d50a54822a48c5b8fc8515f92"
+checksum = "79809aa2b09f08a7dcb26586ec59406f6bc2188cf468556cbf3ec08d936bcb39"
 dependencies = [
  "darling",
  "http",

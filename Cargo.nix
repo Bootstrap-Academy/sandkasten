@@ -2474,7 +2474,7 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" "std" ];
       };
-      "itertools" = rec {
+      "itertools 0.13.0" = rec {
         crateName = "itertools";
         version = "0.13.0";
         edition = "2018";
@@ -2494,6 +2494,27 @@ rec {
           "use_std" = [ "use_alloc" "either/use_std" ];
         };
         resolvedDefaultFeatures = [ "use_alloc" "use_std" ];
+      };
+      "itertools 0.14.0" = rec {
+        crateName = "itertools";
+        version = "0.14.0";
+        edition = "2018";
+        sha256 = "118j6l1vs2mx65dqhwyssbrxpawa90886m3mzafdvyip41w2q69b";
+        authors = [
+          "bluss"
+        ];
+        dependencies = [
+          {
+            name = "either";
+            packageId = "either";
+            usesDefaultFeatures = false;
+          }
+        ];
+        features = {
+          "default" = [ "use_std" ];
+          "use_std" = [ "use_alloc" "either/use_std" ];
+        };
+        resolvedDefaultFeatures = [ "default" "use_alloc" "use_std" ];
       };
       "itoa" = rec {
         crateName = "itoa";
@@ -3407,7 +3428,7 @@ rec {
         dependencies = [
           {
             name = "itertools";
-            packageId = "itertools";
+            packageId = "itertools 0.13.0";
             usesDefaultFeatures = false;
             features = [ "use_std" ];
           }
@@ -3448,9 +3469,9 @@ rec {
       };
       "poem-openapi" = rec {
         crateName = "poem-openapi";
-        version = "5.1.9";
+        version = "5.1.11";
         edition = "2024";
-        sha256 = "0d61275jsng4spam84jjnfgfzqvdhmzglag9hj28qlyhqk9phlna";
+        sha256 = "086asbbkypi6lisdrgq8d06q7qhf46slqr6b7qfy1zdiyq2gfd05";
         libName = "poem_openapi";
         authors = [
           "sunli <scott_s829@163.com>"
@@ -3476,6 +3497,10 @@ rec {
           {
             name = "indexmap";
             packageId = "indexmap";
+          }
+          {
+            name = "itertools";
+            packageId = "itertools 0.14.0";
           }
           {
             name = "mime";
@@ -3573,9 +3598,9 @@ rec {
       };
       "poem-openapi-derive" = rec {
         crateName = "poem-openapi-derive";
-        version = "5.1.9";
+        version = "5.1.11";
         edition = "2024";
-        sha256 = "14jza748ynwclhi4i9ah1nsm7jhs23qmyad1f5asmqllxn9dwl05";
+        sha256 = "0ffbdf9qvh1ypxn5as7lihcc4svg81cyr1k5nbfaf24zn2i9m03r";
         procMacro = true;
         libName = "poem_openapi_derive";
         authors = [
