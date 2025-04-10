@@ -388,9 +388,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.17";
+        version = "1.2.18";
         edition = "2018";
-        sha256 = "0flf697b5p87ds39s3g076q75xlnfgiicpz8792sy7df833mgjqz";
+        sha256 = "0p6d2pfyrjgqpf2w399wzj4hmyffj6g0gyzg3pdy6xl3gmhlcl2j";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -876,11 +876,12 @@ rec {
       };
       "errno" = rec {
         crateName = "errno";
-        version = "0.3.10";
+        version = "0.3.11";
         edition = "2018";
-        sha256 = "0pgblicz1kjz9wa9m0sghkhh2zw1fhq1mxzj7ndjm746kg5m5n1k";
+        sha256 = "0kjrrcaa5nvickysw7z3vm5p0l7l457idf1ff3z6ang8qwnx8vcp";
         authors = [
           "Chris Wong <lambda.fairy@gmail.com>"
+          "Dan Gohman <dev@sunfishcode.online>"
         ];
         dependencies = [
           {
@@ -2426,9 +2427,9 @@ rec {
       };
       "indexmap" = rec {
         crateName = "indexmap";
-        version = "2.8.0";
+        version = "2.9.0";
         edition = "2021";
-        sha256 = "0n3hkpzch6q3wgzh8g8hiyac6kk3vgd8nfsxy8mi80jvw47xam1r";
+        sha256 = "07m15a571yywmvqyb7ms717q9n42b46badbpsmx215jrg7dhv9yf";
         dependencies = [
           {
             name = "equivalent";
@@ -2616,9 +2617,9 @@ rec {
       };
       "linux-raw-sys" = rec {
         crateName = "linux-raw-sys";
-        version = "0.9.3";
+        version = "0.9.4";
         edition = "2021";
-        sha256 = "04zl7j4k1kgbn7rrl3i7yszaglgxp0c8dbwx8f1cabnjjwhb2zgy";
+        sha256 = "04kyjdrq79lz9ibrf7czk6cv9d3jl597pb9738vzbsbzy1j5i56d";
         libName = "linux_raw_sys";
         authors = [
           "Dan Gohman <dev@sunfishcode.online>"
@@ -2730,9 +2731,9 @@ rec {
       };
       "miniz_oxide" = rec {
         crateName = "miniz_oxide";
-        version = "0.8.5";
+        version = "0.8.8";
         edition = "2021";
-        sha256 = "1r9whkc61xri7m1cn4rjrjlhr32ab29nvfxcbg0ri5mmpgg08glf";
+        sha256 = "0al9iy33flfgxawj789w2c8xxwg1n2r5vv6m6p5hl2fvd2vlgriv";
         authors = [
           "Frommi <daniil.liferenko@gmail.com>"
           "oyvindln <oyvindln@users.noreply.github.com>"
@@ -2751,6 +2752,7 @@ rec {
           "core" = [ "dep:core" ];
           "default" = [ "with-alloc" ];
           "rustc-dep-of-std" = [ "core" "alloc" "compiler_builtins" "adler2/rustc-dep-of-std" ];
+          "serde" = [ "dep:serde" ];
           "simd" = [ "simd-adler32" ];
           "simd-adler32" = [ "dep:simd-adler32" ];
         };
@@ -4443,9 +4445,9 @@ rec {
       };
       "redox_syscall" = rec {
         crateName = "redox_syscall";
-        version = "0.5.10";
+        version = "0.5.11";
         edition = "2021";
-        sha256 = "1l9b638qx72312yzh8ykvda9b3lqd9gf6yqn66b23a331ck0r30b";
+        sha256 = "18qijn18r10haiglv4261wb0yh1agqqlvs0nxfy8yjbpsb307wfj";
         libName = "syscall";
         authors = [
           "Jeremy Soller <jackpot51@gmail.com>"
@@ -5883,18 +5885,21 @@ rec {
       };
       "smallvec" = rec {
         crateName = "smallvec";
-        version = "1.14.0";
+        version = "1.15.0";
         edition = "2018";
-        sha256 = "1z8wpr53x6jisklqhkkvkgyi8s5cn69h2d2alhqfxahzxwiq7kvz";
+        sha256 = "1sgfw8z729nlxk8k13dhs0a762wnaxmlx70a7xlf3wz989bjh5w9";
         authors = [
           "The Servo Project Developers"
         ];
         features = {
           "arbitrary" = [ "dep:arbitrary" ];
+          "bincode" = [ "dep:bincode" ];
           "const_new" = [ "const_generics" ];
           "drain_keep_rest" = [ "drain_filter" ];
+          "impl_bincode" = [ "bincode" "unty" ];
           "malloc_size_of" = [ "dep:malloc_size_of" ];
           "serde" = [ "dep:serde" ];
+          "unty" = [ "dep:unty" ];
         };
         resolvedDefaultFeatures = [ "const_generics" "const_new" ];
       };
@@ -8886,9 +8891,9 @@ rec {
       };
       "winnow" = rec {
         crateName = "winnow";
-        version = "0.7.4";
+        version = "0.7.6";
         edition = "2021";
-        sha256 = "0dmbsz6zfddcgsqzzqxw1h8f7zy19x407g7zl3hyp6vf2m2bb5qf";
+        sha256 = "047abhm7qqgc32pf9a2arini5wsrx7p9wsbx3s106jx4pgczrlv3";
         dependencies = [
           {
             name = "memchr";
