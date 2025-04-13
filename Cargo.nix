@@ -3163,9 +3163,9 @@ rec {
       };
       "poem" = rec {
         crateName = "poem";
-        version = "3.1.8";
+        version = "3.1.9";
         edition = "2024";
-        sha256 = "0ah8d2gnq469amd5n0apsf4y39mq93v6n8g44dz4vw5ns9q5pb1j";
+        sha256 = "0a295lbdw89fj1jkv522sdsai3jpg8z0r43jv97gcdgb54nq5cb9";
         authors = [
           "sunli <scott_s829@163.com>"
         ];
@@ -3398,9 +3398,9 @@ rec {
       };
       "poem-derive" = rec {
         crateName = "poem-derive";
-        version = "3.1.8";
+        version = "3.1.9";
         edition = "2024";
-        sha256 = "03n95z8f20f7snv4l06fzwvizcbwgmkscnybfg260n7k3gjagk98";
+        sha256 = "1dav9lpdaazf24ln1d910b1zrps8prvqfyghxyhz0amfqv68f3kp";
         procMacro = true;
         libName = "poem_derive";
         authors = [
