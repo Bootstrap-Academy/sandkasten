@@ -3477,9 +3477,9 @@ rec {
       };
       "poem-openapi" = rec {
         crateName = "poem-openapi";
-        version = "5.1.12";
+        version = "5.1.13";
         edition = "2024";
-        sha256 = "03skwy6wipbx0gjc649whlazc9zhwyqyp5mlkxqcwrkf54nmcvb2";
+        sha256 = "178zyag3va0lvnx8w0cvz9rgn6kncvyfpr5fwk6rl2ydma02vrpc";
         libName = "poem_openapi";
         authors = [
           "sunli <scott_s829@163.com>"
@@ -3606,9 +3606,9 @@ rec {
       };
       "poem-openapi-derive" = rec {
         crateName = "poem-openapi-derive";
-        version = "5.1.12";
+        version = "5.1.13";
         edition = "2024";
-        sha256 = "12086xj1v52mxsrrzb51jizbm1fk74yn1f9rm91xydrvz2bqhrb1";
+        sha256 = "0rvipkfnldmxxjn4yg6ysrykfdhhcdlsjsb4ghicsnb36h3wyjl2";
         procMacro = true;
         libName = "poem_openapi_derive";
         authors = [
