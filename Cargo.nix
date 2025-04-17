@@ -388,9 +388,9 @@ rec {
       };
       "cc" = rec {
         crateName = "cc";
-        version = "1.2.18";
+        version = "1.2.19";
         edition = "2018";
-        sha256 = "0p6d2pfyrjgqpf2w399wzj4hmyffj6g0gyzg3pdy6xl3gmhlcl2j";
+        sha256 = "0qpk2cnbfpp5r3sb5c9clb49n39x0y64b6xk2cf6hn69g9q16flf";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -1390,9 +1390,9 @@ rec {
       };
       "h2" = rec {
         crateName = "h2";
-        version = "0.4.8";
+        version = "0.4.9";
         edition = "2021";
-        sha256 = "1hp3lijg1br982kzgglb5ks2ibg68a76z3rl052r8c5vyi7jj5sh";
+        sha256 = "0cv6x0lndzxx59g49bhpl04zivfk0km9rzk9xs6iylrh80a9s93m";
         authors = [
           "Carl Lerche <me@carllerche.com>"
           "Sean McArthur <sean@seanmonstar.com>"
@@ -2601,9 +2601,9 @@ rec {
       };
       "libc" = rec {
         crateName = "libc";
-        version = "0.2.171";
+        version = "0.2.172";
         edition = "2021";
-        sha256 = "1mipla3dy3l59pfa9xy4iw2vdgn8n30dzf4vdnasjflxdqhkg6f1";
+        sha256 = "1ykz4skj7gac14znljm5clbnrhini38jkq3d60jggx3y5w2ayl6p";
         authors = [
           "The Rust Project Developers"
         ];
@@ -3753,9 +3753,9 @@ rec {
       };
       "proc-macro2" = rec {
         crateName = "proc-macro2";
-        version = "1.0.94";
+        version = "1.0.95";
         edition = "2021";
-        sha256 = "114wxb56gdj9vy44q0ll3l2x9niqzcbyqikydmlb5f3h5rsp26d3";
+        sha256 = "0y7pwxv6sh4fgg6s715ygk1i7g3w02c0ljgcsfm046isibkfbcq2";
         libName = "proc_macro2";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
@@ -5123,9 +5123,9 @@ rec {
       };
       "rustls" = rec {
         crateName = "rustls";
-        version = "0.23.25";
+        version = "0.23.26";
         edition = "2021";
-        sha256 = "0g5idwxm04i71k3n66ml30zyfbgv6p85a7jky2i09v64i8cfjbl2";
+        sha256 = "1w7ha5ivbhs91rvzh3ccgdgjizw6shagzs65xaaiai1sky3balfz";
         dependencies = [
           {
             name = "once_cell";
