@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-      - uses: DeterminateSystems/nix-installer-action@v16
+      - uses: DeterminateSystems/nix-installer-action@v17
       - run: nix fmt -- --ci
 
   clippy:
@@ -103,6 +103,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v16
+      - uses: DeterminateSystems/nix-installer-action@v17
       - run: nix run --accept-flake-config .#generate
       - run: git diff --exit-code

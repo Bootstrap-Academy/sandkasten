@@ -51,7 +51,7 @@ jobs:
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
       - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@v16
+        uses: DeterminateSystems/nix-installer-action@v17
         with:
           extra-conf: accept-flake-config = true
       - name: install packages
