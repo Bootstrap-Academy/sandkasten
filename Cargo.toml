@@ -27,7 +27,7 @@ serde.workspace = true
 serde_json.workspace = true
 sha2 = { version = "0.10.9", default-features = false }
 thiserror.workspace = true
-tokio = { version = "1.44.2", default-features = false, features = ["rt-multi-thread", "macros", "process", "time"] }
+tokio = { version = "1.45.0", default-features = false, features = ["rt-multi-thread", "macros", "process", "time"] }
 tracing = { version = "0.1.41", default-features = false }
 tracing-subscriber = { version = "0.3.19", default-features = false, features = ["fmt", "ansi"] }
 url = { version = "2.5.4", default-features = false, features = ["serde"] }
