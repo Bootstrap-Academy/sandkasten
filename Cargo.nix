@@ -2855,9 +2855,9 @@ rec {
       };
       "nix" = rec {
         crateName = "nix";
-        version = "0.29.0";
+        version = "0.30.1";
         edition = "2021";
-        sha256 = "0ikvn7s9r2lrfdm3mx1h7nbfjvcc6s9vxdzw7j5xfkd2qdnp9qki";
+        sha256 = "1dixahq9hk191g0c2ydc0h1ppxj0xw536y6rl63vlnp06lx3ylkl";
         authors = [
           "The nix-rust Project Developers"
         ];
@@ -2885,6 +2885,7 @@ rec {
         features = {
           "aio" = [ "pin-utils" ];
           "dir" = [ "fs" ];
+          "event" = [ "poll" ];
           "memoffset" = [ "dep:memoffset" ];
           "mount" = [ "uio" ];
           "mqueue" = [ "fs" ];
@@ -3139,9 +3140,9 @@ rec {
       };
       "poem" = rec {
         crateName = "poem";
-        version = "3.1.10";
+        version = "3.1.11";
         edition = "2024";
-        sha256 = "0bpgsbhbw96j9rn5z83kj5ikp1ghw9nrvsycw8f0w2ynqdmibmj5";
+        sha256 = "08a1p4sd1mxfidz9km3lp57z024d1xv44lyicai1r6r70a9kx9iy";
         authors = [
           "sunli <scott_s829@163.com>"
         ];
@@ -3374,9 +3375,9 @@ rec {
       };
       "poem-derive" = rec {
         crateName = "poem-derive";
-        version = "3.1.10";
+        version = "3.1.11";
         edition = "2024";
-        sha256 = "079hikyyvq97lpapg49r7136d7k5p3kwadbn26ayabnjjp6286cw";
+        sha256 = "0f6k6c86cdaqar44wjxsxdv4crxyvm2c8jjx9qszxds3agipykl2";
         procMacro = true;
         libName = "poem_derive";
         authors = [
