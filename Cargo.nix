@@ -651,9 +651,9 @@ rec {
       };
       "derive_more" = rec {
         crateName = "derive_more";
-        version = "1.0.0";
+        version = "2.0.1";
         edition = "2021";
-        sha256 = "01cd8pskdjg10dvfchi6b8a9pa1ja1ic0kbn45dl8jdyrfwrk6sa";
+        sha256 = "0y3n97cc7rsvgnj211p92y1ppzh6jzvq5kvk6340ghkhfp7l4ch9";
         authors = [
           "Jelte Fennema <github-tech@jeltef.nl>"
         ];
@@ -696,9 +696,9 @@ rec {
       };
       "derive_more-impl" = rec {
         crateName = "derive_more-impl";
-        version = "1.0.0";
+        version = "2.0.1";
         edition = "2021";
-        sha256 = "08mxyd456ygk68v5nfn4dyisn82k647w9ri2jl19dqpvmnp30wyb";
+        sha256 = "1wqxcb7d5lzvpplz9szp4rwy1r23f5wmixz0zd2vcjscqknji9mx";
         procMacro = true;
         libName = "derive_more_impl";
         authors = [
@@ -3454,9 +3454,9 @@ rec {
       };
       "poem-openapi" = rec {
         crateName = "poem-openapi";
-        version = "5.1.14";
+        version = "5.1.15";
         edition = "2024";
-        sha256 = "1mgmhk9zi9452hzknxbhw8w1cyal3kvpwbhw78g76zfp0mrqc26i";
+        sha256 = "0835avazpsad3qgxbfx5np6y3gjjdssg5lwq56mcglrf28nsk8wb";
         libName = "poem_openapi";
         authors = [
           "sunli <scott_s829@163.com>"
@@ -3583,9 +3583,9 @@ rec {
       };
       "poem-openapi-derive" = rec {
         crateName = "poem-openapi-derive";
-        version = "5.1.14";
+        version = "5.1.15";
         edition = "2024";
-        sha256 = "0bqrs3h6qa7f6nwgbzd5m3as2cpp3qiq946ya41ivfsfczxka2kc";
+        sha256 = "1s45s8vrzp5r6qsz4lxyfy2kcysc4978nzpab68zsww2hqhxqgfz";
         procMacro = true;
         libName = "poem_openapi_derive";
         authors = [
