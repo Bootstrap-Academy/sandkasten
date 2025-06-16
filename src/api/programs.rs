@@ -269,7 +269,7 @@ fn check_mainfile(main_file: &MainFile) -> bool {
     main_file
         .name
         .as_ref()
-        .map_or(true, |name| check_filename(name))
+        .is_none_or(|name| check_filename(name))
 }
 
 fn check_env_vars(env_vars: &[EnvVar]) -> bool {

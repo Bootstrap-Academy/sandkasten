@@ -38,8 +38,8 @@ pub fn get_api(
             config: Arc::clone(&config),
             base_resource_usage_cache: Arc::new(
                 environments
-                    .iter()
-                    .map(|(id, _)| (id.clone(), Default::default()))
+                    .keys()
+                    .map(|id| (id.clone(), Default::default()))
                     .collect(),
             ),
         },

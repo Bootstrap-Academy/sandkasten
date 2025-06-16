@@ -10,7 +10,7 @@ pub mod prune;
 pub mod run;
 
 /// Create the [`Mount`]s for the given closure file.
-async fn mounts_from_closure(closure: &Path) -> Result<Vec<Mount>, std::io::Error> {
+async fn mounts_from_closure(closure: &Path) -> Result<Vec<Mount<'_>>, std::io::Error> {
     Ok(fs::read_to_string(closure)
         .await?
         .trim()
