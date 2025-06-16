@@ -2,6 +2,7 @@
   pkgs,
   lib,
   self,
+  fenix,
   ...
 }:
 let
@@ -93,24 +94,18 @@ let
   test-script = pkgs.writeShellScript "integration-tests.sh" ''
     export PROPTEST_CASES=''${1:-256}
     rm -rf programs jobs
-    RUST_LOG=info,poem::middleware::tracing_mw=off RUN_LIMITS__TIME=20 cargo llvm-cov run --lcov --output-path lcov-server.info --release --locked -F test_api &
+    RUST_LOG=info,poem::middleware::tracing_mw=off RUN_LIMITS__TIME=20 cargo run --release --locked -F test_api &
     pid=$!
     while ! ${pkgs.curl}/bin/curl -so/dev/null localhost:8000; do
       ps -p $pid >/dev/null || exit 1
       sleep 1
     done
-    cargo llvm-cov test --lcov --output-path lcov-tests.info --locked --all-features --all-targets -- --include-ignored
+    cargo test --locked --all-features --all-targets -- --include-ignored
     out=$?
     ${pkgs.curl}/bin/curl -X POST localhost:8000/test/exit
     wait $pid
-    ${pkgs.lcov}/bin/lcov -a lcov-server.info -a lcov-tests.info -o lcov.info
     ${pkgs.gnugrep}/bin/grep -E -o '^cc [0-9a-f]{64}' tests/proptests.proptest-regressions
     exit $out
-  '';
-  cov = pkgs.writeShellScript "cov.sh" ''
-    rm -rf lcov*.info lcov_html
-    ${test-script} "''${1:-16}"
-    ${pkgs.lcov}/bin/genhtml -o lcov_html lcov.info
   '';
   setup-nsjail = pkgs.writeShellScript "setup-nsjail.sh" ''
     if [[ "$UID" != 0 ]]; then
@@ -125,7 +120,6 @@ let
     installPhase = ''
       mkdir -p $out/bin \
         && ln -s ${test-script} $out/bin/integration-tests \
-        && ln -s ${cov} $out/bin/cov \
         && ln -s ${setup-nsjail} $out/bin/setup-nsjail
     '';
   };
@@ -134,8 +128,6 @@ in
   default = pkgs.mkShell (
     {
       packages = [
-        pkgs.cargo-llvm-cov
-        pkgs.lcov
         self.packages.${pkgs.system}.time
         self.packages.${pkgs.system}.generate
         pkgs.crate2nix
@@ -145,10 +137,13 @@ in
     }
     // test-env
   );
-  test = pkgs.mkShellNoCC (
+  test = pkgs.mkShell (
     {
       packages = [
-        pkgs.cargo-llvm-cov
+        fenix.packages.${pkgs.system}.stable.cargo
+        fenix.packages.${pkgs.system}.stable.clippy
+        fenix.packages.${pkgs.system}.stable.rustc
+        pkgs.cargo-hack
         scripts
       ];
     }

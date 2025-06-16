@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [develop, staging, trying]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: custom
+    steps:
+      - uses: actions/checkout@v4
+      - run: mkdir -p ~/.config/nix && echo "accept-flake-config = true" >> ~/.config/nix/nix.conf
+      - run: nix develop .#test --command bash -c 'echo "$PATH"' > $GITHUB_PATH
+      - uses: https://github.com/Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: "true"
+      - uses: https://github.com/ryanccn/attic-action@v0
+        with:
+          endpoint: https://attic.defelo.de/
+          cache: sandkasten
+          # atticd-atticadm make-token --sub forgejo --validity 1y --pull sandkasten --push sandkasten
+          token: ${{ secrets.ATTIC_TOKEN }}
+
+      - run: nix fmt -- --ci
+      - run: nix run .#generate && git diff --exit-code
+      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo test --locked --workspace -F reqwest,blocking,poem-openapi --all-targets
+      - run: cargo test --locked --workspace -F reqwest,blocking,poem-openapi --doc
+      - run: cargo doc --no-deps --all-features --workspace
+        env:
+          RUSTDOCFLAGS: --cfg docsrs
+          RUSTC_BOOTSTRAP: 1
+      - run: cargo hack --workspace --feature-powerset check
+      - run: nix build -L --keep-going .#checks

@@ -40,7 +40,7 @@
         time = pkgs.callPackage ./nix/time { };
 
         generate = pkgs.writeShellScriptBin "generate" ''
-          ${nixpkgs.lib.getExe pkgs.crate2nix} generate
+          ${nixpkgs.lib.getExe inputs.nixpkgs-master.legacyPackages.${pkgs.system}.crate2nix} generate
         '';
 
         checks =
@@ -63,7 +63,17 @@
 
       nixosModules.sandkasten = import ./nix/nixos/module.nix { inherit self lib; };
 
-      devShells = eachDefaultSystem (pkgs: import ./nix/dev/shell.nix { inherit self pkgs lib; });
+      devShells = eachDefaultSystem (
+        pkgs:
+        import ./nix/dev/shell.nix {
+          inherit
+            self
+            pkgs
+            lib
+            fenix
+            ;
+        }
+      );
 
       templates.vm.path = ./nix/nixos/vm;
 
