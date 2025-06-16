@@ -4,7 +4,6 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-csharp.url = "github:NixOS/nixpkgs/0c582677378f2d9ffcb01490af2f2c678dcb29d3";
     fenix.url = "github:nix-community/fenix";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs =
@@ -12,7 +11,6 @@
       self,
       nixpkgs,
       fenix,
-      treefmt-nix,
       ...
     }@inputs:
     let
@@ -70,11 +68,16 @@
       templates.vm.path = ./nix/nixos/vm;
 
       formatter = eachDefaultSystem (
-        pkgs:
+        { system, ... }:
         let
-          treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+          pkgs = inputs.nixpkgs-master.legacyPackages.${system};
         in
-        treefmtEval.config.build.wrapper
+        pkgs.treefmt.withConfig {
+          settings = [
+            ./treefmt.nix
+            { _module.args = { inherit pkgs; }; }
+          ];
+        }
       );
     };
 

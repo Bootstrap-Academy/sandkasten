@@ -1,25 +1,67 @@
+{ lib, pkgs, ... }:
+
+let
+  cargoToml = lib.importTOML ./Cargo.toml;
+  rustEdition = cargoToml.package.edition;
+in
+
 {
-  settings.global.excludes = [
+  tree-root-file = ".git/config";
+  on-unmatched = "fatal";
+
+  excludes = [
+    "*.lock"
     "*.md"
+    "*.patch"
     ".envrc"
     ".gitattributes"
+    ".gitignore"
     "Cargo.nix"
     "LICENSE"
     "tests/proptests.proptest-regressions"
   ];
 
-  programs.nixfmt.enable = true;
-  programs.nixfmt.strict = true;
+  formatter.nixfmt = {
+    command = lib.getExe pkgs.nixfmt-rfc-style;
+    includes = [ "*.nix" ];
+    options = [ "--strict" ];
+  };
 
-  programs.prettier.enable = true;
+  formatter.prettier = {
+    command = lib.getExe pkgs.nodePackages.prettier;
+    includes = [
+      "*.json"
+      "*.yml"
+    ];
+    options = [ "--write" ];
+  };
 
-  programs.rustfmt.enable = true;
+  formatter.rustfmt = {
+    command = lib.getExe pkgs.rustfmt;
+    includes = [ "*.rs" ];
+    options = [
+      "--config=skip_children=true"
+      "--edition=${rustEdition}"
+    ];
+  };
 
-  programs.shfmt.enable = true;
+  formatter.shfmt = {
+    command = lib.getExe pkgs.shfmt;
+    includes = [ "*.sh" ];
+    options = [
+      "--simplify"
+      "--write"
+      "--indent=2"
+    ];
+  };
 
-  programs.taplo.enable = true;
-  settings.formatter.taplo.options = [
-    "--option=column_width=120"
-    "--option=align_comments=false"
-  ];
+  formatter.taplo = {
+    command = lib.getExe pkgs.taplo;
+    includes = [ "*.toml" ];
+    options = [
+      "format"
+      "--option=column_width=120"
+      "--option=align_comments=false"
+    ];
+  };
 }
