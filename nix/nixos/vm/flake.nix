@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    sandkasten.url = "github:Defelo/sandkasten/latest";
+    sandkasten.url = "git+https://git.defelo.de/Defelo/sandkasten?ref=latest";
   };
 
   outputs =

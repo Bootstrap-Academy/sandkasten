@@ -1,11 +1,5 @@
-[![check](https://github.com/Defelo/sandkasten/actions/workflows/check.yml/badge.svg)](https://github.com/Defelo/sandkasten/actions/workflows/check.yml)
-[![test](https://github.com/Defelo/sandkasten/actions/workflows/test.yml/badge.svg)](https://github.com/Defelo/sandkasten/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/Defelo/sandkasten/branch/develop/graph/badge.svg?token=Y5CE2887KO)](https://codecov.io/gh/Defelo/sandkasten)
-![Version](https://img.shields.io/github/v/tag/Defelo/sandkasten?include_prereleases&label=version)
-[![dependency status](https://deps.rs/repo/github/Defelo/sandkasten/status.svg)](https://deps.rs/repo/github/Defelo/sandkasten)
-
 # Sandkasten Client
-[Sandkasten](https://github.com/Defelo/sandkasten) client library for running untrusted code
+[Sandkasten](https://git.defelo.de/Defelo/sandkasten) client library for running untrusted code
 
 ## Example
 ```rust,no_run

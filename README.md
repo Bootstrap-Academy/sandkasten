@@ -1,9 +1,3 @@
-[![check](https://github.com/Defelo/sandkasten/actions/workflows/check.yml/badge.svg)](https://github.com/Defelo/sandkasten/actions/workflows/check.yml)
-[![test](https://github.com/Defelo/sandkasten/actions/workflows/test.yml/badge.svg)](https://github.com/Defelo/sandkasten/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/Defelo/sandkasten/branch/develop/graph/badge.svg?token=Y5CE2887KO)](https://codecov.io/gh/Defelo/sandkasten)
-![Version](https://img.shields.io/github/v/tag/Defelo/sandkasten?include_prereleases&label=version)
-[![dependency status](https://deps.rs/repo/github/Defelo/sandkasten/status.svg)](https://deps.rs/repo/github/Defelo/sandkasten)
-
 # Sandkasten
 Run untrusted code in an isolated environment
 
@@ -82,13 +76,13 @@ libvirtd 9.4.0 x86_64.
     installation. Replace `[disk]` with the path to your hard disk (e.g. `/dev/sda`). Note that
     this will erase all data on the disk you specify!
     ```bash
-    curl -o install.sh https://raw.githubusercontent.com/Defelo/sandkasten/latest/install-vm.sh
+    curl -o install.sh https://git.defelo.de/Defelo/sandkasten/raw/branch/latest/install-vm.sh
     bash install.sh [disk]
     ```
     Alternatively you can run the following commands to install the development version.
     ```bash
-    curl -o install.sh https://raw.githubusercontent.com/Defelo/sandkasten/develop/install-vm.sh
-    FLAKE=github:Defelo/sandkasten/develop#vm bash install.sh [disk]
+    curl -o install.sh https://git.defelo.de/Defelo/sandkasten/raw/branch/develop/install-vm.sh
+    FLAKE=git+https://git.defelo.de/Defelo/sandkasten#vm bash install.sh [disk]
     ```
 8. After the script is done, the vm will reboot into the new NixOS installation. The initial root
     password is `sandkasten` if you want to login via ssh. The Sandkasten server is started
@@ -109,7 +103,7 @@ installation:
 1. Add this repository to your flake inputs:
     ```nix
     {
-      inputs.sandkasten.url = "github:Defelo/sandkasten/latest";
+      inputs.sandkasten.url = "git+https://git.defelo.de/Defelo/sandkasten/latest";
     }
     ```
 2. Add the module to your NixOS configuration:
@@ -165,7 +159,7 @@ course you could also do that).
 #### Install Sandkasten packages
 Before starting Sandkasten, you should setup a Nix profile with the environments that you want to be
 available on your instance. A full list of installable environments is available at
-[nix/packages](https://github.com/Defelo/sandkasten/tree/develop/nix/packages). To install a
+[nix/packages](https://git.defelo.de/Defelo/sandkasten/src/branch/develop/nix/packages). To install a
 package, you can use the following command:
 
 ```bash
@@ -195,7 +189,7 @@ tests and writes an html coverage report to `lcov_html/index.html`.
 
 ### Packages
 All packages are defined using nix expressions in
-[nix/packages](https://github.com/Defelo/sandkasten/tree/develop/nix/packages). Each package has a
+[nix/packages](https://git.defelo.de/Defelo/sandkasten/src/branch/develop/nix/packages). Each package has a
 unique id, a human-readable name, a version, optionally a script to compile a program, a script to
 run a program and a test program that is executed as part of the integration tests to ensure that
 the package is working.
