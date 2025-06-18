@@ -8,3 +8,4 @@
 /pkgs
 /pkgs-*-link
 /dump.rdb
+.nixos-test-history

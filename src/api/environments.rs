@@ -4,7 +4,9 @@ use key_rwlock::KeyRwLock;
 use poem_ext::{response, responses::ErrorResponse, shield_mw::shield};
 use poem_openapi::{param::Path, OpenApi};
 use sandkasten_client::schemas::{
-    environments::{BaseResourceUsage, Environment, ListEnvironmentsResponse, RunResourceUsage},
+    environments::{
+        BaseResourceUsage, Environment, ListEnvironmentsResponse, RunResourceUsage, Test,
+    },
     programs::BuildRequest,
 };
 use tokio::sync::{RwLock, Semaphore};
@@ -49,6 +51,12 @@ impl EnvironmentsApi {
                             version: env.version.clone(),
                             default_main_file_name: env.default_main_file_name.clone(),
                             example: env.example.clone(),
+                            test: Some(Test {
+                                main_file: env.test.main_file.clone(),
+                                files: env.test.files.clone(),
+                                expected: env.test.expected.clone(),
+                            }),
+                            compiled: env.compile_script.is_some(),
                             meta: env.meta.clone(),
                         },
                     )

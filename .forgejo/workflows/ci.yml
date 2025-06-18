@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: mkdir -p ~/.config/nix && echo "accept-flake-config = true" >> ~/.config/nix/nix.conf
-      - run: nix develop .#test --command bash -c 'echo "$PATH"' > $GITHUB_PATH
+      - run: nix develop .#ci --command bash -c 'echo "$PATH"' > $GITHUB_PATH
       - uses: https://github.com/Swatinem/rust-cache@v2
         with:
           cache-on-failure: "true"
@@ -27,9 +27,9 @@ jobs:
 
       - run: nix fmt -- --ci
       - run: nix run .#generate && git diff --exit-code
-      - run: cargo clippy --all-targets -- -D warnings
-      - run: cargo test --locked --workspace -F reqwest,blocking,poem-openapi --all-targets
-      - run: cargo test --locked --workspace -F reqwest,blocking,poem-openapi --doc
+      - run: cargo clippy --workspace --all-features --all-targets -- -D warnings
+      - run: cargo test --locked --workspace --all-features --all-targets
+      - run: cargo test --locked --workspace --all-features --doc
       - run: cargo doc --no-deps --all-features --workspace
         env:
           RUSTDOCFLAGS: --cfg docsrs

@@ -32,12 +32,15 @@
     {
       packages = eachDefaultSystem (pkgs: {
         default = self.packages.${pkgs.system}.sandkasten;
-        sandkasten = pkgs.callPackage ./nix/sandkasten.nix { inherit fenix; };
+        inherit (self.packages.${pkgs.system}.rustPackages) sandkasten;
+        rustPackages = pkgs.callPackages ./nix/rust_packages.nix { inherit fenix; };
         packages = import ./nix/packages {
           inherit inputs lib;
           inherit (pkgs) system;
         };
         time = pkgs.callPackage ./nix/time { };
+
+        tests = pkgs.callPackage ./nix/tests { inherit self; };
 
         generate = pkgs.writeShellScriptBin "generate" ''
           ${nixpkgs.lib.getExe inputs.nixpkgs-master.legacyPackages.${pkgs.system}.crate2nix} generate
@@ -49,11 +52,12 @@
               builtins.removeAttrs self.packages.${pkgs.system} [ "checks" ]
               // {
                 packages = self.packages.${pkgs.system}.packages.all;
+                rustPackages =
+                  pkgs.linkFarm "sandkasten-checks-rustPackages"
+                    self.packages.${pkgs.system}.rustPackages;
               }
             );
-            devShells = pkgs.linkFarm "sandkasten-checks-devShells" (
-              builtins.removeAttrs self.devShells.${pkgs.system} [ "checks" ]
-            );
+            devShells = pkgs.linkFarm "sandkasten-checks-devShells" self.devShells.${pkgs.system};
           in
           pkgs.linkFarmFromDrvs "sandkasten-checks" [
             packages

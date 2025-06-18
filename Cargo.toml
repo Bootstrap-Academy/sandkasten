@@ -1,5 +1,11 @@
 [workspace]
-members = [".", "client"]
+members = [".", "client", "nix/tests"]
+
+[workspace.package]
+version = "0.2.2"
+edition = "2021"
+license = "MIT"
+repository = "https://git.defelo.de/Defelo/sandkasten"
 
 [workspace.dependencies]
 serde = { version = "1.0.219", default-features = false, features = ["std", "derive"] }
@@ -9,8 +15,10 @@ uuid = { version = "1.17.0", default-features = false, features = ["v4", "fast-r
 
 [package]
 name = "sandkasten"
-version = "0.2.2"
-edition = "2021"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
 publish = false
 
 [dependencies]
@@ -32,13 +40,3 @@ tracing = { version = "0.1.41", default-features = false }
 tracing-subscriber = { version = "0.3.19", default-features = false, features = ["fmt", "ansi"] }
 url = { version = "2.5.4", default-features = false, features = ["serde"] }
 uuid.workspace = true
-
-[dev-dependencies]
-indoc = { version = "2.0.6", default-features = false }
-proptest = "1.7.0"
-regex = "1.11.1"
-sandkasten-client = { path = "client", default-features = false, features = ["reqwest", "blocking"] }
-
-[features]
-nix = []
-test_api = []

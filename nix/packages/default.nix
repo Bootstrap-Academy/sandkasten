@@ -33,7 +33,7 @@ let
     let
       manifest = pkgs.writeText "sandkasten-${id}-${version}-manifest.json" (
         builtins.toJSON rec {
-          sandkasten_version = lib.cargotoml.package.version;
+          sandkasten_version = lib.cargotoml.workspace.package.version;
           inherit
             name
             version

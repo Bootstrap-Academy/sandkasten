@@ -57,6 +57,16 @@ rec {
       # File a bug if you depend on any for non-debug work!
       debug = internal.debugCrate { inherit packageId; };
     };
+    "sandkasten-tests" = rec {
+      packageId = "sandkasten-tests";
+      build = internal.buildRustCrateWithFeatures {
+        packageId = "sandkasten-tests";
+      };
+
+      # Debug support which might change between releases.
+      # File a bug if you depend on any for non-debug work!
+      debug = internal.debugCrate { inherit packageId; };
+    };
   };
 
   # A derivation that joins the outputs of all workspace members together.
@@ -5294,30 +5304,7 @@ rec {
             features = [ "v4" "fast-rng" "serde" ];
           }
         ];
-        devDependencies = [
-          {
-            name = "indoc";
-            packageId = "indoc";
-            usesDefaultFeatures = false;
-          }
-          {
-            name = "proptest";
-            packageId = "proptest";
-          }
-          {
-            name = "regex";
-            packageId = "regex";
-          }
-          {
-            name = "sandkasten-client";
-            packageId = "sandkasten-client";
-            usesDefaultFeatures = false;
-            features = [ "reqwest" "blocking" ];
-          }
-        ];
-        features = {
-        };
-        resolvedDefaultFeatures = [ "nix" "test_api" ];
+
       };
       "sandkasten-client" = rec {
         crateName = "sandkasten-client";
@@ -5385,6 +5372,53 @@ rec {
           "reqwest" = [ "dep:reqwest" "dep:url" ];
         };
         resolvedDefaultFeatures = [ "blocking" "default" "poem-openapi" "reqwest" ];
+      };
+      "sandkasten-tests" = rec {
+        crateName = "sandkasten-tests";
+        version = "0.2.2";
+        edition = "2021";
+        crateBin = [
+          {
+            name = "sandkasten-tests";
+            path = "src/main.rs";
+            requiredFeatures = [ ];
+          }
+        ];
+        src = lib.cleanSourceWith { filter = sourceFilter;  src = ./nix/tests; };
+        dependencies = [
+          {
+            name = "indoc";
+            packageId = "indoc";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "proptest";
+            packageId = "proptest";
+          }
+          {
+            name = "regex";
+            packageId = "regex";
+          }
+          {
+            name = "sandkasten-client";
+            packageId = "sandkasten-client";
+            usesDefaultFeatures = false;
+            features = [ "reqwest" "blocking" ];
+          }
+          {
+            name = "tokio";
+            packageId = "tokio";
+            usesDefaultFeatures = false;
+            features = [ "rt-multi-thread" "macros" ];
+          }
+          {
+            name = "uuid";
+            packageId = "uuid";
+            usesDefaultFeatures = false;
+            features = [ "v4" "fast-rng" "serde" ];
+          }
+        ];
+
       };
       "scopeguard" = rec {
         crateName = "scopeguard";

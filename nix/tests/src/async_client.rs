@@ -3,31 +3,37 @@ use sandkasten_client::{
     SandkastenClient,
 };
 
-#[tokio::test]
-#[ignore]
+use crate::tests;
+
+tests! {
+    test_version,
+    test_environments,
+    test_get_base_resource_usage,
+    test_build_run,
+    test_build_then_run,
+}
+
+#[tokio::main]
 async fn test_version() {
     let version = client().version().await.unwrap();
     assert_eq!(version, env!("CARGO_PKG_VERSION"));
 }
 
-#[tokio::test]
-#[ignore]
+#[tokio::main]
 async fn test_environments() {
     let environments = client().list_environments().await.unwrap();
     assert_eq!(environments.get("python").unwrap().name, "Python");
     assert_eq!(environments.get("rust").unwrap().name, "Rust");
 }
 
-#[tokio::test]
-#[ignore]
+#[tokio::main]
 async fn test_get_base_resource_usage() {
     let client = client();
     client.get_base_resource_usage("rust").await.unwrap();
     client.get_base_resource_usage("python").await.unwrap();
 }
 
-#[tokio::test]
-#[ignore]
+#[tokio::main]
 async fn test_build_run() {
     let result = client()
         .build_and_run(&BuildRunRequest {
@@ -49,8 +55,7 @@ async fn test_build_run() {
     assert!(result.run.stderr.is_empty());
 }
 
-#[tokio::test]
-#[ignore]
+#[tokio::main]
 async fn test_build_then_run() {
     let result = client()
         .build(&BuildRequest {
@@ -79,10 +84,5 @@ async fn test_build_then_run() {
 }
 
 fn client() -> SandkastenClient {
-    SandkastenClient::new(
-        option_env!("TARGET_HOST")
-            .unwrap_or("http://127.0.0.1:8000")
-            .parse()
-            .unwrap(),
-    )
+    SandkastenClient::new("http://127.0.0.1:8000".parse().unwrap())
 }

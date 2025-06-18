@@ -3,12 +3,18 @@ use sandkasten_client::schemas::programs::{
     BuildRequest, BuildRunRequest, LimitsOpt, MainFile, RunRequest,
 };
 
-use crate::common::client;
+use crate::{client, tests};
 
-mod common;
+tests! {
+    test_no_internet,
+    test_forkbomb,
+    test_stdoutbomb,
+    test_flood_memory,
+    test_combination,
+    test_large_file,
+    test_many_files,
+}
 
-#[test]
-#[ignore]
 fn test_no_internet() {
     let response = client()
         .build_and_run(&BuildRunRequest {
@@ -18,8 +24,8 @@ fn test_no_internet() {
                     name: Some("test.py".into()),
                     content: formatdoc! {r#"
                         from http.client import *
-                        c=HTTPConnection("1.1.1.1")
-                        c.request("GET", "http://1.1.1.1")
+                        c=HTTPConnection("127.0.0.1")
+                        c.request("GET", "http://127.0.0.1/")
                     "#},
                 },
                 ..Default::default()
@@ -36,12 +42,10 @@ fn test_no_internet() {
     assert_eq!(response.run.status, 1);
     assert_eq!(
         response.run.stderr.trim().lines().last().unwrap(),
-        "OSError: [Errno 101] Network is unreachable"
+        "ConnectionRefusedError: [Errno 111] Connection refused"
     );
 }
 
-#[test]
-#[ignore]
 fn test_forkbomb() {
     let response = client()
         .build_and_run(&BuildRunRequest {
@@ -70,8 +74,6 @@ fn test_forkbomb() {
     assert!(response.run.resource_usage.time < 2000);
 }
 
-#[test]
-#[ignore]
 fn test_stdoutbomb() {
     let response = client()
         .build_and_run(&BuildRunRequest {
@@ -106,8 +108,6 @@ fn test_stdoutbomb() {
     assert!(response.run.stderr.len() <= 1024);
 }
 
-#[test]
-#[ignore]
 fn test_flood_memory() {
     let response = client()
         .build_and_run(&BuildRunRequest {
@@ -136,8 +136,6 @@ fn test_flood_memory() {
     assert!(response.run.stderr.contains("Killed"));
 }
 
-#[test]
-#[ignore]
 fn test_combination() {
     let response = client()
         .build_and_run(&BuildRunRequest {
@@ -171,8 +169,6 @@ fn test_combination() {
     assert!(stderr.contains("MemoryError") || stderr.contains("Resource temporarily unavailable"));
 }
 
-#[test]
-#[ignore]
 fn test_large_file() {
     let response = client()
         .build_and_run(&BuildRunRequest {
@@ -193,8 +189,6 @@ fn test_large_file() {
     assert!(response.run.stderr.contains("File size limit exceeded"));
 }
 
-#[test]
-#[ignore]
 fn test_many_files() {
     let response = client()
         .build_and_run(&BuildRunRequest {

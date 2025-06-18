@@ -1,22 +1,31 @@
-#![cfg(feature = "nix")]
-
 use std::{
     collections::{BTreeMap, HashSet},
     fmt::Write,
 };
 
-use common::client;
 use indoc::formatdoc;
-use proptest::{collection, option, prelude::*, string::string_regex};
+use proptest::{
+    collection, option,
+    prelude::*,
+    sample::{select, Select},
+    string::string_regex,
+};
 use sandkasten_client::schemas::programs::{
     BuildRequest, BuildRunRequest, EnvVar, File, LimitsOpt, MainFile, RunRequest,
 };
 
-mod common;
+use crate::{client, tests, ENVIRONMENTS};
+
+tests! {
+    test_files,
+    test_compile_limits,
+    test_run_limits,
+    test_run_args,
+    test_env_vars,
+    random_bullshit_go,
+}
 
 proptest! {
-    #[test]
-    #[ignore]
     fn test_files(main_file in main_file(256), build_files in files(1, 10, 256), run_files in files(0, 10, 256)) {
         prop_assume!(build_files.iter().all(|f| f.name != main_file.name.as_deref().unwrap_or("code.py")));
         client().build_and_run(&BuildRunRequest {
@@ -33,8 +42,6 @@ proptest! {
 }
 
 proptest! {
-    #[test]
-    #[ignore]
     fn test_compile_limits(compile_limits in compile_limits()) {
         client().build_and_run(&BuildRunRequest {
             build: BuildRequest {
@@ -57,8 +64,6 @@ proptest! {
 }
 
 proptest! {
-    #[test]
-    #[ignore]
     fn test_run_limits(run_limits in run_limits()) {
         client().build_and_run(&BuildRunRequest {
             build: BuildRequest {
@@ -79,8 +84,6 @@ proptest! {
 }
 
 proptest! {
-    #[test]
-    #[ignore]
     fn test_run_args(stdin in stdin(256), args in args(100, 256), files in files(0, 10, 256)) {
         let expected = format!("{}\n{}\n{}", args.len() + 1, files.len(), stdin.as_ref().map(|s| s.chars().count()).unwrap_or(0));
         let result = client().build_and_run(&BuildRunRequest {
@@ -106,8 +109,6 @@ proptest! {
 }
 
 proptest! {
-    #[test]
-    #[ignore]
     fn test_env_vars(build_vars in env_vars_map(16, 256), run_vars in env_vars_map(16, 256)) {
         let expected = build_vars.iter().chain(&run_vars).map(|(_, v)| v.as_str()).collect::<String>();
         let mut src = String::new();
@@ -138,8 +139,6 @@ proptest! {
 }
 
 proptest! {
-    #[test]
-    #[ignore]
     fn random_bullshit_go(
         environment in valid_environment(),
         main_file in main_file(16),
@@ -242,10 +241,60 @@ prop_compose! {
 }
 
 prop_compose! {
-    fn valid_environment() (idx in 0usize..ENVIRONMENTS.len()) -> &'static str {
-        ENVIRONMENTS[idx]
+    fn compile_limits() (
+        network in option::of(Just(false)),
+        cpus in option::of(1u64..=1),
+        file_descriptors in option::of(1u64..=256),
+        filesize in option::of(1u64..=16),
+        memory in option::of(1u64..=1024),
+        processes in option::of(1u64..=256),
+        stderr_max_size in option::of(0u64..=65536),
+        stdout_max_size in option::of(0u64..=65536),
+        time in option::of(1u64..=30),
+        tmpfs in option::of(0u64..=256),
+    ) -> LimitsOpt {
+        LimitsOpt {
+          network,
+          cpus,
+          file_descriptors,
+          filesize,
+          memory,
+          processes,
+          stderr_max_size,
+          stdout_max_size,
+          time,
+          tmpfs,
+      }
+    }
+}
+prop_compose! {
+    fn run_limits() (
+        network in option::of(Just(false)),
+        cpus in option::of(1u64..=1),
+        file_descriptors in option::of(1u64..=256),
+        filesize in option::of(1u64..=16),
+        memory in option::of(1u64..=256),
+        processes in option::of(1u64..=64),
+        stderr_max_size in option::of(0u64..=65536),
+        stdout_max_size in option::of(0u64..=65536),
+        time in option::of(1u64..=5),
+        tmpfs in option::of(0u64..=256),
+    ) -> LimitsOpt {
+        LimitsOpt {
+          network,
+          cpus,
+          file_descriptors,
+          filesize,
+          memory,
+          processes,
+          stderr_max_size,
+          stdout_max_size,
+          time,
+          tmpfs,
+       }
     }
 }
 
-include!(env!("LIMITS_TEST_SRC"));
-include!(env!("ENVIRONMENTS_LIST_SRC"));
+fn valid_environment() -> Select<&'static str> {
+    select(ENVIRONMENTS.keys().map(|k| k.as_str()).collect::<Vec<_>>())
+}

@@ -8,6 +8,7 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
 use super::programs::ResourceUsage;
+use crate::schemas::programs::{File, MainFile};
 
 /// A package that can build and run programs.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -22,8 +23,24 @@ pub struct Environment {
     pub default_main_file_name: String,
     /// An example program for this environment.
     pub example: Option<String>,
+    /// A test program to verify basic functionality of this environment.
+    pub test: Option<Test>,
+    /// Whether the environment has a `compile_script`.
+    pub compiled: bool,
     /// Additional metadata specific to the environment.
     pub meta: Value,
+}
+
+/// A test program to verify basic functionality of an environment.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "poem-openapi", derive(Object))]
+pub struct Test {
+    /// The main source file that represents the entrypoint to the program.
+    pub main_file: MainFile,
+    /// A list of additional source files.
+    pub files: Vec<File>,
+    /// The expected output.
+    pub expected: Option<String>,
 }
 
 /// A map of environments where the key represents the id of the environment.
@@ -92,6 +109,8 @@ impl Example for ListEnvironmentsResponse {
                     version: "1.64.0".into(),
                     default_main_file_name: "code.rs".into(),
                     example: None,
+                    test: None,
+                    compiled: true,
                     meta: serde_json::json!({
                         "homepage": "https://www.rust-lang.org/"
                     }),
@@ -104,6 +123,8 @@ impl Example for ListEnvironmentsResponse {
                     version: "3.11.1".into(),
                     default_main_file_name: "code.py".into(),
                     example: Some("name = input()\nprint(f\"Hello, {name}!\")".into()),
+                    test: None,
+                    compiled: false,
                     meta: serde_json::json!({
                         "packages": ["numpy", "pandas"]
                     }),

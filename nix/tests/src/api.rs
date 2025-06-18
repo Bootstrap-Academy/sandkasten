@@ -1,7 +1,6 @@
 use std::sync::Arc;
 
 use indoc::formatdoc;
-use regex::Regex;
 use sandkasten_client::{
     schemas::{
         programs::{
@@ -13,42 +12,47 @@ use sandkasten_client::{
     Error,
 };
 
-use crate::common::client;
+use crate::{client, tests};
 
-mod common;
+tests! {
+    test_version,
+    test_config,
+    test_environments,
+    test_get_base_resource_usage,
+    test_build_run_python,
+    test_build_run_rust_compilation_error,
+    test_build_run_rust_ok,
+    test_build_cached,
+    test_build_then_run,
+    test_build_run_errors,
+    test_build_errors,
+    test_run_errors,
+    test_network,
+    test_build_race,
+}
 
-#[test]
-#[ignore]
 fn test_version() {
     let version = client().version().unwrap();
     assert_eq!(version, env!("CARGO_PKG_VERSION"));
     assert_eq!(version, sandkasten_client::VERSION);
 }
 
-#[test]
-#[ignore]
 fn test_config() {
     client().get_config().unwrap();
 }
 
-#[test]
-#[ignore]
 fn test_environments() {
     let environments = client().list_environments().unwrap();
     assert_eq!(environments.get("python").unwrap().name, "Python");
     assert_eq!(environments.get("rust").unwrap().name, "Rust");
 }
 
-#[test]
-#[ignore]
 fn test_get_base_resource_usage() {
     let client = client();
     client.get_base_resource_usage("rust").unwrap();
     client.get_base_resource_usage("python").unwrap();
 }
 
-#[test]
-#[ignore]
 fn test_build_run_python() {
     let response = client()
         .build_and_run(&BuildRunRequest {
@@ -104,8 +108,6 @@ fn test_build_run_python() {
     );
 }
 
-#[test]
-#[ignore]
 fn test_build_run_rust_compilation_error() {
     match client()
         .build_and_run(&BuildRunRequest {
@@ -133,8 +135,6 @@ fn test_build_run_rust_compilation_error() {
     }
 }
 
-#[test]
-#[ignore]
 fn test_build_run_rust_ok() {
     let response = client()
         .build_and_run(&BuildRunRequest {
@@ -184,8 +184,6 @@ fn test_build_run_rust_ok() {
     );
 }
 
-#[test]
-#[ignore]
 fn test_build_cached() {
     let client = client();
     let request = BuildRunRequest {
@@ -224,8 +222,6 @@ fn test_build_cached() {
     assert_eq!(response.stdout, "test_build_cached\n");
 }
 
-#[test]
-#[ignore]
 fn test_build_then_run() {
     let client = client();
     let build = client
@@ -244,8 +240,6 @@ fn test_build_then_run() {
     assert_eq!(run.stdout, "hello world\n");
 }
 
-#[test]
-#[ignore]
 fn test_build_run_errors() {
     let client = client();
 
@@ -379,8 +373,6 @@ fn test_build_run_errors() {
     assert!(les.pop().is_none());
 }
 
-#[test]
-#[ignore]
 fn test_build_errors() {
     let client = client();
 
@@ -490,8 +482,6 @@ fn test_build_errors() {
     assert!(les.pop().is_none());
 }
 
-#[test]
-#[ignore]
 fn test_run_errors() {
     let client = client();
 
@@ -582,8 +572,6 @@ fn test_run_errors() {
     assert!(les.pop().is_none());
 }
 
-#[test]
-#[ignore]
 fn test_network() {
     let result = client()
         .build_and_run(&BuildRunRequest {
@@ -593,8 +581,8 @@ fn test_network() {
                     name: Some("test.py".into()),
                     content: formatdoc! {r#"
                         from http.client import *
-                        c=HTTPConnection("ip6.me")
-                        c.request("GET", "http://ip6.me/api/")
+                        c=HTTPConnection("127.0.0.1")
+                        c.request("GET", "http://127.0.0.1/")
                         r=c.getresponse()
                         print(r.status, r.read().decode().strip(), end='')
                     "#},
@@ -605,13 +593,10 @@ fn test_network() {
         })
         .unwrap();
     assert_eq!(result.run.status, 0);
-    let re = Regex::new(r"^200 IPv[46],[^,]+,.+$").unwrap();
-    assert!(re.is_match(&result.run.stdout));
+    assert_eq!(result.run.stdout, "200 Hello World!");
     assert!(result.run.stderr.is_empty());
 }
 
-#[test]
-#[ignore]
 fn test_build_race() {
     let client = Arc::new(client());
 

@@ -1,22 +1,42 @@
-#![cfg(feature = "nix")]
+use std::sync::LazyLock;
 
-use sandkasten::environments::{self, Environment};
-use sandkasten_client::schemas::programs::{
-    BuildRequest, BuildRunRequest, BuildRunResult, File, MainFile, RunRequest,
+use sandkasten_client::schemas::{
+    environments::{Environment, Test},
+    programs::{BuildRequest, BuildRunRequest, BuildRunResult, File, MainFile, RunRequest},
 };
 
-use crate::common::client;
+use crate::{client, TestCollection, TestFn, ENVIRONMENTS};
 
-mod common;
+pub static TESTS: LazyLock<TestCollection> = LazyLock::new(|| {
+    let mut environments = ENVIRONMENTS.iter().collect::<Vec<_>>();
+    environments.sort_by_key(|&(id, _)| id);
+    environments
+        .into_iter()
+        .flat_map(|(id, environment)| {
+            environment
+                .test
+                .as_ref()
+                .map(|test| {
+                    (
+                        format!("{}::test_{id}", module_path!()),
+                        Box::new(|| test_package(id, environment, test)) as TestFn,
+                    )
+                })
+                .into_iter()
+                .chain([(
+                    format!("{}::example_{id}", module_path!()),
+                    Box::new(|| test_example(id, environment)) as TestFn,
+                )])
+        })
+        .collect()
+});
 
-fn test_package(id: &str) {
-    let environment = get_environment(id);
-
+fn test_package(id: &str, environment: &Environment, test: &Test) {
     match dbg!(client().build_and_run(&BuildRunRequest {
         build: BuildRequest {
             environment: id.to_owned(),
-            main_file: environment.test.main_file,
-            files: environment.test.files,
+            main_file: test.main_file.clone(),
+            files: test.files.clone(),
             ..Default::default()
         },
         run: RunRequest {
@@ -30,19 +50,18 @@ fn test_package(id: &str) {
         },
     })) {
         Ok(response) => {
-            assert_ok(&response, environment.compile_script.is_some());
+            assert_ok(&response, environment.compiled);
             assert_eq!(
                 response.run.stdout.trim(),
-                environment.test.expected.as_deref().unwrap_or("OK")
+                test.expected.as_deref().unwrap_or("OK")
             );
         }
         Err(_) => panic!("request failed"),
     }
 }
 
-fn test_example(id: &str) {
-    let environment = get_environment(id);
-    let Some(content) = environment.example else {
+fn test_example(id: &str, environment: &Environment) {
+    let Some(content) = &environment.example else {
         return;
     };
 
@@ -51,7 +70,7 @@ fn test_example(id: &str) {
             environment: id.to_owned(),
             main_file: MainFile {
                 name: None,
-                content,
+                content: content.clone(),
             },
             ..Default::default()
         },
@@ -61,18 +80,11 @@ fn test_example(id: &str) {
         },
     })) {
         Ok(response) => {
-            assert_ok(&response, environment.compile_script.is_some());
+            assert_ok(&response, environment.compiled);
             assert_eq!(response.run.stdout.trim(), "Hello, Foo42!");
         }
         Err(_) => panic!("request failed"),
     }
-}
-
-fn get_environment(id: &str) -> Environment {
-    let conf = sandkasten::config::load().unwrap();
-    let mut environments = environments::load(&conf.environments_path).unwrap();
-
-    environments.remove(id).unwrap()
 }
 
 fn assert_ok(response: &BuildRunResult, compiled: bool) {
@@ -86,5 +98,3 @@ fn assert_ok(response: &BuildRunResult, compiled: bool) {
     assert_eq!(response.run.status, 0);
     assert!(response.run.stderr.is_empty());
 }
-
-include!(env!("PACKAGES_TEST_SRC"));

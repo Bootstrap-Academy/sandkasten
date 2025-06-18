@@ -65,7 +65,10 @@ mod client {
         pub fn new(base_url: Url) -> Self {
             Self {
                 base_url,
-                client: reqwest::blocking::Client::new(),
+                client: reqwest::blocking::Client::builder()
+                    .timeout(None)
+                    .build()
+                    .unwrap(),
             }
         }
 

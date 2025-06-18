@@ -2,7 +2,7 @@
 
 let
   cargoToml = lib.importTOML ./Cargo.toml;
-  rustEdition = cargoToml.package.edition;
+  rustEdition = cargoToml.workspace.package.edition;
 in
 
 {

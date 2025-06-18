@@ -1,11 +1,11 @@
 [package]
 name = "sandkasten-client"
-version = "0.2.2"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
 description = "Sandkasten client library for running untrusted code"
-license = "MIT"
 documentation = "https://docs.rs/sandkasten-client/"
-repository = "https://git.defelo.de/Defelo/sandkasten"
-edition = "2021"
 publish = true
 
 [features]
