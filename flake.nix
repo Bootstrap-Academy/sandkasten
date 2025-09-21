@@ -13,24 +13,19 @@
       fenix,
       ...
     }@inputs:
+
     let
-      defaultSystems = [
+      eachSystem = f: nixpkgs.lib.genAttrs systems (s: f nixpkgs.legacyPackages.${s});
+      systems = [
         "x86_64-linux"
-        "aarch64-linux" # untested
+        "aarch64-linux"
       ];
-      eachDefaultSystem =
-        f:
-        builtins.listToAttrs (
-          map (system: {
-            name = system;
-            value = f (import nixpkgs { inherit system; });
-          }) defaultSystems
-        );
 
       lib = import ./nix/lib.nix;
     in
+
     {
-      packages = eachDefaultSystem (pkgs: {
+      packages = eachSystem (pkgs: {
         default = self.packages.${pkgs.system}.sandkasten;
         inherit (self.packages.${pkgs.system}.rustPackages) sandkasten;
         rustPackages = pkgs.callPackages ./nix/rust_packages.nix { inherit fenix; };
@@ -67,7 +62,7 @@
 
       nixosModules.sandkasten = import ./nix/nixos/module.nix { inherit self lib; };
 
-      devShells = eachDefaultSystem (
+      devShells = eachSystem (
         pkgs:
         import ./nix/dev/shell.nix {
           inherit
@@ -81,7 +76,7 @@
 
       templates.vm.path = ./nix/nixos/vm;
 
-      formatter = eachDefaultSystem (
+      formatter = eachSystem (
         { system, ... }:
         let
           pkgs = inputs.nixpkgs-master.legacyPackages.${system};
