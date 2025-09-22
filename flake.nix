@@ -1,18 +1,14 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-csharp.url = "github:NixOS/nixpkgs/0c582677378f2d9ffcb01490af2f2c678dcb29d3";
-    fenix.url = "github:nix-community/fenix";
+    crane.url = "github:ipetkov/crane";
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      fenix,
-      ...
-    }@inputs:
+    { self, nixpkgs, ... }@inputs:
 
     let
       eachSystem = f: nixpkgs.lib.genAttrs systems (s: f nixpkgs.legacyPackages.${s});
@@ -25,54 +21,46 @@
     in
 
     {
-      packages = eachSystem (pkgs: {
-        default = self.packages.${pkgs.system}.sandkasten;
-        inherit (self.packages.${pkgs.system}.rustPackages) sandkasten;
-        rustPackages = pkgs.callPackages ./nix/rust_packages.nix { inherit fenix; };
-        packages = import ./nix/packages {
-          inherit inputs lib;
-          inherit (pkgs) system;
-        };
-        time = pkgs.callPackage ./nix/time { };
+      packages = eachSystem (
+        pkgs:
+        let
+          pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+        in
+        {
+          default = self.packages.${pkgs.system}.sandkasten;
+          inherit (self.packages.${pkgs.system}.rustPackages) sandkasten;
+          rustPackages = pkgs-unstable.callPackages ./nix/rust_packages.nix { inherit (inputs) crane; };
+          packages = import ./nix/packages {
+            inherit inputs lib;
+            inherit (pkgs) system;
+          };
+          time = pkgs.callPackage ./nix/time { };
 
-        tests = pkgs.callPackage ./nix/tests { inherit self; };
+          tests = pkgs.callPackage ./nix/tests { inherit self; };
 
-        generate = pkgs.writeShellScriptBin "generate" ''
-          ${nixpkgs.lib.getExe inputs.nixpkgs-master.legacyPackages.${pkgs.system}.crate2nix} generate
-        '';
-
-        checks =
-          let
-            packages = pkgs.linkFarm "sandkasten-checks-packages" (
-              builtins.removeAttrs self.packages.${pkgs.system} [ "checks" ]
-              // {
-                packages = self.packages.${pkgs.system}.packages.all;
-                rustPackages =
-                  pkgs.linkFarm "sandkasten-checks-rustPackages"
-                    self.packages.${pkgs.system}.rustPackages;
-              }
-            );
-            devShells = pkgs.linkFarm "sandkasten-checks-devShells" self.devShells.${pkgs.system};
-          in
-          pkgs.linkFarmFromDrvs "sandkasten-checks" [
-            packages
-            devShells
-          ];
-      });
+          checks =
+            let
+              packages = pkgs.linkFarm "sandkasten-checks-packages" (
+                builtins.removeAttrs self.packages.${pkgs.system} [ "checks" ]
+                // {
+                  packages = self.packages.${pkgs.system}.packages.all;
+                  rustPackages =
+                    pkgs.linkFarm "sandkasten-checks-rustPackages"
+                      self.packages.${pkgs.system}.rustPackages;
+                }
+              );
+              devShells = pkgs.linkFarm "sandkasten-checks-devShells" self.devShells.${pkgs.system};
+            in
+            pkgs.linkFarmFromDrvs "sandkasten-checks" [
+              packages
+              devShells
+            ];
+        }
+      );
 
       nixosModules.sandkasten = import ./nix/nixos/module.nix { inherit self lib; };
 
-      devShells = eachSystem (
-        pkgs:
-        import ./nix/dev/shell.nix {
-          inherit
-            self
-            pkgs
-            lib
-            fenix
-            ;
-        }
-      );
+      devShells = eachSystem (pkgs: import ./nix/dev/shell.nix { inherit self pkgs lib; });
 
       templates.vm.path = ./nix/nixos/vm;
 

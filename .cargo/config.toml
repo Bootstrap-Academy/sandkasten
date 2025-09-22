@@ -1,0 +1,2 @@
+unstable.feature-unification = true
+resolver.feature-unification = "workspace"

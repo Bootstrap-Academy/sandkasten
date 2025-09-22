@@ -1,9 +1,4 @@
-{
-  pkgs,
-  self,
-  fenix,
-  ...
-}:
+{ pkgs, self, ... }:
 
 let
   setup-nsjail = pkgs.writeShellScript "setup-nsjail.sh" ''
@@ -29,18 +24,8 @@ in
     packages = [
       self.packages.${pkgs.system}.time
       self.packages.${pkgs.system}.generate
-      pkgs.crate2nix
       scripts
     ];
     RUST_LOG = "info,sandkasten=trace,difft=off";
   });
-
-  ci = pkgs.mkShell {
-    packages = [
-      fenix.packages.${pkgs.system}.stable.cargo
-      fenix.packages.${pkgs.system}.stable.clippy
-      fenix.packages.${pkgs.system}.stable.rustc
-      pkgs.cargo-hack
-    ];
-  };
 }

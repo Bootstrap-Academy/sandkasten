@@ -14,9 +14,7 @@ in
     "*.md"
     "*.patch"
     ".envrc"
-    ".gitattributes"
     ".gitignore"
-    "Cargo.nix"
     "LICENSE"
     "tests/proptests.proptest-regressions"
   ];

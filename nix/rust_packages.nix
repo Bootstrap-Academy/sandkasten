@@ -1,49 +1,49 @@
 {
-  fenix,
+  crane,
   lib,
   pkgs,
-  system,
 }:
 
 let
-  toolchain = fenix.packages.${system}.stable;
+  craneLib = crane.mkLib pkgs;
 
-  crateOverrides = {
-    sandkasten = _: {
-      src = lib.fileset.toSource {
-        root = ../.;
-        fileset = ../src;
-      };
+  commonArgs = {
+    src = lib.fileset.toSource {
+      root = ../.;
+      fileset = lib.fileset.unions [
+        ../.cargo
+        ../Cargo.lock
+        ../Cargo.toml
+        ../client
+        ../nix/tests
+        ../src
+      ];
     };
-    sandkasten-client = _: {
-      src = lib.fileset.toSource {
-        root = ../client;
-        fileset = lib.fileset.unions [
-          ../client/src
-          ../client/README.md
-        ];
-      };
-    };
-    sandkasten-tests = _: {
-      src = lib.fileset.toSource {
-        root = ./tests;
-        fileset = ./tests/src;
-      };
-    };
-  };
 
-  cargoNix = pkgs.callPackage ../Cargo.nix {
-    pkgs = pkgs.extend (
-      final: prev: {
-        inherit (toolchain) cargo;
-        # workaround for https://github.com/NixOS/nixpkgs/blob/d80a3129b239f8ffb9015473c59b09ac585b378b/pkgs/build-support/rust/build-rust-crate/default.nix#L19-L23
-        rustc = toolchain.rustc // {
-          unwrapped.configureFlags = [ "--target=" ];
-        };
-      }
-    );
-    defaultCrateOverrides = pkgs.defaultCrateOverrides // crateOverrides;
+    cargoExtraArgs = "--workspace";
+
+    cargoArtifacts = craneLib.buildDepsOnly commonArgs;
   };
 in
 
-lib.mapAttrs (_: p: p.build) cargoNix.workspaceMembers
+{
+  sandkasten = craneLib.buildPackage (
+    commonArgs
+    // {
+      pname = "sandkasten";
+      cargoExtraArgs = "-p sandkasten";
+    }
+  );
+
+  sandkasten-tests = craneLib.buildPackage (
+    commonArgs
+    // {
+      pname = "sandkasten-tests";
+      cargoExtraArgs = "-p sandkasten-tests";
+    }
+  );
+
+  clippy = craneLib.cargoClippy (
+    commonArgs // { cargoClippyExtraArgs = "--all-targets -- --deny warnings"; }
+  );
+}
