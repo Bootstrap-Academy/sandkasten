@@ -1,6 +1,6 @@
-{ pkgs-master, ... }:
+{ pkgs-unstable, ... }:
 let
-  inherit (pkgs-master) uiua;
+  inherit (pkgs-unstable) uiua;
 in
 {
   name = "Uiua";

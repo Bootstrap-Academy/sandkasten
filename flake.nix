@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-csharp.url = "github:NixOS/nixpkgs/0c582677378f2d9ffcb01490af2f2c678dcb29d3";
     crane.url = "github:ipetkov/crane";
   };
@@ -67,12 +66,16 @@
       formatter = eachSystem (
         { system, ... }:
         let
-          pkgs = inputs.nixpkgs-master.legacyPackages.${system};
+          pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
         in
-        pkgs.treefmt.withConfig {
+        pkgs-unstable.treefmt.withConfig {
           settings = [
             ./treefmt.nix
-            { _module.args = { inherit pkgs; }; }
+            {
+              _module.args = {
+                pkgs = pkgs-unstable;
+              };
+            }
           ];
         }
       );

@@ -4,9 +4,9 @@
   lib,
 }:
 let
-  pkgs = import inputs.nixpkgs { inherit system; };
-  pkgs-master = import inputs.nixpkgs-master { inherit system; };
-  pkgs-csharp = import inputs.nixpkgs-csharp { inherit system; };
+  pkgs = inputs.nixpkgs.legacyPackages.${system};
+  pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+  pkgs-csharp = inputs.nixpkgs-csharp.legacyPackages.${system};
 
   removeSuffix = pkgs.lib.removeSuffix ".nix";
   isPackage = name: name != "default.nix";
@@ -14,7 +14,7 @@ let
   packages = builtins.listToAttrs (
     map (name: {
       name = removeSuffix name;
-      value = import (./. + "/${name}") { inherit pkgs pkgs-master pkgs-csharp; };
+      value = import (./. + "/${name}") { inherit pkgs pkgs-unstable pkgs-csharp; };
     }) packageNames
   );
   derivations = builtins.mapAttrs (
