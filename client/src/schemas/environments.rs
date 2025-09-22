@@ -28,7 +28,7 @@ pub struct Environment {
     /// Whether the environment has a `compile_script`.
     pub compiled: bool,
     /// Additional metadata specific to the environment.
-    pub meta: Value,
+    pub meta: HashMap<String, Value>,
 }
 
 /// A test program to verify basic functionality of an environment.
@@ -40,7 +40,7 @@ pub struct Test {
     /// A list of additional source files.
     pub files: Vec<File>,
     /// The expected output.
-    pub expected: Option<String>,
+    pub expected: String,
 }
 
 /// A map of environments where the key represents the id of the environment.
@@ -101,6 +101,8 @@ pub enum GetBaseResourceUsageError {
 #[cfg(feature = "poem-openapi")]
 impl Example for ListEnvironmentsResponse {
     fn example() -> Self {
+        use serde_json::json;
+
         Self(HashMap::from([
             (
                 "rust".into(),
@@ -111,9 +113,7 @@ impl Example for ListEnvironmentsResponse {
                     example: None,
                     test: None,
                     compiled: true,
-                    meta: serde_json::json!({
-                        "homepage": "https://www.rust-lang.org/"
-                    }),
+                    meta: [("homepage".into(), json!("https://www.rust-lang.org/"))].into(),
                 },
             ),
             (
@@ -125,9 +125,7 @@ impl Example for ListEnvironmentsResponse {
                     example: Some("name = input()\nprint(f\"Hello, {name}!\")".into()),
                     test: None,
                     compiled: false,
-                    meta: serde_json::json!({
-                        "packages": ["numpy", "pandas"]
-                    }),
+                    meta: [("packages".into(), json!(["numpy", "pandas"]))].into(),
                 },
             ),
         ]))

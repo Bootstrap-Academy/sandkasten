@@ -1,10 +1,10 @@
 ## What is this?
-[Sandkasten](https://git.defelo.de/Defelo/sandkasten) is a code execution engine for running
-arbitrary untrusted/harmful code in a sandbox, isolating it from both the host system and other
-Sandkasten jobs. A simple REST API allows uploading and executing arbitrary programs, while also
-enabling the user to specify resource limits and providing feedback on the actual resources used.
-This project was partly inspired by [Piston](https://github.com/engineer-man/piston) and aims to
-solve some problems with it.
+[Sandkasten](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K)
+is a code execution engine for running arbitrary untrusted/harmful code in a sandbox, isolating
+it from both the host system and other Sandkasten jobs. A simple REST API allows uploading
+and executing arbitrary programs, while also enabling the user to specify resource limits
+and providing feedback on the actual resources used. This project was partly inspired by
+[Piston](https://github.com/engineer-man/piston) and aims to solve some problems with it.
 
 ## Features
 - Compile and execute arbitrary programs.

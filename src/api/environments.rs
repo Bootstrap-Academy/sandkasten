@@ -94,7 +94,7 @@ impl EnvironmentsApi {
 
         let lock = self.base_resource_usage_cache.get(&name.0).unwrap();
         if let Some((result, _)) = lock.read().await.filter(|(_, timestamp)| {
-            timestamp.elapsed().as_secs() < self.config.base_resource_usage_cache_ttl
+            timestamp.elapsed().as_secs() < self.config.base_resource_usage.cache_ttl
         }) {
             metrics
                 .0
@@ -107,7 +107,7 @@ impl EnvironmentsApi {
 
         let mut guard = lock.write().await;
         if let Some((result, _)) = guard.filter(|(_, timestamp)| {
-            timestamp.elapsed().as_secs() < self.config.base_resource_usage_cache_ttl
+            timestamp.elapsed().as_secs() < self.config.base_resource_usage.cache_ttl
         }) {
             metrics
                 .0
@@ -120,7 +120,7 @@ impl EnvironmentsApi {
 
         let _guard = self
             .request_semaphore
-            .acquire_many(self.config.base_resource_usage_permits)
+            .acquire_many(self.config.base_resource_usage.permits)
             .await?;
 
         let result = get_base_resource_usage(
@@ -176,8 +176,8 @@ async fn get_base_resource_usage(
     .await?;
 
     // run the program multiple times and collect the resource_usage measurements
-    let mut results = Vec::with_capacity(config.base_resource_usage_runs);
-    for _ in 0..config.base_resource_usage_runs {
+    let mut results = Vec::with_capacity(config.base_resource_usage.runs);
+    for _ in 0..config.base_resource_usage.runs {
         results.push(
             run_program(
                 Arc::clone(&config),

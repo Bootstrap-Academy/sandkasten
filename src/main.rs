@@ -29,9 +29,9 @@ async fn main() -> anyhow::Result<()> {
     info!("Loading config");
     let config = config::load().context("Failed to load config")?;
     trace!("Loaded config: {config:#?}");
-    ensure!(config.base_resource_usage_runs >= 1);
-    ensure!(config.base_resource_usage_permits >= 1);
-    ensure!(config.base_resource_usage_permits <= config.max_concurrent_jobs as _);
+    ensure!(config.base_resource_usage.runs >= 1);
+    ensure!(config.base_resource_usage.permits >= 1);
+    ensure!(config.base_resource_usage.permits <= config.max_concurrent_jobs as _);
 
     info!("Creating directories for jobs and programs");
     create_dir_if_not_exists(&config.programs_dir).await?;

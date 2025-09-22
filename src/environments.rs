@@ -17,7 +17,7 @@ pub type Environments = HashMap<String, Environment>;
 pub struct Environment {
     pub name: String,
     pub version: String,
-    pub meta: Value,
+    pub meta: HashMap<String, Value>,
     pub default_main_file_name: String,
     pub compile_script: Option<String>,
     pub run_script: String,
@@ -31,7 +31,7 @@ pub struct Environment {
 pub struct Test {
     pub main_file: programs::MainFile,
     pub files: Vec<programs::File>,
-    pub expected: Option<String>,
+    pub expected: String,
 }
 
 /// Load [`Environments`] from a list of paths.

@@ -231,6 +231,7 @@ macro_rules! limits {
         /// The resource limits of a process.
         #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
         #[cfg_attr(feature = "poem-openapi", derive(Object))]
+        #[serde(deny_unknown_fields)]
         pub struct Limits {
             $(
                 $(#[doc = $doc])*
@@ -241,6 +242,7 @@ macro_rules! limits {
         /// The resource limits of a process. Omit a value to use the default limit.
         #[derive(Debug, Clone, Default, Serialize)]
         #[cfg_attr(feature = "poem-openapi", derive(Object))]
+        #[serde(deny_unknown_fields)]
         pub struct LimitsOpt {
             $(
                 $(#[doc = $doc])*

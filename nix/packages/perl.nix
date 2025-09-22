@@ -1,43 +1,52 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
+
 {
   name = "Perl";
   version = pkgs.perl.version;
   meta = { inherit (pkgs.perl.meta) homepage; };
   default_main_file_name = "code.pl";
-  compile_script = null;
-  run_script = ''${pkgs.perl}/bin/perl -I/program /program/"$@"'';
-  example = ''
-    my $name = <STDIN>;
-    print("Hello, ''${name}!");
+
+  run.path = lib.attrValues { inherit (pkgs) perl; };
+  run.script = ''
+    perl -I/program /program/"$@"
   '';
-  test.main_file.content = ''
-    use Foo;
 
-    if (<STDIN> ne "stdin") { exit 1; }
+  example = # perl
+    ''
+      my $name = <STDIN>;
+      print("Hello, ''${name}!");
+    '';
 
-    if ($#ARGV + 1 != 3) { exit 2; }
-    if ($ARGV[0] ne "foo") { exit 3; }
-    if ($ARGV[1] ne "bar") { exit 4; }
-    if ($ARGV[2] ne "baz") { exit 5; }
+  test.main_file.content = # perl
+    ''
+      use Foo;
 
-    open(my $fh, '<', 'test.txt') or die "Can't open file: $!";
-    my $file_content = do { local $/; <$fh> };
-    close($fh);
+      if (<STDIN> ne "stdin") { exit 1; }
 
-    if ($file_content ne "hello world") { exit 6; }
+      if ($#ARGV + 1 != 3) { exit 2; }
+      if ($ARGV[0] ne "foo") { exit 3; }
+      if ($ARGV[1] ne "bar") { exit 4; }
+      if ($ARGV[2] ne "baz") { exit 5; }
 
-    print($Foo::X)
-  '';
+      open(my $fh, '<', 'test.txt') or die "Can't open file: $!";
+      my $file_content = do { local $/; <$fh> };
+      close($fh);
+
+      if ($file_content ne "hello world") { exit 6; }
+
+      print($Foo::X)
+    '';
   test.files = [
     {
       name = "Foo.pm";
-      content = ''
-        package Foo;
+      content = # perl
+        ''
+          package Foo;
 
-        our $X = "OK";
+          our $X = "OK";
 
-        1;
-      '';
+          1;
+        '';
     }
   ];
 }

@@ -7,11 +7,8 @@
 
 let
   disabledTests = [
-    "attacks::test_forkbomb"
-    "attacks::test_flood_memory"
-    "attacks::test_many_files"
-    "proptests::test_compile_limits"
-    "proptests::random_bullshit_go"
+    "attacks::.*"
+    "proptests::.*"
   ];
 in
 
@@ -19,13 +16,13 @@ testers.runNixOSTest {
   name = "sandkasten";
 
   nodes.machine =
-    { config, ... }:
+    { config, pkgs, ... }:
     {
-      imports = [ self.nixosModules.sandkasten ];
+      imports = [ self.nixosModules.default ];
 
       services.sandkasten = {
         enable = true;
-        environments = p: [ p.all ];
+        environments = sandkastenPackages: sandkastenPackages.all;
         settings = {
           host = "0.0.0.0";
           port = 8000;
@@ -33,8 +30,10 @@ testers.runNixOSTest {
           program_ttl = 60;
           prune_programs_interval = 30;
 
+          max_concurrent_jobs = 2;
+
           compile_limits.time = 300;
-          run_limit.time = 300;
+          run_limits.time = 300;
           run_limits.network = true;
         };
       };
@@ -44,9 +43,10 @@ testers.runNixOSTest {
         virtualHosts."localhost".locations."/".return = "200 \"Hello World!\"";
       };
 
-      environment.systemPackages = [ self.packages.${system}.rustPackages.sandkasten-tests ];
+      environment.systemPackages = [ self.packages.${system}.sandkasten-tests ];
 
       virtualisation.memorySize = 4096;
+      virtualisation.cores = 4;
     };
 
   interactive.nodes.machine =

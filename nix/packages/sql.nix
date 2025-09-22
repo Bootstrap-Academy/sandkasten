@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
+
 {
   name = "SQL";
   version = pkgs.sqlite.version;
@@ -7,13 +8,18 @@
     dialect = "sqlite";
   };
   default_main_file_name = "code.sql";
-  compile_script = null;
-  run_script = ''
-    export HOME=/tmp
+
+  run.path = lib.attrValues { inherit (pkgs) sqlite; };
+  run.environment.HOME = "/tmp";
+  run.script = ''
     cd /program
-    ${pkgs.sqlite}/bin/sqlite3 -json :memory: < $1
+    sqlite3 -json :memory: < $1
   '';
-  test.main_file.content = "SELECT 'OK' as out;";
+
+  test.main_file.content = # sql
+    ''
+      SELECT 'OK' as out;
+    '';
   test.files = [ ];
   test.expected = builtins.toJSON [ { out = "OK"; } ];
 }

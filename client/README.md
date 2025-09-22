@@ -1,5 +1,6 @@
 # Sandkasten Client
-[Sandkasten](https://git.defelo.de/Defelo/sandkasten) client library for running untrusted code
+[Sandkasten](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K)
+client library for running untrusted code
 
 ## Example
 ```rust,no_run

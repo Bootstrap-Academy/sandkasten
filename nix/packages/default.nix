@@ -1,79 +1,71 @@
 {
-  system,
   inputs,
   lib,
+  linkFarm,
+  sandkastenVersion,
+  system,
 }:
-let
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-  pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
-  pkgs-csharp = inputs.nixpkgs-csharp.legacyPackages.${system};
 
-  removeSuffix = pkgs.lib.removeSuffix ".nix";
-  isPackage = name: name != "default.nix";
-  packageNames = builtins.filter isPackage (builtins.attrNames (builtins.readDir ./.));
-  packages = builtins.listToAttrs (
-    map (name: {
-      name = removeSuffix name;
-      value = import (./. + "/${name}") { inherit pkgs pkgs-unstable pkgs-csharp; };
-    }) packageNames
-  );
-  derivations = builtins.mapAttrs (
-    id:
-    {
-      name,
-      version,
-      meta ? { },
-      default_main_file_name,
-      compile_script,
-      run_script,
-      example ? null,
-      test,
-      ...
-    }@v:
-    let
-      manifest = pkgs.writeText "sandkasten-${id}-${version}-manifest.json" (
-        builtins.toJSON rec {
-          sandkasten_version = lib.cargotoml.workspace.package.version;
-          inherit
-            name
-            version
-            meta
-            default_main_file_name
-            example
-            test
-            ;
-          compile_script =
-            if builtins.isNull v.compile_script then
-              null
-            else
-              pkgs.writeShellScript "sandkasten-${id}-${version}-compile.sh" v.compile_script;
-          run_script = pkgs.writeShellScript "sandkasten-${id}-${version}-run.sh" v.run_script;
-          closure = (rootPaths: "${pkgs.closureInfo { inherit rootPaths; }}/store-paths") (
-            [ run_script ] ++ (pkgs.lib.optional (compile_script != null) compile_script)
-          );
+let
+  nixpkgsInstances = lib.pipe inputs [
+    (lib.filterAttrs (k: _: lib.hasPrefix "nixpkgs-" k))
+    (lib.mapAttrs' (k: v: lib.nameValuePair (lib.removePrefix "nix" k) v.legacyPackages.${system}))
+  ];
+
+  evalModules =
+    id: modules:
+    lib.evalModules {
+      class = "sandkastenPackage";
+      specialArgs.modulesPath = ./.;
+      modules = [
+        ./module.nix
+        {
+          _module.args = nixpkgsInstances // {
+            pkgs = nixpkgsInstances.pkgs-stable;
+          };
+          inherit id;
+          sandkasten_version = sandkastenVersion;
         }
-      );
-    in
-    pkgs.stdenv.mkDerivation {
-      inherit version;
-      name = id;
-      unpackPhase = "true";
-      installPhase = ''
-        out=$out/share/sandkasten/packages
-        mkdir -p $out
-        ln -s ${manifest} $out/${id}.json
-      '';
-    }
-  ) packages;
-  merge =
-    n: p:
-    pkgs.symlinkJoin {
-      name = "sandkasten-${n}-packages";
-      paths = p;
+      ]
+      ++ modules;
     };
+
+  ignoredFiles = [
+    "default.nix"
+    "module.nix"
+    "options.md"
+  ];
+
+  packageDrvs = lib.pipe ./. [
+    builtins.readDir
+    lib.attrNames
+    (lib.filter (name: !lib.elem name ignoredFiles))
+    (map (name: evalModules (lib.removeSuffix ".nix" name) [ ./${name} ]))
+    (map (eval: lib.nameValuePair eval.config.id eval.config.finalPackage))
+    lib.listToAttrs
+  ];
+
+  selectNone = lib.const [ ];
+  selectAll = lib.attrValues;
+  packages =
+    selector:
+    let
+      entries = lib.listToAttrs (map (x: lib.nameValuePair x.config.id x) (selector packageDrvs));
+      passthru = {
+        inherit entries;
+        selected = packages;
+        none = packages selectNone;
+        all = packages selectAll;
+      }
+      // lib.mapAttrs' (
+        name: drv: lib.nameValuePair (lib.toCamelCase "with ${name}") (packages (p: selector p ++ [ drv ]))
+      ) packageDrvs;
+    in
+    lib.pipe entries [
+      (lib.mapAttrs' (id: drv: lib.nameValuePair "${id}.json" drv))
+      (linkFarm "sandkasten-packages")
+      (drv: drv.overrideAttrs { inherit passthru; })
+    ];
 in
-derivations
-// rec {
-  combined = f: merge "combined" (f (derivations // { inherit all; }));
-  all = merge "all" (builtins.attrValues derivations);
-}
+
+packages selectAll

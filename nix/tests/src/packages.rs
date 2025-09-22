@@ -51,10 +51,7 @@ fn test_package(id: &str, environment: &Environment, test: &Test) {
     })) {
         Ok(response) => {
             assert_ok(&response, environment.compiled);
-            assert_eq!(
-                response.run.stdout.trim(),
-                test.expected.as_deref().unwrap_or("OK")
-            );
+            assert_eq!(response.run.stdout.trim(), test.expected);
         }
         Err(_) => panic!("request failed"),
     }

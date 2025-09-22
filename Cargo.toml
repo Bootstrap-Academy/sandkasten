@@ -5,7 +5,7 @@ members = [".", "client", "nix/tests"]
 version = "0.2.2"
 edition = "2021"
 license = "MIT"
-repository = "https://git.defelo.de/Defelo/sandkasten"
+repository = "https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K"
 
 [workspace.dependencies]
 serde = { version = "1.0.219", default-features = false, features = ["std", "derive"] }
@@ -23,7 +23,7 @@ publish = false
 
 [dependencies]
 anyhow = { version = "1.0.98", default-features = false, features = ["std"] }
-config = { version = "0.15.11", default-features = false, features = ["toml", "json"] }
+config = { version = "0.15.11", default-features = false, features = ["toml"] }
 key-rwlock = { version = "0.1.2", default-features = false }
 poem = { version = "3.1.11", default-features = false, features = ["server", "anyhow"] }
 poem-ext = { version = "0.12.1", default-features = false, features = ["shield"] }

@@ -1,26 +1,27 @@
-host = "0.0.0.0"
+host = "127.0.0.1"
 port = 8000
 server = "/"
 
 enable_metrics = false
 
-programs_dir = "/programs"
-jobs_dir = "/jobs"
+# programs_dir = "programs"
+# jobs_dir = "jobs"
 
 program_ttl = 600
 prune_programs_interval = 60
 
-max_concurrent_jobs = 16
-
-base_resource_usage_runs = 20
-base_resource_usage_permits = 16
-base_resource_usage_cache_ttl = 3600 # seconds
+max_concurrent_jobs = 4
 
 use_cgroup = true
 # nsjail_path = ...
 # time_path = ...
 
-environments_path = ["pkgs/share/sandkasten/packages"]
+# environments_path = []
+
+[base_resource_usage]
+runs = 20
+# permits = 16
+cache_ttl = 3600 # seconds
 
 [compile_limits]
 cpus = 1

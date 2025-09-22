@@ -22,7 +22,7 @@ impl ConfigurationApi {
             max_concurrent_jobs: self.config.max_concurrent_jobs,
             compile_limits: self.config.compile_limits.clone(),
             run_limits: self.config.run_limits.clone(),
-            base_resource_usage_runs: self.config.base_resource_usage_runs,
+            base_resource_usage_runs: self.config.base_resource_usage.runs,
         })
     }
 }

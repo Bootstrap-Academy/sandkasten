@@ -36,7 +36,8 @@ the program.
 - [x] Programs are deleted automatically if they are not executed anymore.
 - [x] Specify stdin, command line arguments and files in the working directory for run steps.
 - [x] Specify environment variables for both compile and run steps.
-- [x] Client library for Rust ([crate](https://crates.io/crates/sandkasten-client), [documentation](https://docs.rs/sandkasten-client))
+- [x] Client library for Rust ([crate](https://crates.io/crates/sandkasten-client),
+      [documentation](https://docs.rs/sandkasten-client))
 - [x] Optional [Prometheus](https://prometheus.io/docs/introduction/overview/) metrics on `/metrics`
 
 ### Planned/Ideas
@@ -55,82 +56,23 @@ is a rate limit of 20 requests per minute (if you exceed this limit, you may rec
 Also, this instance is not intended for production use, it is currently recommended to host your own
 instance for that (see instructions below).
 
-## Setup instructions
-The recommended way of installing Sandkasten is to setup a dedicated virtual machine running NixOS.
-To make this setup easier, this repository contains a basic NixOS configuration template and an
-installation script.
+## Setup Instructions (NixOS)
 
-### NixOS VM Setup
-The following steps have been tested on Proxmox VE 7.4-3 x86_64, Proxmox VE 8.0.3 x86_64 and
-libvirtd 9.4.0 x86_64.
-
-1. Download the minimal NixOS ISO image from https://nixos.org/download.html#nixos-iso
-2. Create a new virtual machine.
-    - Disk size: at least 16GB
-    - Internet connection and DHCP server to get an IPv4 address are required.
-3. Start the virtual machine and boot into the NixOS installer.
-4. Run `sudo su` to obtain root privileges.
-5. If necessary, change the keyboard layout (e.g. `loadkeys de` for german qwertz layout).
-6. Use `lsblk` or `fdisk -l` to find the name of your hard disk.
-7. Run the following commands to download the installation script from GitHub and start the
-    installation. Replace `[disk]` with the path to your hard disk (e.g. `/dev/sda`). Note that
-    this will erase all data on the disk you specify!
-    ```bash
-    curl -o install.sh https://git.defelo.de/Defelo/sandkasten/raw/branch/latest/install-vm.sh
-    bash install.sh [disk]
-    ```
-    Alternatively you can run the following commands to install the development version.
-    ```bash
-    curl -o install.sh https://git.defelo.de/Defelo/sandkasten/raw/branch/develop/install-vm.sh
-    FLAKE=git+https://git.defelo.de/Defelo/sandkasten#vm bash install.sh [disk]
-    ```
-8. After the script is done, the vm will reboot into the new NixOS installation. The initial root
-    password is `sandkasten` if you want to login via ssh. The Sandkasten server is started
-    automatically and should be listening on `0.0.0.0:80` by default.
-
-In `/root/sandkasten` you can find a [flake](https://nixos.wiki/wiki/Flakes) which contains the
-configuration of your vm. To update Sandkasten and the system packages run
-`nix flake update && nixos-rebuild switch --flake .` in this directory. Here you will also find
-a `sandkasten.nix` which contains the Sandkasten service configuration, a `configuration.nix`
-which contains the system configuration and a `hardware-configuration.nix` which is generated
-automatically by the install script. After making changes to any of these files run
-`nixos-rebuild switch --flake .` to apply them.
-
-### NixOS Module
-Follow these steps if you want to install Sandkasten on an existing (flakes based) NixOS
-installation:
-
-1. Add this repository to your flake inputs:
+1. Add this repository as an input to your `flake.nix`:
     ```nix
     {
-      inputs.sandkasten.url = "git+https://git.defelo.de/Defelo/sandkasten/latest";
+      inputs.sandkasten.url = "git+https://radicle.defelo.de/zKBbWZxz73j7BZMbutM7TMMT4v5K.git";
     }
     ```
 2. Add the module to your NixOS configuration:
     ```nix
     {
-      imports = [sandkasten.nixosModules.sandkasten];
+      imports = [ sandkasten.nixosModules.default ];
     }
     ```
-3. Configure the module:
-    ```nix
-    {
-      services.sandkasten = {
-        enable = true;
-        environments = p: with p; [
-          rust python typescript  # use `all` to install all environments
-        ];
 
-        # example config (for a full list of configuration options, see `config.toml`)
-        settings = {
-          host = "0.0.0.0";
-          port = 8080;
-          max_concurrent_jobs = 16;
-          run_limits.time = 10;
-        };
-      };
-    }
-    ```
+## NixOS Module Documentation
+See [nixos-options.md](./nixos-options.md)
 
 ## Development
 
@@ -147,51 +89,46 @@ The following components are needed for a working development environment:
 If you have direnv installed, you can just use
 `direnv allow` to setup your shell for development. Otherwise you can also use `nix develop`
 to enter a development shell. This will add some tools to your `PATH` and set a few environment
-variables that are needed by Sandkasten and some of the integration tests.
+variables that are needed by Sandkasten.
 
 #### Setup nsjail
-The first time you enter
-the development shell, you should run the `setup-nsjail` command, which will copy the `nsjail`
-binary into your current working directoy, `chown` it to `root` and set the `setuid` bit to allow
-Sandkasten to run this binary as root without having to run Sandkasten itself as root (but of
-course you could also do that).
+The first time you enter the development shell, you should run the `setup-nsjail` command, which
+will copy the `nsjail` binary into your current working directoy, `chown` it to `root` and set the
+`setuid` bit to allow Sandkasten to run this binary as root without having to run Sandkasten itself
+as root (but of course you could also do that).
 
 #### Install Sandkasten packages
-Before starting Sandkasten, you should setup a Nix profile with the environments that you want to be
-available on your instance. A full list of installable environments is available at
-[nix/packages](https://git.defelo.de/Defelo/sandkasten/src/branch/develop/nix/packages). To install a
-package, you can use the following command:
+Before starting Sandkasten, you should build the sandkasten packages with the environments that
+you want to be available on your instance. A full list of installable packages is available at
+`nix/packages`. To install packages, you can use one of the following commands:
 
 ```bash
-nix profile install --profile pkgs .#packages.<package-name>
+# to install all packages
+nix build --out-link pkgs .#sandkastenPackages.all
+# to install only selected packages
+nix build --out-link pkgs .#sandkastenPackages.none.withPython.withRust
 ```
-
-If you want to install all packages, use `all` for `<package-name>`. You can also add, upgrade or
-remove packages later, but you need to restart Sandkasten after doing so. See
-[`nix profile --help`](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-profile.html)
-for details.
 
 #### Start the application
 In the development shell you can just use `cargo run` to start Sandkasten.
 
 ### Unit tests
-To run the unit tests, you can just use `cargo test`. This only requires you to have a working rust
-toolchain, but you should not need to setup nix for this.
+To run the unit tests, you can just use `cargo test`.
 
 ### Integration tests
-To run the integration tests, you can use `cargo test -F nix -- --ignored`. For this to work you
-need to have a Sandkasten instance running on `127.0.0.1:8000`. You can also specify a different
-instance via the `TARGET_HOST` environment variable. If you only want to run the integration tests
-that do not require a nix development shell, you can omit the `-F nix`. In the development shell you
-can also run the `integration-tests` command to automatically start a temporary sandkasten instance
-and run the integration tests against it.
+The integration tests are implemented as
+[NixOS VM tests](https://nixos.org/manual/nixos/stable/#sec-nixos-tests). To run all tests, use the
+command `nix build .#tests`. You can also login to the VM by starting the test driver in interactive
+mode using `nix run .#tests.driverInteractive`, which will open a Python REPL, and then running
+`machine.start()` to start the VM. After the VM has booted, you can login via SSH using
+`ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p2222 root@localhost`. You can
+also access the Sandkasten API on port 8000 on your host.
 
 ### Packages
-All packages are defined using nix expressions in
-[nix/packages](https://git.defelo.de/Defelo/sandkasten/src/branch/develop/nix/packages). Each package has a
-unique id, a human-readable name, a version, optionally a script to compile a program, a script to
-run a program and a test program that is executed as part of the integration tests to ensure that
-the package is working.
+All packages are defined as Nix modules in `nix/packages`. Each package has a unique id, a
+human-readable name, a version, optionally a script to compile a program, a script to run a program
+and a test program that is executed as part of the integration tests to ensure that the package is
+working. For a list of all options, see [nix/packages/options.md](./nix/packages/options.md).
 
 #### Compile scripts
 The compile script of a package is executed whenever a new program has been uploaded. When this

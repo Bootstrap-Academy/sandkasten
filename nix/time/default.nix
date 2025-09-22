@@ -1,1 +1,5 @@
-{ time }: time.overrideAttrs { patches = [ ./precision.patch ]; }
+{ time }:
+
+time.overrideAttrs (attrs: {
+  patches = attrs.patches or [ ] ++ [ ./precision.patch ];
+})
