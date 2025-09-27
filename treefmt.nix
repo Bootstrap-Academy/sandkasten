@@ -6,7 +6,7 @@ let
 in
 
 {
-  tree-root-file = ".git/config";
+  tree-root-file = "treefmt.nix";
   on-unmatched = "fatal";
 
   excludes = [
