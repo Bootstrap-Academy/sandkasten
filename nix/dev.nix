@@ -23,9 +23,9 @@ pkgs.mkShell {
 
   CONFIG_PATH = "./config.toml:${
     pkgs.writers.writeTOML "sandkasten-config.toml" {
-      programs_dir = "programs";
-      jobs_dir = "jobs";
-      nsjail_path = "./.nsjail";
+      programs_dir = ".programs";
+      jobs_dir = ".jobs";
+      nsjail_path = ".nsjail";
       time_path = lib.getExe time;
       environments_path = [ "./pkgs" ];
     }
