@@ -106,7 +106,7 @@ Sandkasten configuration\.
 
 
 *Type:*
-TOML value
+open submodule of (TOML value)
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
