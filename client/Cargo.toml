@@ -15,16 +15,16 @@ blocking = ["reqwest", "reqwest/blocking"]
 poem-openapi = ["dep:poem-openapi"]
 
 [dependencies]
-poem-openapi = { version = "5.1.15", default-features = false, optional = true, features = ["uuid"] }
-reqwest = { version = "0.12.20", default-features = false, optional = true, features = ["json", "rustls-tls"] }
+poem-openapi = { version = "5.1.16", default-features = false, optional = true, features = ["uuid"] }
+reqwest = { version = "0.12.23", default-features = false, optional = true, features = ["json", "rustls-tls"] }
 serde.workspace = true
 serde_json.workspace = true
 thiserror.workspace = true
-url = { version = "2.5.4", default-features = false, optional = true }
+url = { version = "2.5.7", default-features = false, optional = true }
 uuid.workspace = true
 
 [dev-dependencies]
-tokio = { version = "1.45.1", default-features = false, features = ["rt-multi-thread", "macros"] }
+tokio = { version = "1.47.1", default-features = false, features = ["rt-multi-thread", "macros"] }
 
 [package.metadata.docs.rs]
 all-features = true

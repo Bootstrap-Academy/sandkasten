@@ -8,8 +8,8 @@ publish = false
 
 [dependencies]
 indoc = { version = "2.0.6", default-features = false }
-proptest = "1.7.0"
-regex = "1.11.1"
+proptest = "1.8.0"
+regex = "1.11.3"
 sandkasten-client = { path = "../../client", default-features = false, features = ["reqwest", "blocking"] }
-tokio = { version = "1.45.1", default-features = false, features = ["rt-multi-thread", "macros"] }
+tokio = { version = "1.47.1", default-features = false, features = ["rt-multi-thread", "macros"] }
 uuid.workspace = true
