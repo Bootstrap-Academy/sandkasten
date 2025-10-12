@@ -26,11 +26,6 @@ let
 
     cargoArtifacts = craneLib.buildDepsOnly commonArgs;
   };
-
-  commonArgsNightly = commonArgs // {
-    env.RUSTC_BOOTSTRAP = 1;
-    cargoArtifacts = craneLib.buildDepsOnly commonArgsNightly;
-  };
 in
 
 {
@@ -50,16 +45,17 @@ in
         );
 
         doc = craneLib.cargoDoc (
-          commonArgsNightly
+          commonArgs
           // {
             pname = "sandkasten-doc";
-            env = commonArgsNightly.env // {
+            env = {
+              RUSTC_BOOTSTRAP = 1;
               RUSTDOCFLAGS = "--deny warnings --cfg docsrs";
             };
           }
         );
 
-        test = craneLib.cargoTest (commonArgsNightly // { pname = "sandkasten-test"; });
+        test = craneLib.cargoTest (commonArgs // { pname = "sandkasten-test"; });
 
         hack = craneLib.mkCargoDerivation (
           commonArgs
