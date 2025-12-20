@@ -84,12 +84,12 @@
         packages = pkgs.linkFarm "packages" self.packages.${pkgs.stdenv.hostPlatform.system};
         sandkastenPackages = self.packages.${pkgs.stdenv.hostPlatform.system}.sandkastenPackages.all;
         devShells = pkgs.linkFarm "devShells" self.devShells.${pkgs.stdenv.hostPlatform.system};
-        fmt = pkgs.runCommandNoCCLocal "fmt-check" { } ''
+        fmt = pkgs.runCommand "fmt-check" { } ''
           cp -r --no-preserve=mode ${self} repo
           ${lib.getExe self.formatter.${pkgs.stdenv.hostPlatform.system}} -C repo --ci
           touch $out
         '';
-        docs = pkgs.runCommandNoCCLocal "docs-check" { } ''
+        docs = pkgs.runCommand "docs-check" { } ''
           diff -U3 --color=auto ${./nixos-options.md} ${self.packages.${pkgs.stdenv.hostPlatform.system}.docs}
           diff -U3 --color=auto ${./nix/packages/options.md} ${
             self.packages.${pkgs.stdenv.hostPlatform.system}.sandkastenPackageModuleDocs
