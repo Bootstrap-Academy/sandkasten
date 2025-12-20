@@ -11,7 +11,7 @@ let
   cfg = config.services.sandkasten;
   settingsFormat = pkgs.formats.toml { };
 
-  environments = cfg.environments self.packages.${pkgs.system}.sandkastenPackages;
+  environments = cfg.environments self.packages.${pkgs.stdenv.hostPlatform.system}.sandkastenPackages;
 
   limitsModule = type: {
     options = {
@@ -100,13 +100,13 @@ in
   options.services.sandkasten = {
     enable = lib.mkEnableOption "sandkasten";
 
-    package = lib.mkPackageOption self.packages.${pkgs.system} "sandkasten" {
+    package = lib.mkPackageOption self.packages.${pkgs.stdenv.hostPlatform.system} "sandkasten" {
       pkgsText = "sandkasten.packages.\${system}";
     };
 
     nsjailPackage = lib.mkPackageOption pkgs "nsjail" { };
 
-    timePackage = lib.mkPackageOption self.packages.${pkgs.system} "time" {
+    timePackage = lib.mkPackageOption self.packages.${pkgs.stdenv.hostPlatform.system} "time" {
       pkgsText = "sandkasten.packages.\${system}";
     };
 

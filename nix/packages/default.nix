@@ -3,13 +3,15 @@
   lib,
   linkFarm,
   sandkastenVersion,
-  system,
+  stdenv,
 }:
 
 let
   nixpkgsInstances = lib.pipe inputs [
     (lib.filterAttrs (k: _: lib.hasPrefix "nixpkgs-" k))
-    (lib.mapAttrs' (k: v: lib.nameValuePair (lib.removePrefix "nix" k) v.legacyPackages.${system}))
+    (lib.mapAttrs' (
+      k: v: lib.nameValuePair (lib.removePrefix "nix" k) v.legacyPackages.${stdenv.hostPlatform.system}
+    ))
   ];
 
   evalModules =

@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (self.packages.${pkgs.system}) time;
+  inherit (self.packages.${pkgs.stdenv.hostPlatform.system}) time;
   setup-nsjail = pkgs.writeShellScriptBin "setup-nsjail" ''
     if [[ "$UID" != 0 ]]; then
       exec sudo "$0" "$@"

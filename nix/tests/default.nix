@@ -1,7 +1,7 @@
 {
   lib,
   self,
-  system,
+  stdenv,
   testers,
 }:
 
@@ -43,7 +43,7 @@ testers.runNixOSTest {
         virtualHosts."localhost".locations."/".return = "200 \"Hello World!\"";
       };
 
-      environment.systemPackages = [ self.packages.${system}.sandkasten-tests ];
+      environment.systemPackages = [ self.packages.${stdenv.hostPlatform.system}.sandkasten-tests ];
 
       virtualisation.memorySize = 4096;
       virtualisation.cores = 4;

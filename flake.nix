@@ -29,7 +29,7 @@
         pkgs:
         pkgs.callPackages ./nix/sandkasten.nix { inherit (inputs) crane; }
         // {
-          default = self.packages.${pkgs.system}.sandkasten;
+          default = self.packages.${pkgs.stdenv.hostPlatform.system}.sandkasten;
 
           time = pkgs.callPackage ./nix/time { };
 
@@ -48,8 +48,10 @@
           };
 
           generate = pkgs.writeShellScriptBin "generate" ''
-            cat ${self.packages.${pkgs.system}.docs} > nixos-options.md
-            cat ${self.packages.${pkgs.system}.sandkastenPackageModuleDocs} > nix/packages/options.md
+            cat ${self.packages.${pkgs.stdenv.hostPlatform.system}.docs} > nixos-options.md
+            cat ${
+              self.packages.${pkgs.stdenv.hostPlatform.system}.sandkastenPackageModuleDocs
+            } > nix/packages/options.md
           '';
 
           update-deps = pkgs.callPackage ./update-deps.nix { inherit (inputs) radicle-update; };
@@ -73,24 +75,24 @@
       );
 
       checks = eachSystem (pkgs: {
-        inherit (self.packages.${pkgs.system}.default)
+        inherit (self.packages.${pkgs.stdenv.hostPlatform.system}.default)
           clippy
           doc
           test
           hack
           ;
-        packages = pkgs.linkFarm "packages" self.packages.${pkgs.system};
-        sandkastenPackages = self.packages.${pkgs.system}.sandkastenPackages.all;
-        devShells = pkgs.linkFarm "devShells" self.devShells.${pkgs.system};
+        packages = pkgs.linkFarm "packages" self.packages.${pkgs.stdenv.hostPlatform.system};
+        sandkastenPackages = self.packages.${pkgs.stdenv.hostPlatform.system}.sandkastenPackages.all;
+        devShells = pkgs.linkFarm "devShells" self.devShells.${pkgs.stdenv.hostPlatform.system};
         fmt = pkgs.runCommandNoCCLocal "fmt-check" { } ''
           cp -r --no-preserve=mode ${self} repo
-          ${lib.getExe self.formatter.${pkgs.system}} -C repo --ci
+          ${lib.getExe self.formatter.${pkgs.stdenv.hostPlatform.system}} -C repo --ci
           touch $out
         '';
         docs = pkgs.runCommandNoCCLocal "docs-check" { } ''
-          diff -U3 --color=auto ${./nixos-options.md} ${self.packages.${pkgs.system}.docs}
+          diff -U3 --color=auto ${./nixos-options.md} ${self.packages.${pkgs.stdenv.hostPlatform.system}.docs}
           diff -U3 --color=auto ${./nix/packages/options.md} ${
-            self.packages.${pkgs.system}.sandkastenPackageModuleDocs
+            self.packages.${pkgs.stdenv.hostPlatform.system}.sandkastenPackageModuleDocs
           }
           touch $out
         '';
