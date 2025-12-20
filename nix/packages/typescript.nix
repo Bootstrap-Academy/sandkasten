@@ -12,12 +12,12 @@ let
   node_modules = pkgs.linkFarm "node_modules" (
     lib.mapAttrs nodePackage {
       "@types/node" = {
-        url = "https://registry.npmjs.org/@types/node/-/node-20.10.0.tgz";
-        hash = "sha256-tvBAR7uPjL6OcZjNzC3Pl3atYCWcR8mpeKlx6BitPvI=";
+        url = "https://registry.npmjs.org/@types/node/-/node-25.0.3.tgz";
+        hash = "sha256-b06okzh+9q0rui9qOx5sHHtIWKe7SdfsLKqrUoMoqgQ=";
       };
       "undici-types" = {
-        url = "https://registry.npmjs.org/undici-types/-/undici-types-6.20.0.tgz";
-        hash = "sha256-coyp/P9nY3Lk3NZIteJvu9sonsK89nXnYBzCE0pejW4=";
+        url = "https://registry.npmjs.org/undici-types/-/undici-types-7.16.0.tgz";
+        hash = "sha256-U7Xi+hKkEYpIOOgLHMbh2M0w1vflvqaWQOU4b26z+K8=";
       };
     }
   );

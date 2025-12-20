@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 
 let
-  ruby = pkgs.ruby_3_1;
+  ruby = pkgs.ruby_3_5;
 in
 
 {
