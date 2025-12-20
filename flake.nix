@@ -100,6 +100,7 @@
     };
 
   nixConfig = {
+    abort-on-warn = true;
     commit-lock-file-summary = "chore: update flake.lock";
     extra-substituters = "https://attic.defelo.de/sandkasten";
     extra-trusted-public-keys = "sandkasten:U7kShJt9A6tZr4pZRAXHmRlxC3nmOGvfviPqKL7hROE=";
