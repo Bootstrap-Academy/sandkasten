@@ -5,6 +5,7 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-csharp.url = "github:NixOS/nixpkgs/0c582677378f2d9ffcb01490af2f2c678dcb29d3";
     crane.url = "github:ipetkov/crane";
+    radicle-update.url = "git+https://radicle.defelo.de/zPrhdopkKmKWdeEJJHx6TvKM832X.git";
   };
 
   outputs =
@@ -50,6 +51,8 @@
             cat ${self.packages.${pkgs.system}.docs} > nixos-options.md
             cat ${self.packages.${pkgs.system}.sandkastenPackageModuleDocs} > nix/packages/options.md
           '';
+
+          update-deps = pkgs.callPackage ./update-deps.nix { inherit (inputs) radicle-update; };
         }
       );
 

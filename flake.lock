@@ -63,6 +63,21 @@
         "type": "github"
       }
     },
+    "radicle-update": {
+      "locked": {
+        "lastModified": 1766099100,
+        "narHash": "sha256-KaitCmSvJbSpdE108XunxBIRYPEtjbxt+C77JBR+WwQ=",
+        "ref": "refs/heads/main",
+        "rev": "a6752fb50f50ffe2fac599df0202c913be70bc3a",
+        "revCount": 2,
+        "type": "git",
+        "url": "https://radicle.defelo.de/zPrhdopkKmKWdeEJJHx6TvKM832X.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://radicle.defelo.de/zPrhdopkKmKWdeEJJHx6TvKM832X.git"
+      }
+    },
     "root": {
       "inputs": {
         "crane": "crane",
@@ -71,7 +86,8 @@
         ],
         "nixpkgs-csharp": "nixpkgs-csharp",
         "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "radicle-update": "radicle-update"
       }
     }
   },
