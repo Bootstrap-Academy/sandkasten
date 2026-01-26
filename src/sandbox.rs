@@ -12,7 +12,6 @@ use tokio::{
     fs,
     io::{AsyncReadExt, AsyncWriteExt, BufReader},
 };
-use tracing::error;
 
 #[derive(Debug)]
 pub struct RunConfig<'a> {

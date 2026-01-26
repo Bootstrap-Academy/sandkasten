@@ -10,12 +10,18 @@ boolean
 
 
 *Default:*
-` false `
+
+```nix
+false
+```
 
 
 
 *Example:*
-` true `
+
+```nix
+true
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -36,7 +42,10 @@ package
 
 
 *Default:*
-` sandkasten.packages.${system}.sandkasten `
+
+```nix
+sandkasten.packages.${system}.sandkasten
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -57,7 +66,10 @@ function that evaluates to a(n) package
 
 
 *Default:*
-` sandkastenPackages: sandkastenPackages.all `
+
+```nix
+sandkastenPackages: sandkastenPackages.all
+```
 
 
 
@@ -90,7 +102,10 @@ package
 
 
 *Default:*
-` pkgs.nsjail `
+
+```nix
+pkgs.nsjail
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -127,7 +142,10 @@ boolean
 
 
 *Default:*
-` false `
+
+```nix
+false
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -164,7 +182,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 3600 `
+
+```nix
+3600
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -187,7 +208,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` config.services.sandkasten.settings.max_concurrent_jobs `
+
+```nix
+config.services.sandkasten.settings.max_concurrent_jobs
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -208,7 +232,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 20 `
+
+```nix
+20
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -229,7 +256,10 @@ submodule
 
 
 *Default:*
-` { } `
+
+```nix
+{ }
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -250,7 +280,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 1 `
+
+```nix
+1
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -271,7 +304,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 256 `
+
+```nix
+256
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -292,7 +328,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 16 `
+
+```nix
+16
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -313,7 +352,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 1024 `
+
+```nix
+1024
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -334,7 +376,10 @@ boolean
 
 
 *Default:*
-` false `
+
+```nix
+false
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -355,7 +400,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 256 `
+
+```nix
+256
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -376,7 +424,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 65536 `
+
+```nix
+65536
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -397,7 +448,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 65536 `
+
+```nix
+65536
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -418,7 +472,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 30 `
+
+```nix
+30
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -439,7 +496,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 256 `
+
+```nix
+256
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -460,7 +520,10 @@ string
 
 
 *Default:*
-` "127.0.0.1" `
+
+```nix
+"127.0.0.1"
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -481,7 +544,10 @@ absolute path
 
 
 *Default:*
-` "/run/sandkasten/jobs" `
+
+```nix
+"/run/sandkasten/jobs"
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -502,7 +568,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 4 `
+
+```nix
+4
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -523,7 +592,10 @@ The port to listen on\.
 
 
 *Default:*
-` 8000 `
+
+```nix
+8000
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -544,7 +616,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 600 `
+
+```nix
+600
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -565,7 +640,10 @@ absolute path
 
 
 *Default:*
-` "/var/lib/sandkasten/programs" `
+
+```nix
+"/var/lib/sandkasten/programs"
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -586,7 +664,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 60 `
+
+```nix
+60
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -607,7 +688,10 @@ submodule
 
 
 *Default:*
-` { } `
+
+```nix
+{ }
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -628,7 +712,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 1 `
+
+```nix
+1
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -649,7 +736,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 256 `
+
+```nix
+256
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -670,7 +760,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 16 `
+
+```nix
+16
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -691,7 +784,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 256 `
+
+```nix
+256
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -712,7 +808,10 @@ boolean
 
 
 *Default:*
-` false `
+
+```nix
+false
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -733,7 +832,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 64 `
+
+```nix
+64
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -754,7 +856,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 65536 `
+
+```nix
+65536
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -775,7 +880,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 65536 `
+
+```nix
+65536
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -796,7 +904,10 @@ positive integer, meaning >0
 
 
 *Default:*
-` 5 `
+
+```nix
+5
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -817,7 +928,10 @@ unsigned integer, meaning >=0
 
 
 *Default:*
-` 256 `
+
+```nix
+256
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -839,7 +953,10 @@ string
 
 
 *Default:*
-` "/" `
+
+```nix
+"/"
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
@@ -860,7 +977,10 @@ package
 
 
 *Default:*
-` sandkasten.packages.${system}.time `
+
+```nix
+sandkasten.packages.${system}.time
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)

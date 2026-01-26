@@ -10,7 +10,10 @@ null or (submodule)
 
 
 *Default:*
-` null `
+
+```nix
+null
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -31,7 +34,10 @@ attribute set of string
 
 
 *Default:*
-` { } `
+
+```nix
+{ }
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -52,7 +58,10 @@ list of package
 
 
 *Default:*
-` [ ] `
+
+```nix
+[ ]
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -89,7 +98,10 @@ string
 
 
 *Example:*
-` "code.rs" `
+
+```nix
+"code.rs"
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -110,7 +122,10 @@ null or string
 
 
 *Default:*
-` null `
+
+```nix
+null
+```
 
 
 
@@ -143,7 +158,10 @@ string
 
 
 *Example:*
-` "rust" `
+
+```nix
+"rust"
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -164,7 +182,10 @@ attribute set of (JSON value)
 
 
 *Default:*
-` { } `
+
+```nix
+{ }
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -185,7 +206,10 @@ string
 
 
 *Example:*
-` "Rust" `
+
+```nix
+"Rust"
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -222,7 +246,10 @@ attribute set of string
 
 
 *Default:*
-` { } `
+
+```nix
+{ }
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -243,7 +270,10 @@ list of package
 
 
 *Default:*
-` [ ] `
+
+```nix
+[ ]
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -296,7 +326,10 @@ string
 
 
 *Default:*
-` "OK" `
+
+```nix
+"OK"
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -317,7 +350,10 @@ list of (submodule)
 
 
 *Default:*
-` [ ] `
+
+```nix
+[ ]
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -366,7 +402,10 @@ string
 
 
 *Example:*
-` "test.rs" `
+
+```nix
+"test.rs"
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -431,7 +470,10 @@ string
 
 
 *Example:*
-` "test.rs" `
+
+```nix
+"test.rs"
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)

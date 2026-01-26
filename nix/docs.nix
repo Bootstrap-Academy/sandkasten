@@ -34,6 +34,5 @@ let
 in
 
 pkgs.runCommand "docs" { } ''
-  ${lib.getExe pkgs.gnused} -E 's|\[${self}/(.*)\]\(.*\)|[\1](${webUrl}/\1)|' ${docs} \
-  | ${lib.getExe pkgs.gawk} '{ print ($0 == "```" && a=!a) ? "```nix" : $0 }' > $out
+  ${lib.getExe pkgs.gnused} -E 's|\[${self}/(.*)\]\(.*\)|[\1](${webUrl}/\1)|' ${docs} > $out
 ''
