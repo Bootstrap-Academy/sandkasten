@@ -11,6 +11,7 @@ in
   default_main_file_name = "code.ua";
 
   run.path = lib.attrValues { inherit uiua; };
+  run.extra_tmpfs = [ "/box/uiua-modules" ];
   run.script = ''
     uiua run --no-format /program/"$@"
   '';
