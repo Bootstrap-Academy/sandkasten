@@ -16,7 +16,7 @@ poem-openapi = ["dep:poem-openapi"]
 
 [dependencies]
 poem-openapi = { version = "5.1.16", default-features = false, optional = true, features = ["uuid"] }
-reqwest = { version = "0.13.1", default-features = false, optional = true, features = ["json", "rustls"] }
+reqwest = { version = "0.13.2", default-features = false, optional = true, features = ["json", "rustls"] }
 serde.workspace = true
 serde_json.workspace = true
 thiserror.workspace = true
