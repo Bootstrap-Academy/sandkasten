@@ -21,6 +21,7 @@ pub struct Environment {
     pub default_main_file_name: String,
     pub compile_script: Option<String>,
     pub run_script: String,
+    pub run_extra_tmpfs: Vec<PathBuf>,
     pub closure: PathBuf,
     pub example: Option<String>,
     pub test: Test,

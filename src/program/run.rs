@@ -52,6 +52,8 @@ pub async fn run_program(
     let run_script = fs::read_to_string(path.join("run_script")).await?;
     let main_file = fs::read_to_string(path.join("main_file")).await?;
     let closure = PathBuf::from(fs::read_to_string(path.join("closure")).await?);
+    let extra_tmpfs: Vec<PathBuf> =
+        postcard::from_bytes(&fs::read(path.join("extra_tmpfs")).await?)?;
 
     // collect command line arguments and environment variables from run request
     let args = std::iter::once(main_file.as_str())
@@ -94,6 +96,12 @@ pub async fn run_program(
                 },
             },
         ];
+        mounts.extend(extra_tmpfs.into_iter().map(|x| Mount {
+            dest: x.into_os_string().into(),
+            typ: MountType::Temp {
+                size: run_limits.tmpfs,
+            },
+        }));
         mounts.extend(mounts_from_closure(&closure).await?);
 
         // run the program
@@ -127,4 +135,6 @@ pub enum RunProgramError {
     RunError(#[from] RunError),
     #[error("limits exceeded: {0:?}")]
     LimitsExceeded(Vec<LimitExceeded>),
+    #[error("postcard error: {0}")]
+    PostcardError(#[from] postcard::Error),
 }

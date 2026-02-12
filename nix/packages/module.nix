@@ -130,7 +130,18 @@ in
     };
 
     run = lib.mkOption {
-      type = lib.types.submodule (scriptModule "run");
+      type = lib.types.submodule {
+        imports = [
+          (scriptModule "run")
+          {
+            options.extra_tmpfs = lib.mkOption {
+              type = lib.types.listOf lib.types.path;
+              description = "List of extra tmpfs mount points.";
+              default = [ ];
+            };
+          }
+        ];
+      };
       description = "Run script.";
     };
 
@@ -183,6 +194,7 @@ in
       ]
       // {
         inherit compile_script run_script;
+        run_extra_tmpfs = config.run.extra_tmpfs;
         closure = closureOf [
           compile_script
           run_script

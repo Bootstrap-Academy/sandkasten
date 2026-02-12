@@ -45,6 +45,7 @@ pub async fn build_program(
             &env.version,
             &env.compile_script,
             &env.run_script,
+            &env.run_extra_tmpfs,
             &env.closure,
             &env.sandkasten_version,
             &data.main_file,
@@ -160,6 +161,11 @@ async fn store_in_directory(
     fs::write(
         program_directory.join("closure"),
         &environment.closure.as_os_str().as_bytes(),
+    )
+    .await?;
+    fs::write(
+        program_directory.join("extra_tmpfs"),
+        postcard::to_stdvec(&environment.run_extra_tmpfs)?,
     )
     .await?;
 

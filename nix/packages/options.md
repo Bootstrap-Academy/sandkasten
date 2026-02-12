@@ -256,6 +256,30 @@ attribute set of string
 
 
 
+## run\.extra_tmpfs
+
+
+
+List of extra tmpfs mount points\.
+
+
+
+*Type:*
+list of absolute path
+
+
+
+*Default:*
+
+```nix
+[ ]
+```
+
+*Declared by:*
+ - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
+
+
+
 ## run\.path
 
 
