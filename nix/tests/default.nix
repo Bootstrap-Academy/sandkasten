@@ -49,26 +49,14 @@ testers.runNixOSTest {
       virtualisation.cores = 4;
     };
 
+  interactive.sshBackdoor.enable = true;
+  interactive.defaults.virtualisation.graphics = false;
+
   interactive.nodes.machine =
     { pkgs, ... }:
     {
-      virtualisation.graphics = false;
-      services.openssh = {
-        enable = true;
-        settings = {
-          PermitRootLogin = "yes";
-          PermitEmptyPasswords = "yes";
-        };
-      };
-      security.pam.services.sshd.allowNullPassword = true;
-
       networking.firewall.enable = false;
       virtualisation.forwardPorts = [
-        {
-          from = "host";
-          host.port = 2222;
-          guest.port = 22;
-        }
         {
           from = "host";
           host.port = 8000;
