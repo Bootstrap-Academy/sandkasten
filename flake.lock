@@ -65,11 +65,11 @@
     },
     "radicle-update": {
       "locked": {
-        "lastModified": 1771923131,
-        "narHash": "sha256-Q2BtuaCEuZRc+A/Hzs69EKpPF6d00ukMli62HjT7BCM=",
+        "lastModified": 1773683667,
+        "narHash": "sha256-UqZ06b0M19UBxu6bmnZ0f0/+82KZMS/eU1XZq7pi4oQ=",
         "ref": "refs/heads/main",
-        "rev": "fb795f84de81ad16e7b718eb3c1699ae2466f887",
-        "revCount": 6,
+        "rev": "38aba457fbfdc58472bf9837d53684403eb74571",
+        "revCount": 8,
         "type": "git",
         "url": "https://radicle.defelo.de/zPrhdopkKmKWdeEJJHx6TvKM832X.git"
       },
