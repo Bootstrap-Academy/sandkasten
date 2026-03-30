@@ -303,7 +303,7 @@ async fn compile_program(
         if result.status == 0 {
             Ok(result)
         } else {
-            Err(BuildProgramError::CompilationFailed(result))
+            Err(BuildProgramError::CompilationFailed(result.into()))
         }
     })
 }
@@ -328,7 +328,7 @@ pub enum BuildProgramError {
     #[error("run error: {0}")]
     RunError(#[from] RunError),
     #[error("compilation failed (exit code {})", .0.status)]
-    CompilationFailed(RunResult),
+    CompilationFailed(Box<RunResult>),
     #[error("postcard error: {0}")]
     PostcardError(#[from] postcard::Error),
     #[error("conflicting filenames")]

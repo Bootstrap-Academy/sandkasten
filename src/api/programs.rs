@@ -80,7 +80,7 @@ impl ProgramsApi {
                 return BuildRun::environment_not_found()
             }
             Err(BuildProgramError::CompilationFailed(result)) => {
-                return BuildRun::compile_error(result)
+                return BuildRun::compile_error(*result)
             }
             Err(BuildProgramError::ConflictingFilenames) => return BuildRun::invalid_file_names(),
             Err(BuildProgramError::LimitsExceeded(lim)) => {
@@ -164,7 +164,7 @@ impl ProgramsApi {
                 Build::ok(result)
             }
             Err(BuildProgramError::EnvironmentNotFound(_)) => Build::environment_not_found(),
-            Err(BuildProgramError::CompilationFailed(result)) => Build::compile_error(result),
+            Err(BuildProgramError::CompilationFailed(result)) => Build::compile_error(*result),
             Err(BuildProgramError::ConflictingFilenames) => Build::invalid_file_names(),
             Err(BuildProgramError::LimitsExceeded(lim)) => Build::compile_limits_exceeded(lim),
             Err(err) => Err(err.into()),
