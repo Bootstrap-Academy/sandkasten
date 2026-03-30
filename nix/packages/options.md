@@ -227,6 +227,14 @@ Run script\.
 *Type:*
 submodule
 
+
+
+*Default:*
+
+```nix
+{ }
+```
+
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
 
@@ -330,6 +338,14 @@ Integration test to verify basic functionality of this environment\.
 
 *Type:*
 submodule
+
+
+
+*Default:*
+
+```nix
+{ }
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)
@@ -446,6 +462,14 @@ Main source file\.
 
 *Type:*
 submodule
+
+
+
+*Default:*
+
+```nix
+{ }
+```
 
 *Declared by:*
  - [nix/packages/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/packages/module\.nix)

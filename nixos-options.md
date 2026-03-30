@@ -123,6 +123,14 @@ Sandkasten configuration\.
 *Type:*
 open submodule of (TOML value)
 
+
+
+*Default:*
+
+```nix
+{ }
+```
+
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
 
@@ -162,6 +170,14 @@ Config for measuring the base resource usage of an environment\.
 
 *Type:*
 submodule
+
+
+
+*Default:*
+
+```nix
+{ }
+```
 
 *Declared by:*
  - [nix/module\.nix](https://radicle.defelo.de/nodes/radicle.defelo.de/rad:zKBbWZxz73j7BZMbutM7TMMT4v5K/tree/nix/module\.nix)
