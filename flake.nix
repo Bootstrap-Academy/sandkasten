@@ -35,24 +35,7 @@
 
           tests = pkgs.callPackage ./nix/tests { inherit self; };
 
-          docs = pkgs.callPackage ./nix/docs.nix {
-            inherit self;
-            module = self.nixosModules.default;
-          };
-
           sandkastenPackages = pkgs.callPackage ./nix/packages { inherit inputs sandkastenVersion; };
-
-          sandkastenPackageModuleDocs = pkgs.callPackage ./nix/docs.nix {
-            inherit self;
-            module = ./nix/packages/module.nix;
-          };
-
-          generate = pkgs.writeShellScriptBin "generate" ''
-            cat ${self.packages.${pkgs.stdenv.hostPlatform.system}.docs} > nixos-options.md
-            cat ${
-              self.packages.${pkgs.stdenv.hostPlatform.system}.sandkastenPackageModuleDocs
-            } > nix/packages/options.md
-          '';
 
           update-deps = pkgs.callPackage ./update-deps.nix { inherit (inputs) radicle-update; };
         }
@@ -87,13 +70,6 @@
         fmt = pkgs.runCommand "fmt-check" { } ''
           cp -r --no-preserve=mode ${self} repo
           ${lib.getExe self.formatter.${pkgs.stdenv.hostPlatform.system}} -C repo --ci
-          touch $out
-        '';
-        docs = pkgs.runCommand "docs-check" { } ''
-          diff -U3 --color=auto ${./nixos-options.md} ${self.packages.${pkgs.stdenv.hostPlatform.system}.docs}
-          diff -U3 --color=auto ${./nix/packages/options.md} ${
-            self.packages.${pkgs.stdenv.hostPlatform.system}.sandkastenPackageModuleDocs
-          }
           touch $out
         '';
       });

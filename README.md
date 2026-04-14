@@ -71,8 +71,8 @@ instance for that (see instructions below).
     }
     ```
 
-## NixOS Module Documentation
-See [nixos-options.md](./nixos-options.md)
+## NixOS Module Options
+[search.defelo.de](https://search.defelo.de/?scope=sandkasten)
 
 ## Development
 
@@ -128,7 +128,7 @@ also access the Sandkasten API on port 8000 on your host.
 All packages are defined as Nix modules in `nix/packages`. Each package has a unique id, a
 human-readable name, a version, optionally a script to compile a program, a script to run a program
 and a test program that is executed as part of the integration tests to ensure that the package is
-working. For a list of all options, see [nix/packages/options.md](./nix/packages/options.md).
+working. For a list of all options, see [search.defelo.de](https://search.defelo.de/?scope=sandkasten-package).
 
 #### Compile scripts
 The compile script of a package is executed whenever a new program has been uploaded. When this

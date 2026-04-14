@@ -35,7 +35,6 @@ let
   ignoredFiles = [
     "default.nix"
     "module.nix"
-    "options.md"
   ];
 
   packageDrvs = lib.pipe ./. [
