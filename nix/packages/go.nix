@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   name = "Go";
   version = pkgs.go.version;
   meta = { inherit (pkgs.go.meta) description homepage; };
