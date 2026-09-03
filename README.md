@@ -50,12 +50,6 @@ the program.
 On a running Sandkasten instance, the API documentation is available on `<instance>/docs` and
 `<instance>/redoc`. There is also an OpenAPI specification available on `<instance>/openapi.json`.
 
-## Public Instance
-A public test instance is available at https://sandkasten.bootstrap.academy/. Please note that there
-is a rate limit of 20 requests per minute (if you exceed this limit, you may receive 429 errors).
-Also, this instance is not intended for production use, it is currently recommended to host your own
-instance for that (see instructions below).
-
 ## Setup Instructions (NixOS)
 
 1. Add this repository as an input to your `flake.nix`:
